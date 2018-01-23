@@ -1,0 +1,10 @@
+{
+  "name": "chronicle-client",
+  "version": "0.0.1",
+  "description": "A React client for the Chronicle API.",
+  "main": "index.js",
+  "repository": "https://github.com/destinmoulton/chronicle-client",
+  "author": "Destin Moulton",
+  "license": "MIT",
+  "private": null
+}
