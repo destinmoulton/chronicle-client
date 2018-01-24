@@ -2,7 +2,7 @@ module.exports = {
     entry: "./src/index.tsx",
     output: {
         filename: "chronicleclient.js",
-        path: __dirname + "/dist"
+        path: __dirname + "/dist/js"
     },
 
     // Enable sourcemaps for debugging webpack's output.
