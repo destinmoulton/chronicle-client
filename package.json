@@ -1,23 +1,29 @@
 {
-  "name": "chronicle-client",
-  "version": "0.0.1",
-  "description": "A React client for the Chronicle API.",
-  "main": "index.js",
-  "repository": "https://github.com/destinmoulton/chronicle-client",
-  "author": "Destin Moulton",
-  "license": "MIT",
-  "private": null,
-  "dependencies": {
-    "@types/react": "^16.0.34",
-    "@types/react-dom": "^16.0.3",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "rebass": "^1.0.4"
-  },
-  "devDependencies": {
-    "awesome-typescript-loader": "^3.4.1",
-    "source-map-loader": "^0.2.3",
-    "typescript": "^2.6.2",
-    "webpack": "^3.10.0"
-  }
+    "name": "chronicle-client",
+    "version": "0.0.1",
+    "description": "A React client for the Chronicle API.",
+    "main": "index.js",
+    "repository": "https://github.com/destinmoulton/chronicle-client",
+    "author": "Destin Moulton",
+    "license": "MIT",
+    "scripts": {
+        "compile": "webpack --config webpack.config.js -d --watch"
+    },
+    "dependencies": {
+        "@types/react": "^16.0.34",
+        "@types/react-dom": "^16.0.3",
+        "antd": "^3.1.4",
+        "history": "^4.7.2",
+        "react": "^16.2.0",
+        "react-dom": "^16.2.0",
+        "react-redux": "^5.0.6",
+        "react-router-redux": "^4.0.8",
+        "redux": "^3.7.2"
+    },
+    "devDependencies": {
+        "awesome-typescript-loader": "^3.4.1",
+        "source-map-loader": "^0.2.3",
+        "typescript": "^2.6.2",
+        "webpack": "^3.10.0"
+    }
 }
