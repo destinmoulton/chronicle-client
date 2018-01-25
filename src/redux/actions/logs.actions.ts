@@ -1,10 +1,35 @@
 import { API_URL } from "../../../chronicle.config";
-import {} from "../actionTypes";
+import { LOGS_START_LOADING } from "../actionTypes";
 import * as Types from "../../common/types";
+import { JSON_HEADERS } from "../../common/headers";
 
-const getLogs = () => {
+export const loadLogs = () => {
     return (dispatch: Types.IDispatch) => {
-        const fetchParams = {};
-        fetch(API_URL, fetchParams);
+        dispatch(setLoadingState());
+        dispatch(getServerLogs());
+    };
+};
+
+const setLoadingState = () => {
+    return {
+        type: LOGS_START_LOADING
+    };
+};
+
+const getServerLogs = () => {
+    return (dispatch: Types.IDispatch) => {
+        const query = {};
+        const fetchParams = {
+            method: "POST",
+            headers: JSON_HEADERS,
+            body: JSON.stringify(query)
+        };
+        fetch(API_URL, fetchParams)
+            .then(res => {
+                return res.json();
+            })
+            .then(logs => {
+                console.log(logs);
+            });
     };
 };
