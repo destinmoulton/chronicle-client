@@ -1,1 +1,7 @@
 node_modules
+
+# Don't include the configuration file
+chronicle.config.js
+
+# Don't include the client build file
+dist/js/chronicleclient.js
