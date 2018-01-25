@@ -1,15 +1,18 @@
 import * as React from "react";
 import * as moment from "moment";
 
+import * as Types from "../../common/types";
+
 interface ILogItemProps {
-    item: any;
+    item: Types.ILogItem;
 }
 const LogItem: React.SFC<ILogItemProps> = (props: ILogItemProps) => {
-    const { createdAt, type } = props.item;
+    const { item } = props;
+    const { createdAt, type } = item;
 
     const time = moment(createdAt).format("MMM D, Y H:m a");
     return (
-        <div>
+        <div className="chc-log-list-item">
             <div>{time}</div>
             <div>{type}</div>
         </div>
