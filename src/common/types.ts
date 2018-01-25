@@ -1,3 +1,4 @@
+import { Map } from "immutable";
 /** Redux Interfaces */
 // Redux dispatch()
 export interface IDispatch {
@@ -16,14 +17,18 @@ export interface IGetState {
 }
 
 /* Redux Actions */
+export type IAppLogs = Map<string, any>;
+
 export interface ILogAction {
     type: string;
+    appLogs: IAppLogs;
 }
 
 /* Store States */
 export interface IReducerLogsState {
     isLoading: boolean;
     hasData: boolean;
+    appLogs: IAppLogs;
 }
 
 export interface IRootStoreState {
