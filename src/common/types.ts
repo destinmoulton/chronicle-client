@@ -19,6 +19,14 @@ export interface IGetState {
 /* Redux Actions */
 export type IAppLogs = Map<string, any>;
 
+export interface ILogItem {
+    client: any;
+    createdAt: number;
+    id: string;
+    info: any;
+    type: string;
+}
+
 export interface ILogAction {
     type: string;
     appLogs: IAppLogs;
