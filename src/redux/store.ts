@@ -9,7 +9,7 @@ const history = createHistory();
 
 const store = createStore(
     combineReducers({
-        logsReducer,
+        logs: logsReducer,
         routerReducer
     }),
     applyMiddleware(routerMiddleware(history), thunk)
