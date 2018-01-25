@@ -3,10 +3,13 @@ import { combineReducers, createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import createHistory from "history/createBrowserHistory";
 
+import logsReducer from "./reducers/logs.reducer";
+
 const history = createHistory();
 
 const store = createStore(
     combineReducers({
+        logsReducer,
         routerReducer
     }),
     applyMiddleware(routerMiddleware(history), thunk)
