@@ -8,7 +8,7 @@
     "license": "MIT",
     "scripts": {
         "compile": "webpack --config webpack.config.js -d --watch",
-        "start:server": "serve --single ./dist"
+        "start:server": "serve --single -c=10 ./dist"
     },
     "dependencies": {
         "@types/react": "^16.0.34",
@@ -24,7 +24,7 @@
         "react-redux": "^5.0.6",
         "react-router": "^4.2.0",
         "react-router-dom": "^4.2.2",
-        "react-router-redux": "^4.0.8",
+        "react-router-redux": "^5.0.0-alpha.9",
         "redux": "^3.7.2",
         "serve": "^6.4.9"
     },
