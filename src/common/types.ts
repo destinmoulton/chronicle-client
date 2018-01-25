@@ -15,5 +15,17 @@ export interface IGetState {
     (): IRootStoreState;
 }
 
+/* Redux Actions */
+export interface ILogAction {
+    type: string;
+}
+
 /* Store States */
-export interface IRootStoreState {}
+export interface IReducerLogsState {
+    isLoading: boolean;
+    hasData: boolean;
+}
+
+export interface IRootStoreState {
+    logs: IReducerLogsState;
+}
