@@ -13,6 +13,7 @@
     "dependencies": {
         "@types/react": "^16.0.34",
         "@types/react-dom": "^16.0.3",
+        "@types/react-json-tree": "^0.6.6",
         "@types/react-redux": "^5.0.14",
         "@types/react-router": "^4.0.21",
         "@types/react-router-dom": "^4.2.3",
@@ -23,6 +24,7 @@
         "moment": "^2.20.1",
         "react": "^16.2.0",
         "react-dom": "^16.2.0",
+        "react-json-tree": "^0.11.0",
         "react-redux": "^5.0.6",
         "react-router": "^4.2.0",
         "react-router-dom": "^4.2.2",
