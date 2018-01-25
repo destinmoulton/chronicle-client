@@ -3,3 +3,9 @@ div.loading {
     width: 100%;
     margin-top: 20px;
 }
+
+div.chc-log-list-item {
+    padding: 3px;
+    border: 1px solid black;
+    cursor: pointer;
+}
