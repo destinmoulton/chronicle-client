@@ -32,24 +32,27 @@ const getServerLogs = () => {
             .then(res => {
                 return res.json();
             })
-            .then(data => {
-                if (data.Items !== undefined) {
-                    dispatch(prepareAppLogs(data));
+            .then(parsed => {
+                if (
+                    parsed.data !== undefined &&
+                    parsed.data.Items !== undefined
+                ) {
+                    dispatch(prepareAppLogs(parsed.data.Items));
                 } else {
                     console.error(
                         "logs.actions :: getServerLogs() :: No Items in data.",
-                        data
+                        parsed
                     );
                 }
             });
     };
 };
 
-const prepareAppLogs = (data: any) => {
+const prepareAppLogs = (logItems: any) => {
     return (dispatch: Types.IDispatch, getState: Types.IGetState) => {
         // Build a map of the Items
         let mappedItems: Types.IAppLogs = Map();
-        data.Items.forEach((item: any) => {
+        logItems.forEach((item: any) => {
             mappedItems = mappedItems.set(item.id, item);
         });
 
