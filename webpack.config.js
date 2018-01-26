@@ -1,3 +1,5 @@
+var path = require("path");
+var webpack = require("webpack");
 module.exports = {
     entry: "./src/index.tsx",
     output: {
@@ -29,6 +31,14 @@ module.exports = {
     // dependencies, which allows browsers to cache those libraries between builds.
     externals: {
         react: "React",
-        "react-dom": "ReactDOM"
+        "react-dom": "ReactDOM",
+        immutable: "Immutable",
+        moment: "moment",
+        lodash: {
+            commonjs: "lodash",
+            commonjs2: "lodash",
+            amd: "_",
+            root: "_"
+        }
     }
 };
