@@ -9,7 +9,9 @@ import LogBrowser from "./components/LogBrowser";
 
 const App = () => (
     <Layout>
-        <Header>Chronicle Client</Header>
+        <Header className="chc-nav-bar">
+            <div className="chc-nav-title">Chronicle Client</div>
+        </Header>
         <Content>
             <Route exact path="/" component={LogBrowser} />
             <Route

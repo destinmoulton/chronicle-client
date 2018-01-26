@@ -55,7 +55,7 @@ class LogList extends React.Component<ILogListProps> {
             );
         });
         return (
-            <div>
+            <div className="chc-log-list-box">
                 {list}
                 {loading}
             </div>
