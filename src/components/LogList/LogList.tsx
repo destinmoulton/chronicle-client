@@ -18,6 +18,7 @@ interface IMapStateToProps {
     logsHaveData: boolean;
 }
 interface ILogListProps extends IMapDispatchToProps, IMapStateToProps {
+    activeLogItemId: string;
     clickHandler: (logItem: Types.ILogItem) => void;
 }
 
@@ -36,6 +37,7 @@ class LogList extends React.Component<ILogListProps> {
 
     render() {
         const {
+            activeLogItemId,
             clickHandler,
             logsAreLoading,
             logsData,
@@ -48,7 +50,7 @@ class LogList extends React.Component<ILogListProps> {
         logsData.map((item, key) => {
             list.push(
                 <div key={key} onClick={this._clickHandler.bind(this, item)}>
-                    <LogItem item={item} />
+                    <LogItem item={item} activeLogItemId={activeLogItemId} />
                 </div>
             );
         });

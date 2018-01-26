@@ -34,10 +34,15 @@ class LogBrowser extends React.Component<ILogBrowserProps, ILogBrowserState> {
                 <LogExplorer item={_activeLogItem} />
             ) : null;
 
+        const activeLogItemId =
+            _activeLogItem !== undefined ? _activeLogItem.id : "";
         return (
             <Row>
                 <Col span={4}>
-                    <LogList clickHandler={this._handleClickLogItem} />
+                    <LogList
+                        clickHandler={this._handleClickLogItem}
+                        activeLogItemId={activeLogItemId}
+                    />
                 </Col>
                 <Col span={20}>{logExplorer}</Col>
             </Row>

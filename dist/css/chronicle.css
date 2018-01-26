@@ -9,3 +9,7 @@ div.chc-log-list-item {
     border: 1px solid black;
     cursor: pointer;
 }
+
+div.chc-log-list-item-active {
+    background-color: #e6f2ff;
+}

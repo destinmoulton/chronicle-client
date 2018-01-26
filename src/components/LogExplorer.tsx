@@ -35,7 +35,7 @@ const LogExplorer: React.SFC<ILogExplorerProps> = (
     console.log(props.item);
     return (
         <div>
-            <JSONTree data={props.item} theme={theme} />
+            <JSONTree data={props.item} theme={theme} hideRoot />
         </div>
     );
 };
