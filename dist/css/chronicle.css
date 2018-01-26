@@ -4,6 +4,13 @@ div.loading {
     margin-top: 20px;
 }
 
+div.chc-log-browser-json-tree-container {
+    margin: 5px;
+    padding: 5px;
+    border: 2px solid gray;
+    background-color: #fff;
+}
+
 div.chc-log-list-item {
     padding: 3px;
     border: 1px solid black;
