@@ -8,7 +8,7 @@ const { Header, Content, Footer } = Layout;
 import LogBrowser from "./components/LogBrowser";
 
 const App = () => (
-    <Layout>
+    <Layout className="chc-main-container">
         <Header className="chc-nav-bar">
             <div className="chc-nav-title">Chronicle Client</div>
         </Header>
@@ -23,7 +23,6 @@ const App = () => (
                 )}
             />
         </Content>
-        <Footer>MIT License</Footer>
     </Layout>
 );
 

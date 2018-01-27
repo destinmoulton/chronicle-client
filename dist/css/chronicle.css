@@ -1,3 +1,8 @@
+body,
+html {
+    height: 100%;
+}
+
 div.loading {
     text-align: center;
     width: 100%;
@@ -12,8 +17,12 @@ div.chc-log-browser-json-tree-container {
 }
 
 div.chc-log-list-box {
-    overflow-y: scroll;
-    height: 100%;
+    overflow: auto;
+    height: 95vh;
+    position: fixed;
+    width: 250px;
+    left: 0;
+    background-color: #fff;
 }
 
 div.chc-log-list-item {
@@ -26,11 +35,16 @@ div.chc-log-list-item-active {
     background-color: #e6f2ff;
 }
 
+div.chc-main-container {
+    height: 100vh;
+}
+
 div.chc-nav-bar {
     background-color: #204582;
-    height: 34px;
-    line-height: 34px;
+    height: 5vh;
+    line-height: 5vh;
     padding-left: 25px;
+    border-bottom: 2px solid white;
 }
 
 div.chc-nav-title {
