@@ -42,7 +42,8 @@ class DateRange extends React.Component<IDateRangeProps> {
     render() {
         const { rangeDateEnd, rangeDateStart } = this.props;
         return (
-            <span className="chc-query-date-range">
+            <span>
+                <span>Dates:</span>
                 <DatePicker
                     onChange={this._handleSelectStartDate}
                     placeholder="Start Date"
