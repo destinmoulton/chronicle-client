@@ -1,6 +1,9 @@
+import { Moment } from "moment";
 interface IQueryParams {
     app: string;
     type?: string;
+    dateRangeEnd: Moment;
+    dateRangeStart: Moment;
 }
 
 /**
@@ -9,7 +12,6 @@ interface IQueryParams {
  */
 export const chronicleAPIQueryBuilder = (queryParams: IQueryParams) => {
     let typeQuery = null;
-
     if (queryParams.type) {
         typeQuery = {
             name: "type",
@@ -26,6 +28,18 @@ export const chronicleAPIQueryBuilder = (queryParams: IQueryParams) => {
                     name: "app",
                     value: queryParams.app,
                     comparison: "="
+                },
+                {
+                    name: "createdAt",
+                    attributeAlias: "startTime",
+                    value: queryParams.dateRangeStart.valueOf(),
+                    comparison: ">="
+                },
+                {
+                    name: "createdAt",
+                    attributeAlias: "endTime",
+                    value: queryParams.dateRangeEnd.valueOf(),
+                    comparison: "<="
                 },
                 typeQuery
             ]
