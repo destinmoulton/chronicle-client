@@ -31,11 +31,11 @@ class DateRange extends React.Component<IDateRangeProps> {
         this._handleSelectEndDate = this._handleSelectEndDate.bind(this);
     }
 
-    _handleSelectStartDate(date: Moment, dateString: string) {
+    _handleSelectStartDate(date: Moment) {
         this.props.setQueryDateStart(date);
     }
 
-    _handleSelectEndDate(date: Moment, dateString: string) {
+    _handleSelectEndDate(date: Moment) {
         this.props.setQueryDateEnd(date);
     }
 
