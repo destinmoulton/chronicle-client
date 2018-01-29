@@ -18,7 +18,7 @@ div.chc-log-browser-json-tree-container {
 
 div.chc-log-list-box {
     overflow: auto;
-    height: 95vh;
+    height: 91vh;
     position: fixed;
     width: 250px;
     left: 0;
@@ -51,12 +51,8 @@ div.chc-nav-bar {
     height: 5vh;
     line-height: 5vh;
     padding-left: 25px;
-    border-bottom: 2px solid white;
-}
-
-div.chc-nav-date-range {
-    float: left;
-    width: 400px;
+    width: 100%;
+    /* border-bottom: 2px solid white; */
 }
 
 div.chc-nav-title {
@@ -64,4 +60,16 @@ div.chc-nav-title {
     font-size: 1.4em;
     width: 200px;
     float: left;
+}
+
+div.chc-query-bar {
+    height: 4vh;
+    line-height: 4vh;
+    width: 100%;
+    background-color: beige;
+}
+
+div.chc-query-date-range {
+    float: left;
+    width: 400px;
 }
