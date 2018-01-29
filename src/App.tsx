@@ -5,12 +5,15 @@ import { Link } from "react-router-dom";
 import { Layout } from "antd";
 const { Header, Content, Footer } = Layout;
 
+import { API_URL } from "../chronicle.config";
+
 import LogBrowser from "./components/LogBrowser";
 
 const App = () => (
     <Layout className="chc-main-container">
         <Header className="chc-nav-bar">
             <div className="chc-nav-title">Chronicle Client</div>
+            <div className="chc-nav-api-url">{API_URL}</div>
         </Header>
         <Content>
             <Route exact path="/" component={LogBrowser} />

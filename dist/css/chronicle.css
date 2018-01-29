@@ -39,6 +39,12 @@ div.chc-main-container {
     height: 100vh;
 }
 
+div.chc-nav-api-url {
+    color: white;
+    font-size: 1.1em;
+    float: left;
+}
+
 div.chc-nav-bar {
     background-color: #204582;
     height: 5vh;
@@ -50,4 +56,6 @@ div.chc-nav-bar {
 div.chc-nav-title {
     color: white;
     font-size: 1.4em;
+    width: 200px;
+    float: left;
 }
