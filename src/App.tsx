@@ -7,7 +7,7 @@ const { Header, Content, Footer } = Layout;
 
 import { API_URL } from "../chronicle.config";
 
-import DateRange from "./components/Header/DateRange";
+import QueryBar from "./components/QueryBar/QueryBar";
 import LogBrowser from "./components/LogBrowser";
 
 const App = () => (
@@ -15,9 +15,10 @@ const App = () => (
         <Header className="chc-nav-bar">
             <div className="chc-nav-title">Chronicle Client</div>
             <div className="chc-nav-api-url">{API_URL}</div>
-            <DateRange />
         </Header>
+
         <Content>
+            <QueryBar />
             <Route exact path="/" component={LogBrowser} />
             <Route
                 path="/about"
