@@ -1,4 +1,4 @@
-import { Map } from "immutable";
+import { OrderedMap } from "immutable";
 import { Moment } from "moment";
 /** Redux Interfaces */
 // Redux dispatch()
@@ -17,7 +17,7 @@ export interface IGetState {
     (): IRootStoreState;
 }
 
-export type IAppLogs = Map<string, any>;
+export type IAppLogs = OrderedMap<string, any>;
 
 export interface ILogItem {
     client: any;
@@ -37,6 +37,11 @@ export interface IQueryAction {
     date: Moment;
 }
 
+export interface ISortAction {
+    type: string;
+    order: string;
+}
+
 /* Store States */
 export interface IReducerLogsState {
     isLoading: boolean;
@@ -49,7 +54,12 @@ export interface IReducerQueryState {
     dateRangeEnd: Moment;
 }
 
+export interface IReducerSortState {
+    order: string;
+}
+
 export interface IRootStoreState {
     logs: IReducerLogsState;
     query: IReducerQueryState;
+    sort: IReducerSortState;
 }
