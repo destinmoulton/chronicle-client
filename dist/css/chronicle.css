@@ -43,6 +43,7 @@ div.chc-nav-api-url {
     color: white;
     font-size: 1.1em;
     float: left;
+    width: 200px;
 }
 
 div.chc-nav-bar {
@@ -51,6 +52,11 @@ div.chc-nav-bar {
     line-height: 5vh;
     padding-left: 25px;
     border-bottom: 2px solid white;
+}
+
+div.chc-nav-date-range {
+    float: left;
+    width: 400px;
 }
 
 div.chc-nav-title {
