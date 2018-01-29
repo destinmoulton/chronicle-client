@@ -1,10 +1,11 @@
-import { Map } from "immutable";
+import { OrderedMap } from "immutable";
 
 import { API_URL } from "../../../chronicle.config";
 import * as ActionTypes from "../actionTypes";
 import * as Types from "../../common/types";
 import { JSON_HEADERS } from "../../common/headers";
 
+import { comparatorDispatch } from "../../lib/comparators";
 import { chronicleAPIQueryBuilder } from "../../lib/chronicleAPIQueryBuilder";
 
 export const loadLogs = () => {
@@ -28,7 +29,7 @@ const getServerLogs = () => {
             headers: JSON_HEADERS,
             body: chronicleAPIQueryBuilder({
                 app: "Nic Cage App",
-                type: "log",
+                //type: "log",
                 dateRangeEnd,
                 dateRangeStart
             })
@@ -56,7 +57,7 @@ const getServerLogs = () => {
 const prepareAppLogs = (logItems: any) => {
     return (dispatch: Types.IDispatch, getState: Types.IGetState) => {
         // Build a map of the Items
-        let mappedItems: Types.IAppLogs = Map();
+        let mappedItems: Types.IAppLogs = OrderedMap();
         logItems.forEach((item: any) => {
             mappedItems = mappedItems.set(item.id, item);
         });
@@ -64,11 +65,27 @@ const prepareAppLogs = (logItems: any) => {
         //Merge with current data
         //const appLogs = getState().logs.appLogs;
         const newAppLogs = mappedItems; //appLogs.merge(mappedItems);
-        dispatch(setLoadedAppLogs(newAppLogs));
+        dispatch(overwriteAppLogs(newAppLogs));
+        dispatch(sortAppLogs());
     };
 };
 
-const setLoadedAppLogs = (appLogs: Map<string, any>) => {
+export const sortAppLogs = () => {
+    return (dispatch: Types.IDispatch, getState: Types.IGetState) => {
+        const { logs, sort } = getState();
+        const { appLogs } = logs;
+        const { order } = sort;
+
+        const parts = order.split(":");
+        const comparator = comparatorDispatch(parts[1]);
+        const sortedAppLogs: Types.IAppLogs = appLogs
+            .sort((a: any, b: any) => comparator(a, b, parts[0]))
+            .toMap();
+        dispatch(overwriteAppLogs(sortedAppLogs));
+    };
+};
+
+const overwriteAppLogs = (appLogs: Types.IAppLogs) => {
     return {
         type: ActionTypes.LOGS_APP_DATA_LOADED,
         appLogs
