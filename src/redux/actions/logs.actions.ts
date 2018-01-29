@@ -21,12 +21,17 @@ const setLoadingState = () => {
 };
 
 const getServerLogs = () => {
-    return (dispatch: Types.IDispatch) => {
-        const query = {};
+    return (dispatch: Types.IDispatch, getState: Types.IGetState) => {
+        const { dateRangeEnd, dateRangeStart } = getState().query;
         const fetchParams = {
             method: "POST",
             headers: JSON_HEADERS,
-            body: chronicleAPIQueryBuilder({ app: "Nic Cage App", type: "log" })
+            body: chronicleAPIQueryBuilder({
+                app: "Nic Cage App",
+                type: "log",
+                dateRangeEnd,
+                dateRangeStart
+            })
         };
         fetch(API_URL + "/query", fetchParams)
             .then(res => {
@@ -57,8 +62,8 @@ const prepareAppLogs = (logItems: any) => {
         });
 
         //Merge with current data
-        const appLogs = getState().logs.appLogs;
-        const newAppLogs = appLogs.merge(mappedItems);
+        //const appLogs = getState().logs.appLogs;
+        const newAppLogs = mappedItems; //appLogs.merge(mappedItems);
         dispatch(setLoadedAppLogs(newAppLogs));
     };
 };
