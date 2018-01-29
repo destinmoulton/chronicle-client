@@ -4,6 +4,7 @@ import thunk from "redux-thunk";
 import createHistory from "history/createBrowserHistory";
 
 import logsReducer from "./reducers/logs.reducer";
+import queryReducer from "./reducers/query.reducer";
 
 const history = createHistory();
 
