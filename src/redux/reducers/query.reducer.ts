@@ -1,16 +1,15 @@
 import * as moment from "moment";
 
 import * as ActionTypes from "../actionTypes";
-import { DATE_FORMAT } from "../../common/date.constants";
+import * as Types from "../../common/types";
+import { DATE_FORMAT, NUMBER_MONTHS_PAST } from "../../common/date.constants";
 
-const INITIAL_STATE = {
-    dateRangeStart: moment()
-        .subtract(3, "months")
-        .format(DATE_FORMAT),
-    dateRangeEnd: moment().format(DATE_FORMAT)
+const INITIAL_STATE: Types.IReducerQueryState = {
+    dateRangeStart: moment().subtract(NUMBER_MONTHS_PAST, "months"),
+    dateRangeEnd: moment()
 };
 
-const queryReducer = (state = INITIAL_STATE, action) => {
+const queryReducer = (state = INITIAL_STATE, action: Types.IQueryAction) => {
     switch (action.type) {
         case ActionTypes.QUERY_SET_DATE_START:
             return {
