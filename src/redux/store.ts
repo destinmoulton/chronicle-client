@@ -11,6 +11,7 @@ const history = createHistory();
 const store = createStore(
     combineReducers({
         logs: logsReducer,
+        query: queryReducer,
         routerReducer
     }),
     applyMiddleware(routerMiddleware(history), thunk)
