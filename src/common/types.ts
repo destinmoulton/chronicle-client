@@ -1,4 +1,5 @@
 import { Map } from "immutable";
+import { Moment } from "moment";
 /** Redux Interfaces */
 // Redux dispatch()
 export interface IDispatch {
@@ -16,7 +17,6 @@ export interface IGetState {
     (): IRootStoreState;
 }
 
-/* Redux Actions */
 export type IAppLogs = Map<string, any>;
 
 export interface ILogItem {
@@ -32,6 +32,11 @@ export interface ILogAction {
     appLogs: IAppLogs;
 }
 
+export interface IQueryAction {
+    type: string;
+    date: Moment;
+}
+
 /* Store States */
 export interface IReducerLogsState {
     isLoading: boolean;
@@ -39,6 +44,12 @@ export interface IReducerLogsState {
     appLogs: IAppLogs;
 }
 
+export interface IReducerQueryState {
+    dateRangeStart: Moment;
+    dateRangeEnd: Moment;
+}
+
 export interface IRootStoreState {
     logs: IReducerLogsState;
+    query: IReducerQueryState;
 }
