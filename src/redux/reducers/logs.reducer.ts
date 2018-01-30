@@ -13,7 +13,9 @@ export default (state = INITIAL_STATE, action: Types.ILogAction) => {
         case ActionTypes.LOGS_API_CALL_BEGIN:
             return {
                 ...state,
-                isLoading: true
+                isLoading: true,
+                hasData: false,
+                appLogs: OrderedMap<string, any>()
             };
         case ActionTypes.LOGS_API_CALL_COMPLETE:
             return {
