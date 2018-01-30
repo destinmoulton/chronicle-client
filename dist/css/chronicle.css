@@ -9,6 +9,13 @@ div.loading {
     margin-top: 20px;
 }
 
+div.chc-log-explorer-main-box {
+    margin: 5px;
+    padding: 5px;
+    border: 2px solid gray;
+    background-color: #fff;
+}
+
 div.chc-log-explorer-json-tree-container {
     margin: 5px;
     padding: 5px;
