@@ -1,7 +1,9 @@
 import * as React from "react";
 import * as moment from "moment";
-
+import { Icon } from "antd";
 import * as Types from "../../common/types";
+
+import { ILogIcon, LOG_ICONS } from "../../common/icons.constants";
 
 interface ILogItemProps {
     activeLogItemId: string;
@@ -13,12 +15,15 @@ const LogItem: React.SFC<ILogItemProps> = (props: ILogItemProps) => {
 
     const time = moment(createdAt).format("MMM D, Y h:mm a");
 
+    const icon: ILogIcon = LOG_ICONS[type] || { icon: "", color: "" };
+
     const activeClass =
         activeLogItemId === item.id ? "chc-log-list-item-active" : "";
     return (
         <div className={"chc-log-list-item " + activeClass}>
-            <div>{time}</div>
-            <div>{type}</div>
+            <Icon type={icon.icon} style={{ color: icon.color }} />&nbsp;{type}&nbsp;{
+                time
+            }
         </div>
     );
 };
