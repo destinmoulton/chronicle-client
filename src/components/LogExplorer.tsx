@@ -32,7 +32,6 @@ const theme = {
 const LogExplorer: React.SFC<ILogExplorerProps> = (
     props: ILogExplorerProps
 ) => {
-    console.log(props.item);
     return (
         <div className="chc-log-browser-json-tree-container">
             <JSONTree data={props.item} theme={theme} hideRoot />
