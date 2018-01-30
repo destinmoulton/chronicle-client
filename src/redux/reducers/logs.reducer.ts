@@ -1,26 +1,30 @@
-import { Map } from "immutable";
-import * as Actions from "../actionTypes";
+import { OrderedMap } from "immutable";
+import * as ActionTypes from "../actionTypes";
 import * as Types from "../../common/types";
 
 const INITIAL_STATE: Types.IReducerLogsState = {
     isLoading: false,
     hasData: false,
-    appLogs: Map()
+    appLogs: OrderedMap<string, any>()
 };
 
 export default (state = INITIAL_STATE, action: Types.ILogAction) => {
     switch (action.type) {
-        case Actions.LOGS_START_LOADING:
+        case ActionTypes.LOGS_API_CALL_BEGIN:
             return {
                 ...state,
                 isLoading: true
             };
-        case Actions.LOGS_APP_DATA_LOADED:
+        case ActionTypes.LOGS_API_CALL_COMPLETE:
             return {
                 ...state,
-                isLoading: false,
+                isLoading: false
+            };
+        case ActionTypes.LOGS_WRITE_DATA:
+            return {
+                ...state,
                 hasData: true,
-                appLogs: action.appLogs
+                appLogs: action.data
             };
         default:
             return { ...state };
