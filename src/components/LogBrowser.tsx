@@ -3,7 +3,6 @@ import * as React from "react";
 import { Row, Col } from "antd";
 
 import * as Types from "../common/types";
-import LogExplorer from "./LogExplorer";
 import LogList from "./LogList/LogList";
 
 interface ILogBrowserProps {}
@@ -29,22 +28,17 @@ class LogBrowser extends React.Component<ILogBrowserProps, ILogBrowserState> {
 
     render() {
         const { _activeLogItem } = this.state;
-        const logExplorer =
-            _activeLogItem !== undefined ? (
-                <LogExplorer item={_activeLogItem} />
-            ) : null;
 
         const activeLogItemId =
             _activeLogItem !== undefined ? _activeLogItem.id : "";
         return (
             <Row>
-                <Col span={6}>
+                <Col span={24}>
                     <LogList
                         clickHandler={this._handleClickLogItem}
                         activeLogItemId={activeLogItemId}
                     />
                 </Col>
-                <Col span={18}>{logExplorer}</Col>
             </Row>
         );
     }
