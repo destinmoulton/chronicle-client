@@ -17,7 +17,7 @@ export const loadLogs = () => {
 
 const setLoadingState = () => {
     return {
-        type: ActionTypes.LOGS_START_LOADING
+        type: ActionTypes.LOGS_API_CALL_BEGIN
     };
 };
 
@@ -43,6 +43,7 @@ const getServerLogs = () => {
                     parsed.data !== undefined &&
                     parsed.data.Items !== undefined
                 ) {
+                    dispatch(apiCallComplete());
                     dispatch(prepareAppLogs(parsed.data.Items));
                 } else {
                     console.error(
@@ -51,6 +52,12 @@ const getServerLogs = () => {
                     );
                 }
             });
+    };
+};
+
+const apiCallComplete = () => {
+    return {
+        type: ActionTypes.LOGS_API_CALL_COMPLETE
     };
 };
 
@@ -65,7 +72,7 @@ const prepareAppLogs = (logItems: any) => {
         //Merge with current data
         //const appLogs = getState().logs.appLogs;
         const newAppLogs = mappedItems; //appLogs.merge(mappedItems);
-        dispatch(overwriteAppLogs(newAppLogs));
+        dispatch(writeAppLogs(newAppLogs));
         dispatch(sortAppLogs());
     };
 };
@@ -76,18 +83,18 @@ export const sortAppLogs = () => {
         const { appLogs } = logs;
         const { order } = sort;
 
-        const parts = order.split(":");
-        const comparator = comparatorDispatch(parts[1]);
+        const [sortField, sortOrder] = order.split(":");
+        const comparator = comparatorDispatch(sortOrder);
         const sortedAppLogs: Types.IAppLogs = appLogs
-            .sort((a: any, b: any) => comparator(a, b, parts[0]))
-            .toMap();
-        dispatch(overwriteAppLogs(sortedAppLogs));
+            .sort((a: any, b: any) => comparator(a[sortField], b[sortField]))
+            .toOrderedMap();
+        dispatch(writeAppLogs(sortedAppLogs));
     };
 };
 
-const overwriteAppLogs = (appLogs: Types.IAppLogs) => {
+const writeAppLogs = (data: Types.IAppLogs) => {
     return {
-        type: ActionTypes.LOGS_APP_DATA_LOADED,
-        appLogs
+        type: ActionTypes.LOGS_WRITE_DATA,
+        data
     };
 };
