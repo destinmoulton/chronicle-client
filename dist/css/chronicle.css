@@ -29,6 +29,16 @@ div.chc-log-list-item {
     padding: 3px;
     border: 1px solid black;
     cursor: pointer;
+    font-size: 1.1em;
+    height: 30px;
+}
+
+div.chc-log-list-item-type {
+    float: left;
+}
+
+div.chc-log-list-item-time {
+    float: right;
 }
 
 div.chc-log-list-item-active {

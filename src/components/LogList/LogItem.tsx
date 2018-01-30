@@ -21,9 +21,12 @@ const LogItem: React.SFC<ILogItemProps> = (props: ILogItemProps) => {
         activeLogItemId === item.id ? "chc-log-list-item-active" : "";
     return (
         <div className={"chc-log-list-item " + activeClass}>
-            <Icon type={icon.icon} style={{ color: icon.color }} />&nbsp;{type}&nbsp;{
-                time
-            }
+            <div className="chc-log-list-item-type">
+                <Icon type={icon.icon} style={{ color: icon.color }} />&nbsp;{
+                    type
+                }
+            </div>
+            <div className="chc-log-list-item-time">{time}</div>
         </div>
     );
 };
