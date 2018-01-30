@@ -2,7 +2,9 @@
  * Base 16 `google` theme by Seth Wright
  */
 
-const THEME = {
+import { IBase16Theme } from "./types";
+
+const THEME: IBase16Theme = {
     scheme: "google",
     author: "seth wright (http://sethawright.com)",
     base00: "#1d1f21",

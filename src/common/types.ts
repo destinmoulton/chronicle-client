@@ -17,6 +17,11 @@ export interface IGetState {
     (): IRootStoreState;
 }
 
+// Base 16 React Themes
+export interface IBase16Theme {
+    [key: string]: string;
+}
+
 export type IAppLogs = OrderedMap<string, any>;
 
 export interface ILogItem {
