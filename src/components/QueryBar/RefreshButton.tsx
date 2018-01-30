@@ -30,6 +30,7 @@ class RefreshButton extends React.Component<IRefreshButtonProps> {
             <Button
                 shape="circle"
                 icon="reload"
+                size="small"
                 onClick={this._handlePressReload}
             />
         );
