@@ -29,7 +29,7 @@ export interface ILogItem {
 
 export interface ILogAction {
     type: string;
-    appLogs: IAppLogs;
+    data: IAppLogs;
 }
 
 export interface IQueryAction {
