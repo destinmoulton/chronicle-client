@@ -10,9 +10,9 @@ import { sortAppLogs } from "../../redux/actions/logs.actions";
 const OPTIONS = [
     {
         value: "createdAt:desc",
-        name: "Newest"
+        name: "Newest First"
     },
-    { value: "createdAt:asc", name: "Oldest" }
+    { value: "createdAt:asc", name: "Oldest First" }
 ];
 interface IMapDispatchToProps {
     setSortOrder: (newOrder: string) => void;
@@ -23,6 +23,11 @@ interface IMapStateToProps {
 }
 interface ISortByProps extends IMapDispatchToProps, IMapStateToProps {}
 class SortBy extends React.Component<ISortByProps> {
+    constructor(props: ISortByProps) {
+        super(props);
+
+        this._handleOnSelect = this._handleOnSelect.bind(this);
+    }
     _handleOnSelect(value: string) {
         this.props.setSortOrder(value);
         this.props.sortAppLogs();
@@ -32,12 +37,20 @@ class SortBy extends React.Component<ISortByProps> {
         const { order } = this.props;
 
         const options = OPTIONS.map(option => {
-            return <Option value={option.value}>{option.name}</Option>;
+            return (
+                <Option key={option.value} value={option.value}>
+                    {option.name}
+                </Option>
+            );
         });
         return (
             <span>
                 <span>Sort:</span>
-                <Select defaultValue={order} size="small">
+                <Select
+                    defaultValue={order}
+                    size="small"
+                    onChange={this._handleOnSelect}
+                >
                     {options}
                 </Select>
             </span>
