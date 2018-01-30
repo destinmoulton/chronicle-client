@@ -12,6 +12,12 @@ interface ILogTypes {
     [key: string]: ILogType;
 }
 
+export const LOG_TYPE_EMPTY: ILogType = {
+    icon: "",
+    color: "",
+    name: ""
+};
+
 export const LOG_TYPES: ILogTypes = {
     assert: {
         icon: "notification",
