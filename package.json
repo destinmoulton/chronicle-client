@@ -11,6 +11,7 @@
         "start:server": "serve --single -c=10 ./dist"
     },
     "dependencies": {
+        "@types/lodash": "^4.14.98",
         "@types/react": "^16.0.34",
         "@types/react-dom": "^16.0.3",
         "@types/react-json-tree": "^0.6.6",
@@ -21,6 +22,7 @@
         "antd": "^3.1.4",
         "history": "^4.7.2",
         "immutable": "^3.8.2",
+        "lodash": "^4.17.4",
         "moment": "^2.20.1",
         "react": "^16.2.0",
         "react-dom": "^16.2.0",
