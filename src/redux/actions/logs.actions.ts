@@ -1,4 +1,5 @@
 import { OrderedMap } from "immutable";
+import * as _ from "lodash";
 
 import { API_URL } from "../../../chronicle.config";
 import * as ActionTypes from "../actionTypes";
@@ -28,7 +29,7 @@ const getServerLogs = () => {
             method: "POST",
             headers: JSON_HEADERS,
             body: chronicleAPIQueryBuilder({
-                app: "Nic Cage App",
+                app: "Sunny Weather",
                 //type: "log",
                 dateRangeEnd,
                 dateRangeStart
@@ -65,7 +66,8 @@ const prepareAppLogs = (logItems: any) => {
     return (dispatch: Types.IDispatch, getState: Types.IGetState) => {
         // Build a map of the Items
         let mappedItems: Types.IAppLogs = OrderedMap();
-        logItems.forEach((item: any) => {
+        logItems.forEach((item: Types.ILogItem) => {
+            item.info = decipherPlaceholders(item.info);
             mappedItems = mappedItems.set(item.id, item);
         });
 
@@ -75,6 +77,35 @@ const prepareAppLogs = (logItems: any) => {
         dispatch(writeAppLogs(newAppLogs));
         dispatch(sortAppLogs());
     };
+};
+
+/**
+ * DynamoDB won't store empty strings (""'s), so the API
+ * replaces them with CHRONICLE_PLACEHOLDER_EMPTYSTRING.
+ *
+ * This method replaces the placeholder with ""
+ *
+ * @param obj Any object type that might be in a log
+ */
+const decipherPlaceholders = (obj: any) => {
+    if (_.isString(obj) && obj === "CHRONICLE_PLACEHOLDER_EMPTYSTRING") {
+        // Convert CHRONICLE_PLACEHOLDER_EMPTYSTRING to ""
+        return "";
+    } else if (_.isPlainObject(obj)) {
+        const newObj: any = {};
+        _.forOwn(obj, (val: any, key: any) => {
+            newObj[key] = decipherPlaceholders(val);
+        });
+        return newObj;
+    } else if (_.isArray(obj)) {
+        const newArr: any[] = [];
+        obj.forEach((val: any) => {
+            // Recursively clean each element in array
+            newArr.push(decipherPlaceholders(val));
+        });
+        return newArr;
+    }
+    return obj;
 };
 
 export const sortAppLogs = () => {
