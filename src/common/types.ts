@@ -22,8 +22,6 @@ export interface IBase16Theme {
     [key: string]: string;
 }
 
-export type IAppLogs = OrderedMap<string, any>;
-
 export interface ILogItem {
     client: any;
     createdAt: number;
@@ -31,6 +29,8 @@ export interface ILogItem {
     info: any;
     type: string;
 }
+
+export type IAppLogs = OrderedMap<string, ILogItem>;
 
 export interface ILogAction {
     type: string;
