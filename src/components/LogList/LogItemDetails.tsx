@@ -8,8 +8,6 @@ import { Icon } from "antd";
 
 import * as Types from "../../common/types";
 
-import THEME from "../../common/base16.theme";
-
 interface ILogItemExplorerProps {
     item: Types.ILogItem;
 }
