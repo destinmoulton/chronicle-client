@@ -7,8 +7,9 @@ const { Header, Content, Footer } = Layout;
 
 import { API_URL } from "../chronicle.config";
 
-import QueryBar from "./components/QueryBar/QueryBar";
+import AppSelector from "./components/AppSelector";
 import LogBrowser from "./components/LogBrowser";
+import QueryBar from "./components/QueryBar/QueryBar";
 
 const App = () => (
     <Layout className="chc-main-container">
@@ -19,7 +20,8 @@ const App = () => (
 
         <Content>
             <QueryBar />
-            <Route exact path="/" component={LogBrowser} />
+            <Route exact path="/apps" component={AppSelector} />
+            <Route exact path="/browser" component={LogBrowser} />
             <Route
                 path="/about"
                 component={() => (
