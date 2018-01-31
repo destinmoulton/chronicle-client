@@ -1,4 +1,4 @@
-import { OrderedMap } from "immutable";
+import { List, OrderedMap } from "immutable";
 import { Moment } from "moment";
 /** Redux Interfaces */
 // Redux dispatch()
@@ -17,11 +17,17 @@ export interface IGetState {
     (): IRootStoreState;
 }
 
-// Base 16 React Themes
-export interface IBase16Theme {
-    [key: string]: string;
+// Apps
+export type IAppsRawList = string[];
+
+export type IAppsList = List<string>;
+
+export interface IAppAction {
+    type: string;
+    data?: IAppsList;
 }
 
+/** Log Items and App Logs */
 export interface ILogItem {
     client: any;
     createdAt: number;
@@ -48,6 +54,12 @@ export interface ISortAction {
 }
 
 /* Store States */
+export interface IReducerAppsState {
+    isLoading: boolean;
+    hasData: boolean;
+    data: IAppsList;
+}
+
 export interface IReducerLogsState {
     isLoading: boolean;
     hasData: boolean;
@@ -64,6 +76,7 @@ export interface IReducerSortState {
 }
 
 export interface IRootStoreState {
+    apps: IReducerAppsState;
     logs: IReducerLogsState;
     query: IReducerQueryState;
     sort: IReducerSortState;
