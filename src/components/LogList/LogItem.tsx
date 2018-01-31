@@ -9,6 +9,8 @@ import {
     LOG_TYPES
 } from "../../common/logtypes.constants";
 
+import LogItemDetails from "./LogItemDetails";
+
 interface ILogItemProps {
     activeLogItemId: string;
     item: Types.ILogItem;
@@ -21,9 +23,9 @@ class LogItem extends React.Component<ILogItemProps, ILogItemState> {
     constructor(props: ILogItemProps) {
         super(props);
 
-        this.setState({
+        this.state = {
             isExploring: false
-        });
+        };
 
         this._toggleExploring = this._toggleExploring.bind(this);
     }
@@ -45,20 +47,33 @@ class LogItem extends React.Component<ILogItemProps, ILogItemState> {
             activeLogItemId === item.id ? "chc-log-list-item-active" : "";
 
         const exploringCaret = isExploring ? "caret-down" : "caret-right";
+        const details = isExploring ? <LogItemDetails item={item} /> : null;
+        if (isExploring) {
+            console.log(item);
+        }
+
+        const summary = JSON.stringify(item.info, null, 2); //.substr(0, 60);
         return (
             <div className={"chc-log-list-item " + activeClass}>
-                <div className="chc-log-list-item-type">
-                    <Icon
-                        type={exploringCaret}
-                        onClick={this._toggleExploring}
-                    />&nbsp;
-                    <Icon
-                        type={logTypeObj.icon}
-                        style={{ color: logTypeObj.color }}
-                    />&nbsp;
-                    {logTypeObj.name}
+                <div className="chc-log-list-item-title-row">
+                    <div className="chc-log-list-item-title-type">
+                        <Icon
+                            type={exploringCaret}
+                            onClick={this._toggleExploring}
+                        />&nbsp;
+                        <Icon
+                            type={logTypeObj.icon}
+                            style={{ color: logTypeObj.color }}
+                        />&nbsp;
+                        {logTypeObj.name}
+                    </div>
+                    <div className="chc-log-list-item-title-summary">
+                        {summary}
+                    </div>
+
+                    <div className="chc-log-list-item-time">{time}</div>
                 </div>
-                <div className="chc-log-list-item-time">{time}</div>
+                {details}
             </div>
         );
     }

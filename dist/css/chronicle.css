@@ -41,11 +41,20 @@ div.chc-log-list-item {
 
 div.chc-log-list-item-title-row {
     height: 30px;
+    line-height: 30px;
     width: 100%;
 }
 
-div.chc-log-list-item-type {
+div.chc-log-list-item-title-type {
     float: left;
+    width: 10%;
+}
+
+div.chc-log-list-item-title-summary {
+    float: left;
+    width: 70%;
+    height: 30px;
+    overflow-y: hidden;
 }
 
 div.chc-log-list-item-time {
