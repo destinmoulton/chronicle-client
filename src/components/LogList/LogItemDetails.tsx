@@ -1,6 +1,9 @@
 import * as moment from "moment";
 import * as React from "react";
-import JSONTree from "react-json-tree";
+
+const ReactInspector = require("react-inspector");
+const { chromeLight, ObjectInspector } = ReactInspector;
+
 import { Icon } from "antd";
 
 import * as Types from "../../common/types";
@@ -10,6 +13,14 @@ import THEME from "../../common/base16.theme";
 interface ILogItemExplorerProps {
     item: Types.ILogItem;
 }
+
+const THEME_MODIFICATION = {
+    ...chromeLight,
+    ARROW_FONT_SIZE: 14,
+    BASE_FONT_SIZE: "14px",
+    TREENODE_FONT_SIZE: "14px",
+    TREENODE_LINE_HEIGHT: "16px"
+};
 
 const LogItemExplorer: React.SFC<ILogItemExplorerProps> = (
     props: ILogItemExplorerProps
@@ -21,13 +32,23 @@ const LogItemExplorer: React.SFC<ILogItemExplorerProps> = (
     if (typeof item.info === "string") {
         details = item.info;
     } else {
-        details = <JSONTree data={item.info} theme={THEME} hideRoot />;
+        details = (
+            <ObjectInspector
+                theme={THEME_MODIFICATION}
+                data={item.info}
+                hideRoot
+            />
+        );
     }
     return (
         <div>
             <div className="chc-log-item-explorer-main-box">{details}</div>
             <div className="chc-log-item-explorer-json-tree-container">
-                <JSONTree data={item} theme={THEME} hideRoot />
+                <ObjectInspector
+                    data={item}
+                    theme={THEME_MODIFICATION}
+                    hideRoot
+                />
             </div>
         </div>
     );
