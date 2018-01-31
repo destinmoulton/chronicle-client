@@ -34,11 +34,6 @@ module.exports = {
         "react-dom": "ReactDOM",
         immutable: "Immutable",
         moment: "moment",
-        lodash: {
-            commonjs: "lodash",
-            commonjs2: "lodash",
-            amd: "_",
-            root: "_"
-        }
+        lodash: "_"
     }
 };
