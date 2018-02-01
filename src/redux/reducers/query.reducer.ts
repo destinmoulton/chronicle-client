@@ -9,7 +9,8 @@ const INITIAL_STATE: Types.IReducerQueryState = {
     dateRangeStart: getDateBeginPoint(
         moment().subtract(NUMBER_MONTHS_PAST, "months") // Some number months ago
     ),
-    dateRangeEnd: getDateEndPoint(moment()) // Today
+    dateRangeEnd: getDateEndPoint(moment()), // Today
+    selectedApp: ""
 };
 
 const queryReducer = (state = INITIAL_STATE, action: Types.IQueryAction) => {
@@ -23,6 +24,11 @@ const queryReducer = (state = INITIAL_STATE, action: Types.IQueryAction) => {
             return {
                 ...state,
                 dateRangeEnd: action.date
+            };
+        case ActionTypes.QUERY_SET_SELECTED_APP:
+            return {
+                ...state,
+                selectedApp: action.selectedApp
             };
         default:
             return { ...state };
