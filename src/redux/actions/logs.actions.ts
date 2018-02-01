@@ -1,4 +1,4 @@
-import { OrderedMap } from "immutable";
+import { List, OrderedMap } from "immutable";
 import * as _ from "lodash";
 
 import { API_URL } from "../../../chronicle.config";
@@ -69,16 +69,22 @@ const apiCallComplete = () => {
 const prepareAppLogs = (logItems: any) => {
     return (dispatch: Types.IDispatch, getState: Types.IGetState) => {
         // Build a map of the Items
-        let mappedItems: Types.IAppLogs = OrderedMap();
+        let mappedItems: Types.TAppLogs = OrderedMap();
+        let appLogTypes: Types.TAppLogTypes = List<string>();
         logItems.forEach((item: Types.ILogItem) => {
             item.info = decipherPlaceholders(item.info);
             mappedItems = mappedItems.set(item.id, item);
+
+            if (!appLogTypes.includes(item.type)) {
+                appLogTypes = appLogTypes.push(item.type);
+            }
         });
 
         //Merge with current data
         //const appLogs = getState().logs.appLogs;
         const newAppLogs = mappedItems; //appLogs.merge(mappedItems);
         dispatch(writeAppLogs(newAppLogs));
+        dispatch(setAppLogTypes(appLogTypes));
         dispatch(sortAppLogs());
     };
 };
@@ -120,7 +126,7 @@ export const sortAppLogs = () => {
 
         const [sortField, sortOrder] = order.split(":");
         const comparator = comparatorDispatch(sortOrder);
-        const sortedAppLogs: Types.IAppLogs = appLogs
+        const sortedAppLogs: Types.TAppLogs = appLogs
             .sort((a: any, b: any) => comparator(a[sortField], b[sortField]))
             .toOrderedMap();
         dispatch(writeAppLogs(sortedAppLogs));
@@ -133,9 +139,16 @@ export const clearAppLogs = () => {
     };
 };
 
-const writeAppLogs = (data: Types.IAppLogs) => {
+const writeAppLogs = (data: Types.TAppLogs) => {
     return {
         type: ActionTypes.LOGS_WRITE_DATA,
+        data
+    };
+};
+
+const setAppLogTypes = (data: Types.TAppLogTypes) => {
+    return {
+        type: ActionTypes.LOGS_SET_APP_LOG_TYPES,
         data
     };
 };
