@@ -75,6 +75,7 @@ const prepareAppLogs = (logItems: any) => {
             item.info = decipherPlaceholders(item.info);
             mappedItems = mappedItems.set(item.id, item);
 
+            // Build the list of app log types
             if (!appLogTypes.includes(item.type)) {
                 appLogTypes = appLogTypes.push(item.type);
             }
