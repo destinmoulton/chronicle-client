@@ -35,3 +35,10 @@ const overwriteQueryDateEnd = (endMoment: Moment) => {
         date: getDateEndPoint(endMoment)
     };
 };
+
+export const setSelectedApp = (selectedApp: string) => {
+    return {
+        type: ActionTypes.QUERY_SET_SELECTED_APP,
+        selectedApp
+    };
+};
