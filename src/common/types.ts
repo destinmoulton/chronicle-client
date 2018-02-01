@@ -45,7 +45,8 @@ export interface ILogAction {
 
 export interface IQueryAction {
     type: string;
-    date: Moment;
+    date?: Moment;
+    selectedApp?: string;
 }
 
 export interface ISortAction {
@@ -69,6 +70,7 @@ export interface IReducerLogsState {
 export interface IReducerQueryState {
     dateRangeStart: Moment;
     dateRangeEnd: Moment;
+    selectedApp: string;
 }
 
 export interface IReducerSortState {
