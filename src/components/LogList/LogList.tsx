@@ -14,7 +14,7 @@ interface IMapDispatchToProps {
 
 interface IMapStateToProps {
     logsAreLoading: boolean;
-    logsData: Types.IAppLogs;
+    logsData: Types.TAppLogs;
     logsHaveData: boolean;
 }
 interface ILogListProps extends IMapDispatchToProps, IMapStateToProps {
