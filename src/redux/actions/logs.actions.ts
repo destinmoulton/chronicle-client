@@ -25,6 +25,10 @@ const setLoadingState = () => {
 const getServerLogs = () => {
     return (dispatch: Types.IDispatch, getState: Types.IGetState) => {
         const { dateRangeEnd, dateRangeStart, selectedApp } = getState().query;
+
+        if (!selectedApp) {
+            return false;
+        }
         const fetchParams = {
             method: "POST",
             headers: JSON_HEADERS,
