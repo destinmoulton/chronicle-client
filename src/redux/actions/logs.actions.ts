@@ -24,12 +24,12 @@ const setLoadingState = () => {
 
 const getServerLogs = () => {
     return (dispatch: Types.IDispatch, getState: Types.IGetState) => {
-        const { dateRangeEnd, dateRangeStart } = getState().query;
+        const { dateRangeEnd, dateRangeStart, selectedApp } = getState().query;
         const fetchParams = {
             method: "POST",
             headers: JSON_HEADERS,
             body: chronicleAPIQueryBuilder({
-                app: "Sunny Weather",
+                app: selectedApp,
                 //type: "log",
                 dateRangeEnd,
                 dateRangeStart
@@ -120,6 +120,12 @@ export const sortAppLogs = () => {
             .sort((a: any, b: any) => comparator(a[sortField], b[sortField]))
             .toOrderedMap();
         dispatch(writeAppLogs(sortedAppLogs));
+    };
+};
+
+export const clearAppLogs = () => {
+    return {
+        type: ActionTypes.LOGS_CLEAR_DATA
     };
 };
 
