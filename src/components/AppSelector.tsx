@@ -5,10 +5,14 @@ import { Icon } from "antd";
 
 import * as Types from "../common/types";
 import { getApps } from "../redux/actions/apps.actions";
+import { clearAppLogs } from "../redux/actions/logs.actions";
+import { setSelectedApp } from "../redux/actions/query.actions";
 import { IRootStoreState } from "../common/types";
 
 interface IMapDispatchToProps {
+    clearAppLogs: () => void;
     getApps: () => void;
+    setSelectedApp: (app: string) => void;
 }
 
 interface IMapStateToProps {
@@ -25,11 +29,13 @@ class AppSelector extends React.Component<IAppSelectorProps> {
     }
 
     componentDidMount() {
+        this.props.clearAppLogs();
         this.props.getApps();
     }
 
     _handleClickApp(app: string) {
-        this.props.selectApp(app);
+        this.props.clearAppLogs();
+        this.props.setSelectedApp(app);
     }
 
     render() {
@@ -39,7 +45,12 @@ class AppSelector extends React.Component<IAppSelectorProps> {
         appsList.map((app: string) => {
             apps.push(
                 <div key={app}>
-                    <Link to="/browser">{app}</Link>
+                    <Link
+                        to="/browser"
+                        onClick={this._handleClickApp.bind(this, app)}
+                    >
+                        {app}
+                    </Link>
                 </div>
             );
         });
@@ -62,7 +73,9 @@ const mapStateToProps = (state: IRootStoreState): IMapStateToProps => {
 
 const mapDispatchToProps = (dispatch: Types.IDispatch) => {
     return {
-        getApps: () => dispatch(getApps())
+        clearAppLogs: () => dispatch(clearAppLogs()),
+        getApps: () => dispatch(getApps()),
+        setSelectedApp: (app: string) => dispatch(setSelectedApp(app))
     };
 };
 
