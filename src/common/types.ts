@@ -36,11 +36,13 @@ export interface ILogItem {
     type: string;
 }
 
-export type IAppLogs = OrderedMap<string, ILogItem>;
+export type TAppLogs = OrderedMap<string, ILogItem>;
+
+export type TAppLogTypes = List<string>;
 
 export interface ILogAction {
     type: string;
-    data: IAppLogs;
+    data: TAppLogs;
 }
 
 export interface IQueryAction {
@@ -64,7 +66,8 @@ export interface IReducerAppsState {
 export interface IReducerLogsState {
     isLoading: boolean;
     hasData: boolean;
-    appLogs: IAppLogs;
+    appLogs: TAppLogs;
+    appLogTypes: TAppLogTypes;
 }
 
 export interface IReducerQueryState {
