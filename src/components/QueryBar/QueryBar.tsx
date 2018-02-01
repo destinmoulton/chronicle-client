@@ -1,5 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import * as Types from "../../common/types";
 
@@ -15,9 +16,11 @@ class QueryBar extends React.Component<IQueryBarProps> {
     render() {
         return (
             <div className="chc-query-bar">
-                <strong>{this.props.selectedApp}</strong>
-                <SortBy />
-                <DateRange />
+                <strong>&nbsp;{this.props.selectedApp}</strong>(<Link to="/">
+                    Change App
+                </Link>)&nbsp;&nbsp;
+                <SortBy />&nbsp;&nbsp;
+                <DateRange />&nbsp;&nbsp;
                 <RefreshButton />
             </div>
         );
