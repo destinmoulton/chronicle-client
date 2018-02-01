@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Route } from "react-router";
-import { Link } from "react-router-dom";
 
 import { Layout } from "antd";
 const { Header, Content, Footer } = Layout;
@@ -9,29 +8,21 @@ import { API_URL } from "../chronicle.config";
 
 import AppSelector from "./components/AppSelector";
 import LogBrowser from "./components/LogBrowser";
-import QueryBar from "./components/QueryBar/QueryBar";
 
-const App = () => (
-    <Layout className="chc-main-container">
-        <Header className="chc-nav-bar">
-            <div className="chc-nav-title">Chronicle Client</div>
-            <div className="chc-nav-api-url">{API_URL}</div>
-        </Header>
+const App: React.SFC = () => {
+    return (
+        <Layout className="chc-main-container">
+            <Header className="chc-nav-bar">
+                <div className="chc-nav-title">Chronicle Client</div>
+                <div className="chc-nav-api-url">{API_URL}</div>
+            </Header>
 
-        <Content>
-            <QueryBar />
-            <Route exact path="/apps" component={AppSelector} />
-            <Route exact path="/browser" component={LogBrowser} />
-            <Route
-                path="/about"
-                component={() => (
-                    <h1>
-                        About <Link to="/">Home</Link>
-                    </h1>
-                )}
-            />
-        </Content>
-    </Layout>
-);
+            <Content>
+                <Route exact path="/" component={AppSelector} />
+                <Route exact path="/browser" component={LogBrowser} />
+            </Content>
+        </Layout>
+    );
+};
 
 export default App;
