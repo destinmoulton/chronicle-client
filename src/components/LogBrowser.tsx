@@ -4,6 +4,7 @@ import { Row, Col } from "antd";
 
 import * as Types from "../common/types";
 import LogList from "./LogList/LogList";
+import QueryBar from "./QueryBar/QueryBar";
 
 interface ILogBrowserProps {}
 interface ILogBrowserState {
@@ -34,6 +35,7 @@ class LogBrowser extends React.Component<ILogBrowserProps, ILogBrowserState> {
         return (
             <Row>
                 <Col span={24}>
+                    <QueryBar />
                     <LogList
                         clickHandler={this._handleClickLogItem}
                         activeLogItemId={activeLogItemId}
