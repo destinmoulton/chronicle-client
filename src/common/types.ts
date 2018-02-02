@@ -86,3 +86,6 @@ export interface IRootStoreState {
     query: IReducerQueryState;
     sort: IReducerSortState;
 }
+
+/** Date Series */
+export type TDateSeries = string[];
