@@ -4,73 +4,35 @@ import { Select } from "antd";
 const Option = Select.Option;
 
 import * as Types from "../../common/types";
-import { setSortOrder } from "../../redux/actions/sort.actions";
-import { sortAppLogs } from "../../redux/actions/logs.actions";
 
-const OPTIONS = [
-    {
-        value: "createdAt:desc",
-        name: "Newest First"
-    },
-    { value: "createdAt:asc", name: "Oldest First" }
-];
-interface IMapDispatchToProps {
-    setSortOrder: (newOrder: string) => void;
-    sortAppLogs: () => void;
+import SORTOPTIONS from "../../common/sortoptions.constants";
+
+interface ISortByProps {
+    onSelectSortOrder: (order: string) => void;
+    selectedSortOrder: string;
 }
-interface IMapStateToProps {
-    order: string;
-}
-interface ISortByProps extends IMapDispatchToProps, IMapStateToProps {}
-class SortBy extends React.Component<ISortByProps> {
-    constructor(props: ISortByProps) {
-        super(props);
+const SortBy: React.SFC<ISortByProps> = (props: ISortByProps) => {
+    const { onSelectSortOrder, selectedSortOrder } = props;
 
-        this._handleOnSelect = this._handleOnSelect.bind(this);
-    }
-    _handleOnSelect(value: string) {
-        this.props.setSortOrder(value);
-        this.props.sortAppLogs();
-    }
-
-    render() {
-        const { order } = this.props;
-
-        const options = OPTIONS.map(option => {
-            return (
-                <Option key={option.value} value={option.value}>
-                    {option.name}
-                </Option>
-            );
-        });
+    const options = SORTOPTIONS.map(option => {
         return (
-            <span>
-                <span>Sort:</span>
-                <Select
-                    defaultValue={order}
-                    size="small"
-                    onChange={this._handleOnSelect}
-                >
-                    {options}
-                </Select>
-            </span>
+            <Option key={option.value} value={option.value}>
+                {option.name}
+            </Option>
         );
-    }
-}
-
-const mapStateToProps = (state: Types.IRootStoreState) => {
-    const { sort } = state;
-    return {
-        order: sort.order
-    };
+    });
+    return (
+        <span>
+            <span>Sort:</span>
+            <Select
+                defaultValue={selectedSortOrder}
+                size="small"
+                onChange={onSelectSortOrder}
+            >
+                {options}
+            </Select>
+        </span>
+    );
 };
 
-const mapDispatchToProps = (dispatch: Types.IDispatch) => {
-    return {
-        setSortOrder: (newSortOrder: string) =>
-            dispatch(setSortOrder(newSortOrder)),
-        sortAppLogs: () => dispatch(sortAppLogs())
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SortBy);
+export default SortBy;
