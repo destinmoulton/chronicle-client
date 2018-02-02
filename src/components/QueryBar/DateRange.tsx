@@ -50,6 +50,7 @@ class DateRange extends React.Component<IDateRangeProps> {
                     size="small"
                     format={DATE_FORMAT}
                     defaultValue={rangeDateStart}
+                    style={{ width: "110px" }}
                 />
                 <span>&nbsp;to&nbsp;</span>
                 <DatePicker
@@ -58,6 +59,7 @@ class DateRange extends React.Component<IDateRangeProps> {
                     size="small"
                     format={DATE_FORMAT}
                     defaultValue={rangeDateEnd}
+                    style={{ width: "110px" }}
                 />
             </span>
         );
