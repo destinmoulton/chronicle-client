@@ -1,13 +1,14 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { Icon } from "antd";
 
 import * as Types from "../common/types";
 import { getApps } from "../redux/actions/apps.actions";
 import { clearAppLogs } from "../redux/actions/logs.actions";
 import { setSelectedApp } from "../redux/actions/query.actions";
 import { IRootStoreState } from "../common/types";
+
+import Loading from "./shared/Loading";
 
 interface IMapDispatchToProps {
     clearAppLogs: () => void;
@@ -44,21 +45,24 @@ class AppSelector extends React.Component<IAppSelectorProps> {
         let apps: any = [];
         appsList.map((app: string) => {
             apps.push(
-                <div key={app}>
+                <li key={app} onClick={this._handleClickApp.bind(this, app)}>
                     <Link
                         to="/browser"
                         onClick={this._handleClickApp.bind(this, app)}
                     >
                         {app}
                     </Link>
-                </div>
+                </li>
             );
         });
 
-        let display =
-            appsIsLoading || !appsHasData ? <Icon type="loading" /> : apps;
-
-        return <div>{display}</div>;
+        let display = appsIsLoading || !appsHasData ? <Loading /> : apps;
+        return (
+            <div className="chc-app-list-box">
+                <div className="chc-app-list-title">Apps</div>
+                <ul className="chc-app-list">{display}</ul>
+            </div>
+        );
     }
 }
 
