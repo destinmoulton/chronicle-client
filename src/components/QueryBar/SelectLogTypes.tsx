@@ -35,7 +35,7 @@ class SelectLogTypes extends React.Component<ISelectLogTypesProps> {
                     mode="multiple"
                     value={selectedAppLogTypes}
                     onChange={onSelectLogTypes}
-                    style={{ width: "100px" }}
+                    style={{ width: "250px" }}
                 >
                     {options}
                 </Select>
