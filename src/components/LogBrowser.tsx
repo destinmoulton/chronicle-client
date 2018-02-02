@@ -7,7 +7,7 @@ import * as Types from "../common/types";
 import { history } from "../redux/store";
 import LogList from "./LogList/LogList";
 import QueryBar from "./QueryBar/QueryBar";
-
+import SORTOPTIONS from "../common/sortoptions.constants";
 interface IMapStateToProps {
     appLogTypes: Types.TAppLogTypes;
     selectedApp: string;
@@ -17,6 +17,7 @@ interface ILogBrowserProps extends IMapStateToProps {}
 interface ILogBrowserState {
     _activeLogItem: undefined | Types.ILogItem;
     _selectedAppLogTypes: string[];
+    _selectedSortOrder: string;
 }
 class LogBrowser extends React.Component<ILogBrowserProps, ILogBrowserState> {
     constructor(props: ILogBrowserProps) {
@@ -24,11 +25,13 @@ class LogBrowser extends React.Component<ILogBrowserProps, ILogBrowserState> {
 
         this.state = {
             _activeLogItem: undefined,
-            _selectedAppLogTypes: props.appLogTypes.toArray() // Set all log types to active
+            _selectedAppLogTypes: props.appLogTypes.toArray(), // Set all log types to active
+            _selectedSortOrder: SORTOPTIONS[0].value
         };
 
         this._handleClickLogItem = this._handleClickLogItem.bind(this);
         this._handleSelectLogTypes = this._handleSelectLogTypes.bind(this);
+        this._handleSelectSortOrder = this._handleSelectSortOrder.bind(this);
     }
 
     componentWillMount() {
@@ -50,6 +53,12 @@ class LogBrowser extends React.Component<ILogBrowserProps, ILogBrowserState> {
         });
     }
 
+    _handleSelectSortOrder(order: string) {
+        this.setState({
+            _selectedSortOrder: order
+        });
+    }
+
     _handleClickLogItem(logItem: Types.ILogItem) {
         this.setState({
             _activeLogItem: logItem
@@ -58,7 +67,11 @@ class LogBrowser extends React.Component<ILogBrowserProps, ILogBrowserState> {
 
     render() {
         const { appLogTypes } = this.props;
-        const { _activeLogItem, _selectedAppLogTypes } = this.state;
+        const {
+            _activeLogItem,
+            _selectedAppLogTypes,
+            _selectedSortOrder
+        } = this.state;
 
         const activeLogItemId =
             _activeLogItem !== undefined ? _activeLogItem.id : "";
@@ -69,11 +82,14 @@ class LogBrowser extends React.Component<ILogBrowserProps, ILogBrowserState> {
                         appLogTypes={appLogTypes}
                         onSelectLogTypes={this._handleSelectLogTypes}
                         selectedAppLogTypes={_selectedAppLogTypes}
+                        onSelectSortOrder={this._handleSelectSortOrder}
+                        selectedSortOrder={_selectedSortOrder}
                     />
                     <LogList
                         clickHandler={this._handleClickLogItem}
                         activeLogItemId={activeLogItemId}
                         selectedAppLogTypes={_selectedAppLogTypes}
+                        selectedSortOrder={_selectedSortOrder}
                     />
                 </Col>
             </Row>
