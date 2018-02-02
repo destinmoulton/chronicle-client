@@ -20,6 +20,7 @@ interface IMapStateToProps {
 interface ILogListProps extends IMapDispatchToProps, IMapStateToProps {
     activeLogItemId: string;
     clickHandler: (logItem: Types.ILogItem) => void;
+    selectedAppLogTypes: string[];
 }
 
 class LogList extends React.Component<ILogListProps> {
@@ -41,18 +42,27 @@ class LogList extends React.Component<ILogListProps> {
             clickHandler,
             logsAreLoading,
             logsData,
-            logsHaveData
+            logsHaveData,
+            selectedAppLogTypes
         } = this.props;
 
         let loading = logsAreLoading ? <LoadingLogs /> : null;
 
         let list: any[] = [];
         logsData.map((item, key) => {
-            list.push(
-                <div key={key} onClick={this._clickHandler.bind(this, item)}>
-                    <LogItem item={item} activeLogItemId={activeLogItemId} />
-                </div>
-            );
+            if (selectedAppLogTypes.indexOf(item.type) > -1) {
+                list.push(
+                    <div
+                        key={key}
+                        onClick={this._clickHandler.bind(this, item)}
+                    >
+                        <LogItem
+                            item={item}
+                            activeLogItemId={activeLogItemId}
+                        />
+                    </div>
+                );
+            }
         });
         return (
             <div className="chc-log-list-box">
