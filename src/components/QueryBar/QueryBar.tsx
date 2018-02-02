@@ -15,21 +15,28 @@ interface IMapStateToProps {
 interface IQueryBarProps extends IMapStateToProps {
     appLogTypes: Types.TAppLogTypes;
     onSelectLogTypes: (types: string[]) => void;
+    onSelectSortOrder: (order: string) => void;
     selectedAppLogTypes: string[];
+    selectedSortOrder: string;
 }
 class QueryBar extends React.Component<IQueryBarProps> {
     render() {
         const {
             appLogTypes,
             onSelectLogTypes,
-            selectedAppLogTypes
+            onSelectSortOrder,
+            selectedAppLogTypes,
+            selectedSortOrder
         } = this.props;
         return (
             <div className="chc-query-bar">
                 <strong>&nbsp;{this.props.selectedApp}</strong>(<Link to="/">
                     Change App
                 </Link>)&nbsp;&nbsp;
-                <SortBy />&nbsp;&nbsp;
+                <SortBy
+                    selectedSortOrder={selectedSortOrder}
+                    onSelectSortOrder={onSelectSortOrder}
+                />&nbsp;&nbsp;
                 <SelectLogTypes
                     appLogTypes={appLogTypes}
                     onSelectLogTypes={onSelectLogTypes}
