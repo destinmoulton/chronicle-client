@@ -5,15 +5,27 @@ import { Row, Col } from "antd";
 
 import * as Types from "../common/types";
 import { history } from "../redux/store";
-import LogList from "./LogList/LogList";
-import QueryBar from "./QueryBar/QueryBar";
+import * as LogsActions from "../redux/actions/logs.actions";
 import SORTOPTIONS from "../common/sortoptions.constants";
+
+import Loading from "./shared/Loading";
+import LogList from "./LogList/LogList";
+import LogDashboard from "./LogDashboard/LogDashboard";
+import QueryBar from "./QueryBar/QueryBar";
+
 interface IMapStateToProps {
+    appLogs: Types.TAppLogs;
     appLogTypes: Types.TAppLogTypes;
+    logsAreLoading: boolean;
+    logsHaveData: boolean;
     selectedApp: string;
 }
 
-interface ILogBrowserProps extends IMapStateToProps {}
+interface IMapDispatchToProps {
+    loadLogs: () => void;
+}
+
+interface ILogBrowserProps extends IMapStateToProps, IMapDispatchToProps {}
 interface ILogBrowserState {
     _activeLogItem: undefined | Types.ILogItem;
     _selectedAppLogTypes: string[];
@@ -38,6 +50,12 @@ class LogBrowser extends React.Component<ILogBrowserProps, ILogBrowserState> {
         if (this.props.selectedApp === "") {
             // Redirect back to app selector
             history.push("/");
+        } else {
+            const { loadLogs, logsAreLoading, logsHaveData } = this.props;
+
+            if (!logsAreLoading && !logsHaveData) {
+                loadLogs();
+            }
         }
     }
 
@@ -66,13 +84,14 @@ class LogBrowser extends React.Component<ILogBrowserProps, ILogBrowserState> {
     }
 
     render() {
-        const { appLogTypes } = this.props;
+        const { appLogTypes, logsAreLoading } = this.props;
         const {
             _activeLogItem,
             _selectedAppLogTypes,
             _selectedSortOrder
         } = this.state;
 
+        let loading = logsAreLoading ? <Loading /> : null;
         const activeLogItemId =
             _activeLogItem !== undefined ? _activeLogItem.id : "";
         return (
@@ -85,12 +104,13 @@ class LogBrowser extends React.Component<ILogBrowserProps, ILogBrowserState> {
                         onSelectSortOrder={this._handleSelectSortOrder}
                         selectedSortOrder={_selectedSortOrder}
                     />
-                    <LogList
+                    <LogDashboard />
+                    {/* <LogList
                         clickHandler={this._handleClickLogItem}
                         activeLogItemId={activeLogItemId}
                         selectedAppLogTypes={_selectedAppLogTypes}
                         selectedSortOrder={_selectedSortOrder}
-                    />
+                    /> */}
                 </Col>
             </Row>
         );
@@ -100,8 +120,17 @@ class LogBrowser extends React.Component<ILogBrowserProps, ILogBrowserState> {
 const mapStateToProps = (state: Types.IRootStoreState): IMapStateToProps => {
     const { logs, query } = state;
     return {
-        selectedApp: query.selectedApp,
-        appLogTypes: logs.appLogTypes
+        appLogs: logs.appLogs,
+        appLogTypes: logs.appLogTypes,
+        logsAreLoading: logs.isLoading,
+        logsHaveData: logs.hasData,
+        selectedApp: query.selectedApp
+    };
+};
+
+const mapDispatchToProps = (dispatch: Types.IDispatch): IMapDispatchToProps => {
+    return {
+        loadLogs: () => dispatch(LogsActions.loadLogs())
     };
 };
 
