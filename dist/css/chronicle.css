@@ -3,10 +3,35 @@ html {
     height: 100%;
 }
 
-div.loading {
+div.chc-loading-animation {
     text-align: center;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 2vh;
+    font-size: 1.6em;
+}
+
+div.chc-app-list-box {
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+}
+
+div.chc-app-list-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+}
+
+ul.chc-app-list {
+    list-style-type: none;
+}
+
+ul.chc-app-list>li {
+    border: 1px solid darkslategray;
+    padding: 4px;
+    background-color: white;
+    cursor: pointer;
 }
 
 div.chc-log-item-explorer-main-box {
@@ -78,8 +103,8 @@ div.chc-nav-api-url {
 
 div.chc-nav-bar {
     background-color: #204582;
-    height: 5vh;
-    line-height: 5vh;
+    height: 4vh;
+    line-height: 4vh;
     padding-left: 25px;
     width: 100%;
     /* border-bottom: 2px solid white; */
@@ -87,7 +112,8 @@ div.chc-nav-bar {
 
 div.chc-nav-title {
     color: white;
-    font-size: 1.4em;
+    font-size: 1.2em;
+    font-weight: bold;
     width: 200px;
     float: left;
 }
