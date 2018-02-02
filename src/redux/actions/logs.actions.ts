@@ -6,7 +6,6 @@ import * as ActionTypes from "../actionTypes";
 import * as Types from "../../common/types";
 import { JSON_HEADERS } from "../../common/headers";
 
-import { comparatorDispatch } from "../../lib/comparators";
 import { chronicleAPIQueryBuilder } from "../../lib/chronicleAPIQueryBuilder";
 
 export const loadLogs = () => {
@@ -86,7 +85,6 @@ const prepareAppLogs = (logItems: any) => {
         const newAppLogs = mappedItems; //appLogs.merge(mappedItems);
         dispatch(writeAppLogs(newAppLogs));
         dispatch(setAppLogTypes(appLogTypes));
-        dispatch(sortAppLogs());
     };
 };
 
@@ -117,21 +115,6 @@ const decipherPlaceholders = (obj: any) => {
         return newArr;
     }
     return obj;
-};
-
-export const sortAppLogs = () => {
-    return (dispatch: Types.IDispatch, getState: Types.IGetState) => {
-        const { logs, sort } = getState();
-        const { appLogs } = logs;
-        const { order } = sort;
-
-        const [sortField, sortOrder] = order.split(":");
-        const comparator = comparatorDispatch(sortOrder);
-        const sortedAppLogs: Types.TAppLogs = appLogs
-            .sort((a: any, b: any) => comparator(a[sortField], b[sortField]))
-            .toOrderedMap();
-        dispatch(writeAppLogs(sortedAppLogs));
-    };
 };
 
 export const clearAppLogs = () => {
