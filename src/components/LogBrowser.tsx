@@ -73,6 +73,7 @@ class LogBrowser extends React.Component<ILogBrowserProps, ILogBrowserState> {
                     <LogList
                         clickHandler={this._handleClickLogItem}
                         activeLogItemId={activeLogItemId}
+                        selectedAppLogTypes={_selectedAppLogTypes}
                     />
                 </Col>
             </Row>
