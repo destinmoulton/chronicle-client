@@ -5,7 +5,7 @@ import * as Types from "../../common/types";
 
 import * as LogsActions from "../../redux/actions/logs.actions";
 
-import LoadingLogs from "./LoadingLogs";
+import Loading from "../shared/Loading";
 import LogItem from "./LogItem";
 
 import { comparatorDispatch } from "../../lib/comparators";
@@ -60,7 +60,7 @@ class LogList extends React.Component<ILogListProps> {
             logsHaveData
         } = this.props;
 
-        let loading = logsAreLoading ? <LoadingLogs /> : null;
+        let loading = logsAreLoading ? <Loading /> : null;
 
         let list: any[] = [];
         const processedLogs = this._filterAndSort();
