@@ -3,48 +3,29 @@ import { connect } from "react-redux";
 
 import * as Types from "../../common/types";
 
-import * as LogsActions from "../../redux/actions/logs.actions";
-
-import Loading from "../shared/Loading";
 import LogItem from "./LogItem";
 
 import { comparatorDispatch } from "../../lib/comparators";
 
-interface IMapDispatchToProps {
-    loadLogs: () => void;
-}
-
-interface IMapStateToProps {
-    logsAreLoading: boolean;
-    logsData: Types.TAppLogs;
-    logsHaveData: boolean;
-}
-interface ILogListProps extends IMapDispatchToProps, IMapStateToProps {
+interface ILogListProps {
     activeLogItemId: string;
+    appLogs: Types.TAppLogs;
     clickHandler: (logItem: Types.ILogItem) => void;
     selectedAppLogTypes: string[];
     selectedSortOrder: string;
 }
 
 class LogList extends React.Component<ILogListProps> {
-    componentDidMount() {
-        const { loadLogs, logsAreLoading, logsHaveData } = this.props;
-
-        if (!logsAreLoading && !logsHaveData) {
-            loadLogs();
-        }
-    }
-
     _clickHandler(item: Types.ILogItem) {
         this.props.clickHandler(item);
     }
 
     _filterAndSort(): Types.ILogItem[] {
-        const { logsData, selectedAppLogTypes, selectedSortOrder } = this.props;
+        const { appLogs, selectedAppLogTypes, selectedSortOrder } = this.props;
 
         const [sortField, sortOrder] = selectedSortOrder.split(":");
         const comparator = comparatorDispatch(sortOrder);
-        return logsData
+        return appLogs
             .filter((item: Types.ILogItem) => {
                 return selectedAppLogTypes.indexOf(item.type) > -1;
             })
@@ -53,14 +34,7 @@ class LogList extends React.Component<ILogListProps> {
     }
 
     render() {
-        const {
-            activeLogItemId,
-            clickHandler,
-            logsAreLoading,
-            logsHaveData
-        } = this.props;
-
-        let loading = logsAreLoading ? <Loading /> : null;
+        const { activeLogItemId, clickHandler } = this.props;
 
         let list: any[] = [];
         const processedLogs = this._filterAndSort();
@@ -71,28 +45,8 @@ class LogList extends React.Component<ILogListProps> {
                 </div>
             );
         });
-        return (
-            <div className="chc-log-list-box">
-                {list}
-                {loading}
-            </div>
-        );
+        return <div className="chc-log-list-box">{list}</div>;
     }
 }
 
-const mapStateToProps = (state: Types.IRootStoreState): IMapStateToProps => {
-    const { logs } = state;
-    return {
-        logsAreLoading: logs.isLoading,
-        logsHaveData: logs.hasData,
-        logsData: logs.appLogs
-    };
-};
-
-const mapDispatchToProps = (dispatch: Types.IDispatch): IMapDispatchToProps => {
-    return {
-        loadLogs: () => dispatch(LogsActions.loadLogs())
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(LogList);
+export default LogList;
