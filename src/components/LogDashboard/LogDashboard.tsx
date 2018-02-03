@@ -24,6 +24,7 @@ class LogDashboard extends React.Component<ILogDashboard> {
         } = this.props;
         return (
             <div>
+                <h3>Dashboard</h3>
                 <LogTypesDailyGraph
                     appLogs={appLogs}
                     appLogTypes={appLogTypes}
