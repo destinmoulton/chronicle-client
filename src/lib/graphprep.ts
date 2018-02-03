@@ -24,7 +24,7 @@ export const generateDateSeries = (
     return dates;
 };
 
-export const buildGraphableDataArray = (
+export const buildChartableDataArray = (
     dateSeries: Types.TDateSeries,
     appLogTypes: Types.TAppLogTypes,
     appLogs: Types.TAppLogs
@@ -34,9 +34,8 @@ export const buildGraphableDataArray = (
     }
 
     const types = appLogTypes.toArray();
-    const typesInitial: ITypesTemp = {};
+    let typesInitial: ITypesTemp = {};
     for (let i = 0; i < types.length; i++) {
-        // Initialize the count for each type to 0
         typesInitial[types[i]] = 0;
     }
 
@@ -54,18 +53,23 @@ export const buildGraphableDataArray = (
         dateKeyedTypes[timeOfLog][item.type]++;
     });
 
-    type IGraphableData = ITypesTemp & {
-        date: string;
-    };
-    type IGraphableDataArray = IGraphableData[]; // | undefined[];
-    let graphableData: any[] = [];
-    dateSeries.map((date: string) => {
-        const data = {
-            date: date,
-            ...dateKeyedTypes[date]
-        };
-        graphableData.push(data);
-    });
+    let chartableData: any[] = [];
+    for (let i = 0; i < types.length; i++) {
+        const data: any[] = [];
 
-    return graphableData;
+        dateSeries.map(date => {
+            data.push({
+                x: date,
+                y: dateKeyedTypes[date][types[i]]
+            });
+        });
+
+        // Initialize the count for each type to 0
+        chartableData.push({
+            id: types[i],
+            data
+        });
+    }
+
+    return chartableData;
 };
