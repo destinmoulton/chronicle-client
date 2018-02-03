@@ -91,7 +91,7 @@ class LogBrowser extends React.Component<ILogBrowserProps, ILogBrowserState> {
             _selectedSortOrder
         } = this.state;
 
-        let loading = logsAreLoading ? <Loading /> : null;
+        let contents = logsAreLoading ? <Loading /> : <LogDashboard />;
         const activeLogItemId =
             _activeLogItem !== undefined ? _activeLogItem.id : "";
         return (
@@ -104,7 +104,7 @@ class LogBrowser extends React.Component<ILogBrowserProps, ILogBrowserState> {
                         onSelectSortOrder={this._handleSelectSortOrder}
                         selectedSortOrder={_selectedSortOrder}
                     />
-                    <LogDashboard />
+                    {contents}
                     {/* <LogList
                         clickHandler={this._handleClickLogItem}
                         activeLogItemId={activeLogItemId}
@@ -134,4 +134,4 @@ const mapDispatchToProps = (dispatch: Types.IDispatch): IMapDispatchToProps => {
     };
 };
 
-export default connect(mapStateToProps)(LogBrowser);
+export default connect(mapStateToProps, mapDispatchToProps)(LogBrowser);
