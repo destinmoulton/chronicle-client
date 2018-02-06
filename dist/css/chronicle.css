@@ -27,7 +27,7 @@ ul.chc-app-list {
     list-style-type: none;
 }
 
-ul.chc-app-list>li {
+ul.chc-app-list > li {
     border: 1px solid darkslategray;
     padding: 4px;
     background-color: white;
@@ -123,4 +123,37 @@ div.chc-query-bar {
     line-height: 4vh;
     width: 100%;
     background-color: beige;
+}
+
+div.chc-topbar-app-name {
+    float: left;
+    border-radius: 4px;
+    background-color: white;
+    padding: 3px;
+    margin-left: 3px;
+    height: 100%;
+}
+
+div.chc-topbar-container {
+    width: 100%;
+    height: 4vh;
+    border-bottom: 1px solid black;
+}
+
+div.chc-topbar-daterange-box {
+    float: left;
+    border-radius: 4px;
+    background-color: white;
+    padding: 3px;
+    margin-left: 3px;
+    height: 100%;
+}
+
+div.chc-topbar-tab {
+    float: left;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    padding: 3px;
+    margin-left: 3px;
 }
