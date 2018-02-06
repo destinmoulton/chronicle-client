@@ -6,12 +6,11 @@ import { Row, Col } from "antd";
 import * as Types from "../common/types";
 import { history } from "../redux/store";
 import * as LogsActions from "../redux/actions/logs.actions";
-import SORTOPTIONS from "../common/sortoptions.constants";
 
 import Loading from "./shared/Loading";
 import LogList from "./LogList/LogList";
 import LogDashboard from "./LogDashboard/LogDashboard";
-import QueryBar from "./QueryBar/QueryBar";
+import TopBar from "./TopBar/TopBar";
 
 interface IMapStateToProps {
     appLogs: Types.TAppLogs;
@@ -34,16 +33,6 @@ interface ILogBrowserState {
 class LogBrowser extends React.Component<ILogBrowserProps, ILogBrowserState> {
     constructor(props: ILogBrowserProps) {
         super(props);
-
-        this.state = {
-            _activeLogItem: undefined,
-            _selectedAppLogTypes: props.appLogTypes.toArray(), // Set all log types to active
-            _selectedSortOrder: SORTOPTIONS[0].value
-        };
-
-        this._handleClickLogItem = this._handleClickLogItem.bind(this);
-        this._handleSelectLogTypes = this._handleSelectLogTypes.bind(this);
-        this._handleSelectSortOrder = this._handleSelectSortOrder.bind(this);
     }
 
     componentWillMount() {
@@ -59,58 +48,16 @@ class LogBrowser extends React.Component<ILogBrowserProps, ILogBrowserState> {
         }
     }
 
-    componentWillReceiveProps(nextProps: ILogBrowserProps) {
-        this.setState({
-            _selectedAppLogTypes: nextProps.appLogTypes.toArray() // Set all log types to active
-        });
-    }
-
-    _handleSelectLogTypes(types: string[]) {
-        this.setState({
-            _selectedAppLogTypes: types
-        });
-    }
-
-    _handleSelectSortOrder(order: string) {
-        this.setState({
-            _selectedSortOrder: order
-        });
-    }
-
-    _handleClickLogItem(logItem: Types.ILogItem) {
-        this.setState({
-            _activeLogItem: logItem
-        });
-    }
-
     render() {
-        const { appLogTypes, logsAreLoading } = this.props;
-        const {
-            _activeLogItem,
-            _selectedAppLogTypes,
-            _selectedSortOrder
-        } = this.state;
+        const { appLogs, appLogTypes, logsAreLoading } = this.props;
 
         let contents = logsAreLoading ? <Loading /> : <LogDashboard />;
-        const activeLogItemId =
-            _activeLogItem !== undefined ? _activeLogItem.id : "";
+
         return (
             <Row>
                 <Col span={24}>
-                    <QueryBar
-                        appLogTypes={appLogTypes}
-                        onSelectLogTypes={this._handleSelectLogTypes}
-                        selectedAppLogTypes={_selectedAppLogTypes}
-                        onSelectSortOrder={this._handleSelectSortOrder}
-                        selectedSortOrder={_selectedSortOrder}
-                    />
                     {contents}
-                    {/* <LogList
-                        clickHandler={this._handleClickLogItem}
-                        activeLogItemId={activeLogItemId}
-                        selectedAppLogTypes={_selectedAppLogTypes}
-                        selectedSortOrder={_selectedSortOrder}
-                    /> */}
+                    <LogList appLogTypes={appLogTypes} appLogs={appLogs} />
                 </Col>
             </Row>
         );
