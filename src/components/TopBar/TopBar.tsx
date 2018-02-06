@@ -8,9 +8,25 @@ import DateRange from "./DateRange";
 import * as LogsActions from "../../redux/actions/logs.actions";
 import * as Types from "../../common/types";
 
+interface ITab {
+    route: string;
+    name: string;
+}
+const TABS: ITab[] = [
+    {
+        route: "/dashboard",
+        name: "Dashboard"
+    },
+    {
+        route: "/browser",
+        name: "Browser"
+    }
+];
+
 interface IMapStateToProps {
     logsAreLoading: boolean;
     logsHaveData: boolean;
+    pathname: string;
     selectedApp: string;
 }
 
@@ -33,15 +49,22 @@ class TopBar extends React.Component<ITopBarProps> {
     }
 
     render() {
-        const { selectedApp } = this.props;
+        const { selectedApp, pathname } = this.props;
+        const tabs = TABS.map((tab: any) => {
+            const activeClass =
+                tab.route === pathname ? "chc-topbar-tab-active" : "";
+            return (
+                <div
+                    key={tab.route}
+                    className={"chc-topbar-tab " + activeClass}
+                >
+                    <Link to={tab.route}>{tab.name}</Link>
+                </div>
+            );
+        });
         return (
             <div className="chc-topbar-container">
-                <div className="chc-topbar-tab">
-                    <Link to="/dashboard">Dashboard</Link>
-                </div>
-                <div className="chc-topbar-tab">
-                    <Link to="/browser">Browser</Link>
-                </div>
+                {tabs}
                 <div className="chc-topbar-app-name">
                     {selectedApp}(<Link to="/">Change App</Link>)
                 </div>
@@ -52,11 +75,12 @@ class TopBar extends React.Component<ITopBarProps> {
 }
 
 const mapStateToProps = (state: Types.IRootStoreState): IMapStateToProps => {
-    const { logs, query } = state;
+    const { logs, query, routerReducer } = state;
     return {
         logsAreLoading: logs.isLoading,
         logsHaveData: logs.hasData,
-        selectedApp: query.selectedApp
+        selectedApp: query.selectedApp,
+        pathname: routerReducer.location.pathname
     };
 };
 
