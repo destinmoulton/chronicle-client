@@ -47,7 +47,7 @@ class AppSelector extends React.Component<IAppSelectorProps> {
             apps.push(
                 <li key={app} onClick={this._handleClickApp.bind(this, app)}>
                     <Link
-                        to="/browser"
+                        to="/dashboard"
                         onClick={this._handleClickApp.bind(this, app)}
                     >
                         {app}
