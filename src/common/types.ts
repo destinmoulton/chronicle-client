@@ -80,11 +80,23 @@ export interface IReducerSortState {
     order: string;
 }
 
+// Redux router middleware
+interface IRouterReducerState {
+    location: {
+        hash: string;
+        key: string;
+        pathname: string;
+        search: "";
+        state: undefined;
+    };
+}
+
 export interface IRootStoreState {
     apps: IReducerAppsState;
     logs: IReducerLogsState;
     query: IReducerQueryState;
     sort: IReducerSortState;
+    routerReducer: IRouterReducerState;
 }
 
 /** Date Series */
