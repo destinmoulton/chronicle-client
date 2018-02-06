@@ -1,5 +1,5 @@
 import * as React from "react";
-const ResponsiveLine = require("@nivo/line").ResponsiveLine;
+const Line = require("@nivo/line").Line;
 import { Moment } from "moment";
 
 import * as Types from "../../common/types";
@@ -10,9 +10,9 @@ import {
 } from "../../lib/graphprep";
 
 const CHART_DIM = {
-    WIDTH: 500,
+    WIDTH: 900,
     HEIGHT: 300,
-    MARGINS: { left: 50, right: 50, top: 25, bottom: 25 }
+    MARGINS: { left: 50, right: 90, top: 25, bottom: 25 }
 };
 
 interface ILogTypesDailyGraphProps {
@@ -29,58 +29,60 @@ const LogTypesDailyGraph: React.SFC<ILogTypesDailyGraphProps> = (
 
     const chartData = buildChartableDataArray(dateSeries, appLogTypes, appLogs);
 
+    // Show bottom axis ticks at an interval
+    const tickInterval = Math.ceil(dateSeries.length / 10);
+    const tickValues = dateSeries.filter(
+        (date, index) => index % tickInterval === 0
+    );
     return (
         <div>
-            <ResponsiveLine
-                data={chartData}
-                margin={{
-                    top: 50,
-                    right: 110,
-                    bottom: 50,
-                    left: 60
-                }}
-                minY="auto"
-                stacked={false}
-                axisBottom={{
-                    orient: "bottom",
-                    tickSize: 5,
-                    tickPadding: 5,
-                    tickRotation: 0,
-                    legend: "country code",
-                    legendOffset: 36,
-                    legendPosition: "center"
-                }}
-                axisLeft={{
-                    orient: "left",
-                    tickSize: 5,
-                    tickPadding: 5,
-                    tickRotation: 0,
-                    legend: "count",
-                    legendOffset: -40,
-                    legendPosition: "center"
-                }}
-                dotSize={10}
-                dotColor="inherit:darker(0.3)"
-                dotBorderWidth={2}
-                dotBorderColor="#ffffff"
-                enableDotLabel={true}
-                dotLabel="y"
-                dotLabelYOffset={-12}
-                animate={true}
-                motionStiffness={90}
-                motionDamping={15}
-                legends={[
-                    {
-                        anchor: "bottom-right",
-                        direction: "column",
-                        translateX: 100,
-                        itemWidth: 80,
-                        itemHeight: 20,
-                        symbolSize: 12,
-                        symbolShape: "circle"
-                    }
-                ]}
-            />
+            <h4>
+                {dateRangeStart.format("MMM DD, YYYY")}&nbsp;to&nbsp;
+                {dateRangeEnd.format("MMM DD, YYYY")}
+            </h4>
+            {chartData.length > 0 && (
+                <Line
+                    data={chartData}
+                    width={CHART_DIM.WIDTH}
+                    height={CHART_DIM.HEIGHT}
+                    margin={{ ...CHART_DIM.MARGINS }}
+                    minY={0}
+                    maxY="auto"
+                    stacked={false}
+                    axisBottom={{
+                        orient: "bottom",
+                        tickSize: 5,
+                        tickPadding: 5,
+                        tickRotation: 0,
+                        tickValues,
+                        legend: "Day",
+                        legendOffset: 36,
+                        legendPosition: "center"
+                    }}
+                    axisLeft={{
+                        orient: "left",
+                        tickSize: 5,
+                        tickPadding: 5,
+                        tickRotation: 0,
+                        legend: "Count",
+                        legendOffset: -30,
+                        legendPosition: "center"
+                    }}
+                    enableDots={false}
+                    animate={false}
+                    legends={[
+                        {
+                            anchor: "bottom-right",
+                            direction: "column",
+                            translateX: 85,
+                            itemWidth: 80,
+                            itemHeight: 20,
+                            symbolSize: 12,
+                            symbolShape: "circle"
+                        }
+                    ]}
+                />
+            )}
         </div>
     );
 };
