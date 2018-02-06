@@ -26,13 +26,15 @@ interface IMapDispatchToProps {
 
 interface ILogBrowserProps extends IMapStateToProps, IMapDispatchToProps {}
 interface ILogBrowserState {
-    _activeLogItem: undefined | Types.ILogItem;
-    _selectedAppLogTypes: string[];
-    _selectedSortOrder: string;
+    _activeView: string;
 }
 class LogBrowser extends React.Component<ILogBrowserProps, ILogBrowserState> {
     constructor(props: ILogBrowserProps) {
         super(props);
+
+        this.state = {
+            _activeView: "dashboard"
+        };
     }
 
     componentWillMount() {
@@ -49,15 +51,32 @@ class LogBrowser extends React.Component<ILogBrowserProps, ILogBrowserState> {
     }
 
     render() {
-        const { appLogs, appLogTypes, logsAreLoading } = this.props;
+        const {
+            appLogs,
+            appLogTypes,
+            logsAreLoading,
+            logsHaveData
+        } = this.props;
 
-        let contents = logsAreLoading ? <Loading /> : <LogDashboard />;
+        const { _activeView } = this.state;
+
+        let contents = <Loading />;
+
+        if (!logsAreLoading && logsHaveData) {
+            if (_activeView === "dashboard") {
+                contents = <LogDashboard />;
+            } else {
+                contents = (
+                    <LogList appLogTypes={appLogTypes} appLogs={appLogs} />
+                );
+            }
+        }
 
         return (
             <Row>
                 <Col span={24}>
+                    <TopBar />
                     {contents}
-                    <LogList appLogTypes={appLogTypes} appLogs={appLogs} />
                 </Col>
             </Row>
         );
