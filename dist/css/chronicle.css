@@ -27,7 +27,7 @@ ul.chc-app-list {
     list-style-type: none;
 }
 
-ul.chc-app-list>li {
+ul.chc-app-list > li {
     border: 1px solid darkslategray;
     padding: 4px;
     background-color: white;
@@ -156,4 +156,11 @@ div.chc-topbar-tab {
     border-right: 1px solid black;
     padding: 2px 6px 3px 6px;
     margin: 3px 0px -3px 3px;
+    height: 27px;
+}
+
+div.chc-topbar-tab-active {
+    background-color: beige;
+    height: 28px;
+    font-weight: bold;
 }
