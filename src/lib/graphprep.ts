@@ -77,3 +77,40 @@ export const buildChartableDataArray = (
 
     return chartableData;
 };
+
+/**
+ * Build the data structure for the pie chart.
+ *
+ * @param appLogTypes List of the log types.
+ * @param appLogs OrderedMap of the logs
+ */
+export const generatePieData = (
+    appLogTypes: Types.TAppLogTypes,
+    appLogs: Types.TAppLogs
+) => {
+    interface ITypeTotals {
+        [key: string]: number;
+    }
+
+    const typeTotals: ITypeTotals = {};
+    appLogTypes.map(type => {
+        typeTotals[type] = 0;
+    });
+
+    appLogs.map(item => {
+        typeTotals[item.type] = typeTotals[item.type] + 1;
+    });
+
+    // Build the final data structure
+    let chartableData: any = [];
+    appLogTypes.map(type => {
+        chartableData.push({
+            id: type,
+            label: LOG_TYPES[type].name,
+            value: typeTotals[type],
+            color: LOG_TYPES[type].color
+        });
+    });
+
+    return chartableData;
+};
