@@ -4,13 +4,13 @@ import { Moment } from "moment";
 
 import { DatePicker } from "antd";
 
-import * as Types from "../../../common/types";
-import { DATE_FORMAT } from "../../../common/date.constants";
+import * as Types from "../../common/types";
+import { DATE_FORMAT } from "../../common/date.constants";
 
 import {
     setQueryDateEnd,
     setQueryDateStart
-} from "../../../redux/actions/query.actions";
+} from "../../redux/actions/query.actions";
 
 interface IMapDispatchToProps {
     setQueryDateEnd: (dateMoment: Moment) => void;
@@ -42,7 +42,7 @@ class DateRange extends React.Component<IDateRangeProps> {
     render() {
         const { rangeDateEnd, rangeDateStart } = this.props;
         return (
-            <span>
+            <div className="chc-topbar-daterange-box">
                 <span>Dates:</span>
                 <DatePicker
                     onChange={this._handleSelectStartDate}
@@ -61,7 +61,7 @@ class DateRange extends React.Component<IDateRangeProps> {
                     defaultValue={rangeDateEnd}
                     style={{ width: "110px" }}
                 />
-            </span>
+            </div>
         );
     }
 }
