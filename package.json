@@ -12,6 +12,7 @@
     },
     "dependencies": {
         "@nivo/line": "^0.33.0",
+        "@nivo/pie": "^0.33.0",
         "@types/lodash": "^4.14.98",
         "@types/react": "^16.0.34",
         "@types/react-dom": "^16.0.3",

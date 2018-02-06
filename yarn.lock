@@ -35,6 +35,16 @@
     react-motion "^0.5.2"
     recompose "^0.26.0"
 
+"@nivo/pie@^0.33.0":
+  version "0.33.0"
+  resolved "https://registry.yarnpkg.com/@nivo/pie/-/pie-0.33.0.tgz#7247569875c237aa2c165ba074eb953c52ab42fd"
+  dependencies:
+    "@nivo/core" "0.33.0"
+    "@nivo/legends" "0.33.0"
+    d3-shape "^1.2.0"
+    react-motion "^0.5.2"
+    recompose "^0.26.0"
+
 "@types/history@*":
   version "4.6.2"
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.6.2.tgz#12cfaba693ba20f114ed5765467ff25fdf67ddb0"
