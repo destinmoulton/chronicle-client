@@ -3,6 +3,7 @@ import { Moment } from "moment";
 import { GRAPH_DATE_FORMAT } from "../common/date.constants";
 
 import * as Types from "../common/types";
+import { LOG_TYPES } from "../common/logtypes.constants";
 
 /**
  * Generate an array/series of dates including the
@@ -49,24 +50,27 @@ export const buildChartableDataArray = (
     appLogs.map((item: Types.ILogItem) => {
         const timeOfLog = moment(item.createdAt).format(GRAPH_DATE_FORMAT);
 
-        // Increment the count for this log type
-        dateKeyedTypes[timeOfLog][item.type]++;
+        if (dateKeyedTypes[timeOfLog] !== undefined) {
+            // Increment the count for this log type
+            dateKeyedTypes[timeOfLog][item.type]++;
+        }
     });
 
     let chartableData: any[] = [];
     for (let i = 0; i < types.length; i++) {
         const data: any[] = [];
-
-        dateSeries.map(date => {
+        const currentLogType = types[i];
+        dateSeries.map((date, index) => {
             data.push({
                 x: date,
-                y: dateKeyedTypes[date][types[i]]
+                y: dateKeyedTypes[date][currentLogType]
             });
         });
 
         // Initialize the count for each type to 0
         chartableData.push({
             id: types[i],
+            color: LOG_TYPES[currentLogType].color,
             data
         });
     }
