@@ -54,8 +54,8 @@ const LogTypesPieChart = (props: ILogTypesDailyGraphProps) => {
                     {
                         anchor: "bottom",
                         direction: "row",
-                        translateY: 56,
-                        itemWidth: 100,
+                        translateY: 40,
+                        itemWidth: 80,
                         itemHeight: 14,
                         symbolSize: 14,
                         symbolShape: "circle"
