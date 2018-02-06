@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import * as Types from "../../common/types";
 
 import LogTypesDailyGraph from "./LogTypesDailyGraph";
+import LogTypesPieChart from "./LogTypesPieChart";
+
 interface IMapStateToProps {
     appLogs: Types.TAppLogs;
     appLogTypes: Types.TAppLogTypes;
@@ -22,15 +24,29 @@ class LogDashboard extends React.Component<ILogDashboard> {
             dateRangeStart,
             dateRangeEnd
         } = this.props;
-        return (
-            <div>
-                <h3>Dashboard</h3>
+
+        let content = null;
+
+        if (appLogTypes.size > 0) {
+            content = [
+                <LogTypesPieChart
+                    key="pie"
+                    appLogs={appLogs}
+                    appLogTypes={appLogTypes}
+                />,
                 <LogTypesDailyGraph
+                    key="chart"
                     appLogs={appLogs}
                     appLogTypes={appLogTypes}
                     dateRangeStart={dateRangeStart}
                     dateRangeEnd={dateRangeEnd}
                 />
+            ];
+        }
+        return (
+            <div>
+                <h3>Dashboard</h3>
+                {content}
             </div>
         );
     }
