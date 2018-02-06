@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 
 import { Button } from "antd";
 
-import * as Types from "../../common/types";
+import * as Types from "../../../common/types";
 
-import { loadLogs } from "../../redux/actions/logs.actions";
+import { loadLogs } from "../../../redux/actions/logs.actions";
 
 interface IMapStateToProps {}
 

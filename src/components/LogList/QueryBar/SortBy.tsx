@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import { Select } from "antd";
 const Option = Select.Option;
 
-import * as Types from "../../common/types";
+import * as Types from "../../../common/types";
 
-import SORTOPTIONS from "../../common/sortoptions.constants";
+import SORTOPTIONS from "../../../common/sortoptions.constants";
 
 interface ISortByProps {
     onSelectSortOrder: (order: string) => void;

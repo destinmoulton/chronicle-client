@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Select } from "antd";
 const { Option } = Select;
 
-import * as Types from "../../common/types";
+import * as Types from "../../../common/types";
 
 interface ISelectLogTypesProps {
     appLogTypes: Types.TAppLogTypes;

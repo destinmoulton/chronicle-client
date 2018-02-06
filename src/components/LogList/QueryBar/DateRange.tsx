@@ -4,13 +4,13 @@ import { Moment } from "moment";
 
 import { DatePicker } from "antd";
 
-import * as Types from "../../common/types";
-import { DATE_FORMAT } from "../../common/date.constants";
+import * as Types from "../../../common/types";
+import { DATE_FORMAT } from "../../../common/date.constants";
 
 import {
     setQueryDateEnd,
     setQueryDateStart
-} from "../../redux/actions/query.actions";
+} from "../../../redux/actions/query.actions";
 
 interface IMapDispatchToProps {
     setQueryDateEnd: (dateMoment: Moment) => void;
