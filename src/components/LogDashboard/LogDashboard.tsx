@@ -4,8 +4,10 @@ import { connect } from "react-redux";
 
 import * as Types from "../../common/types";
 
+import Loading from "../shared/Loading";
 import LogTypesDailyGraph from "./LogTypesDailyGraph";
 import LogTypesPieChart from "./LogTypesPieChart";
+import TopBar from "../TopBar/TopBar";
 
 interface IMapStateToProps {
     appLogs: Types.TAppLogs;
@@ -25,7 +27,7 @@ class LogDashboard extends React.Component<ILogDashboard> {
             dateRangeEnd
         } = this.props;
 
-        let content = null;
+        let content = [<Loading key="loading" />];
 
         if (appLogTypes.size > 0) {
             content = [
@@ -45,6 +47,7 @@ class LogDashboard extends React.Component<ILogDashboard> {
         }
         return (
             <div>
+                <TopBar />
                 <h3>Dashboard</h3>
                 {content}
             </div>
