@@ -14,6 +14,10 @@ interface ITab {
 }
 const TABS: ITab[] = [
     {
+        route: "/apps",
+        name: "Apps"
+    },
+    {
         route: "/dashboard",
         name: "Dashboard"
     },
@@ -65,9 +69,7 @@ class TopBar extends React.Component<ITopBarProps> {
         return (
             <div className="chc-topbar-container">
                 {tabs}
-                <div className="chc-topbar-app-name">
-                    {selectedApp}(<Link to="/">Change App</Link>)
-                </div>
+                <div className="chc-topbar-app-name">{selectedApp}</div>
                 <DateRange />
             </div>
         );
