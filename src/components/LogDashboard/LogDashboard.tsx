@@ -48,8 +48,7 @@ class LogDashboard extends React.Component<ILogDashboard> {
         return (
             <div>
                 <TopBar />
-                <h3>Dashboard</h3>
-                {content}
+                <div className="chc-dashboard-container">{content}</div>
             </div>
         );
     }
