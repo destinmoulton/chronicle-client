@@ -3,13 +3,6 @@ html {
     height: 100%;
 }
 
-div.chc-loading-animation {
-    text-align: center;
-    width: 100%;
-    margin-top: 2vh;
-    font-size: 1.6em;
-}
-
 div.chc-app-list-box {
     margin-left: auto;
     margin-right: auto;
@@ -27,11 +20,22 @@ ul.chc-app-list {
     list-style-type: none;
 }
 
-ul.chc-app-list > li {
+ul.chc-app-list>li {
     border: 1px solid darkslategray;
     padding: 4px;
     background-color: white;
     cursor: pointer;
+}
+
+div.chc-dashboard-container {
+    background-color: white;
+}
+
+div.chc-loading-animation {
+    text-align: center;
+    width: 100%;
+    margin-top: 2vh;
+    font-size: 1.6em;
 }
 
 div.chc-log-item-explorer-main-box {
@@ -96,8 +100,8 @@ div.chc-main-container {
 
 div.chc-nav-api-url {
     color: white;
-    font-size: 1.1em;
-    float: left;
+    font-size: 1em;
+    float: right;
     width: 200px;
 }
 
@@ -122,16 +126,17 @@ div.chc-query-bar {
     height: 4vh;
     line-height: 4vh;
     width: 100%;
-    background-color: beige;
+    background-color: white;
 }
 
 div.chc-topbar-app-name {
     float: left;
     border-radius: 4px;
     background-color: white;
-    padding: 6px;
-    margin-left: 3px;
-    height: 94%;
+    padding: 1px 6px 1px 6px;
+    margin: 3px 0px 0px 6px;
+    font-weight: bold;
+    border: 1px solid black;
 }
 
 div.chc-topbar-container {
@@ -154,13 +159,15 @@ div.chc-topbar-tab {
     border-left: 1px solid black;
     border-top: 1px solid black;
     border-right: 1px solid black;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
     padding: 2px 6px 3px 6px;
     margin: 3px 0px -3px 3px;
     height: 27px;
 }
 
 div.chc-topbar-tab-active {
-    background-color: beige;
+    background-color: white;
     height: 28px;
     font-weight: bold;
 }
