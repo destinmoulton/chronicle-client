@@ -32,7 +32,7 @@ export interface ILogItem {
     client: any;
     createdAt: number;
     id: string;
-    info: any;
+    data: any;
     type: string;
 }
 
