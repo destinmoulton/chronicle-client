@@ -27,13 +27,13 @@ const LogItemExplorer: React.SFC<ILogItemExplorerProps> = (
 
     let details = null;
 
-    if (typeof item.info === "string") {
-        details = item.info;
+    if (typeof item.data === "string") {
+        details = item.data;
     } else {
         details = (
             <ObjectInspector
                 theme={THEME_MODIFICATION}
-                data={item.info}
+                data={item.data}
                 hideRoot
             />
         );

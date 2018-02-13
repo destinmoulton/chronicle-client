@@ -71,7 +71,7 @@ const prepareAppLogs = (logItems: any) => {
         let mappedItems: Types.TAppLogs = OrderedMap();
         let appLogTypes: Types.TAppLogTypes = List<string>();
         logItems.forEach((item: Types.ILogItem) => {
-            item.info = decipherPlaceholders(item.info);
+            item.data = decipherPlaceholders(item.data);
             mappedItems = mappedItems.set(item.id, item);
 
             // Build the list of app log types

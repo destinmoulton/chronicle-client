@@ -52,7 +52,7 @@ class LogItem extends React.Component<ILogItemProps, ILogItemState> {
             console.log(item);
         }
 
-        const summary = JSON.stringify(item.info, null, 2); //.substr(0, 60);
+        const summary = JSON.stringify(item.data, null, 2); //.substr(0, 60);
         return (
             <div className={"chc-log-list-item " + activeClass}>
                 <div className="chc-log-list-item-title-row">
