@@ -2,6 +2,8 @@ import * as React from "react";
 import { Moment } from "moment";
 import { connect } from "react-redux";
 
+import { Col, Row } from "antd";
+
 import * as Types from "../../common/types";
 
 import ActionsPieChart from "./ActionsPieChart";
@@ -32,19 +34,26 @@ class LogDashboard extends React.Component<ILogDashboard> {
 
         if (appLogTypes.size > 0) {
             content = [
-                <LogTypesPieChart
-                    key="pie"
-                    appLogs={appLogs}
-                    appLogTypes={appLogTypes}
-                />,
-                <ActionsPieChart key="actionspie" appLogs={appLogs} />,
-                <LogTypesDailyGraph
-                    key="chart"
-                    appLogs={appLogs}
-                    appLogTypes={appLogTypes}
-                    dateRangeStart={dateRangeStart}
-                    dateRangeEnd={dateRangeEnd}
-                />
+                <Row key="pie">
+                    <Col key="logtypepie" span={12}>
+                        <LogTypesPieChart
+                            appLogs={appLogs}
+                            appLogTypes={appLogTypes}
+                        />
+                    </Col>
+                    <Col key="actionspie" span={12}>
+                        <ActionsPieChart appLogs={appLogs} />
+                    </Col>
+                </Row>,
+                <Row key="chart">
+                    <LogTypesDailyGraph
+                        key="chart"
+                        appLogs={appLogs}
+                        appLogTypes={appLogTypes}
+                        dateRangeStart={dateRangeStart}
+                        dateRangeEnd={dateRangeEnd}
+                    />
+                </Row>
             ];
         }
         return (
