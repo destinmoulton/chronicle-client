@@ -19,6 +19,11 @@ export const LOG_TYPE_EMPTY: ILogType = {
 };
 
 export const LOG_TYPES: ILogTypes = {
+    action: {
+        icon: "share-alt",
+        color:"black",
+        name: "action()"
+    },
     assert: {
         icon: "notification",
         color: "#cc0000",
