@@ -1,6 +1,5 @@
 import * as React from "react";
 const Pie = require("@nivo/pie").Pie;
-import { Moment } from "moment";
 
 import * as Types from "../../common/types";
 
