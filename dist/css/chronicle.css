@@ -20,7 +20,7 @@ ul.chc-app-list {
     list-style-type: none;
 }
 
-ul.chc-app-list>li {
+ul.chc-app-list > li {
     border: 1px solid darkslategray;
     padding: 4px;
     background-color: white;
@@ -83,7 +83,7 @@ div.chc-log-list-item-title-summary {
     float: left;
     width: 70%;
     height: 30px;
-    overflow-y: hidden;
+    overflow: hidden;
 }
 
 div.chc-log-list-item-time {
