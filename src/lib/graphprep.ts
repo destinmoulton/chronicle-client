@@ -84,7 +84,7 @@ export const buildChartableDataArray = (
  * @param appLogTypes List of the log types.
  * @param appLogs OrderedMap of the logs
  */
-export const generatePieData = (
+export const generateLogTypesPieData = (
     appLogTypes: Types.TAppLogTypes,
     appLogs: Types.TAppLogs
 ) => {

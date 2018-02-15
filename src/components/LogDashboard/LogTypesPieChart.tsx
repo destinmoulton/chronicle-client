@@ -4,7 +4,7 @@ import { Moment } from "moment";
 
 import * as Types from "../../common/types";
 
-import { generatePieData } from "../../lib/graphprep";
+import { generateLogTypesPieData } from "../../lib/graphprep";
 
 const CHART_DIM = {
     WIDTH: 400,
@@ -23,7 +23,10 @@ interface ILogTypesDailyGraphProps {
 }
 
 const LogTypesPieChart = (props: ILogTypesDailyGraphProps) => {
-    const graphableData = generatePieData(props.appLogTypes, props.appLogs);
+    const graphableData = generateLogTypesPieData(
+        props.appLogTypes,
+        props.appLogs
+    );
     return (
         <div>
             <Pie
