@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 import * as Types from "../../common/types";
 
+import ActionsPieChart from "./ActionsPieChart";
 import Loading from "../shared/Loading";
 import LogTypesDailyGraph from "./LogTypesDailyGraph";
 import LogTypesPieChart from "./LogTypesPieChart";
@@ -36,6 +37,7 @@ class LogDashboard extends React.Component<ILogDashboard> {
                     appLogs={appLogs}
                     appLogTypes={appLogTypes}
                 />,
+                <ActionsPieChart key="actionspie" appLogs={appLogs} />,
                 <LogTypesDailyGraph
                     key="chart"
                     appLogs={appLogs}
