@@ -9,9 +9,9 @@ const CHART_DIM = {
     WIDTH: 400,
     HEIGHT: 400,
     MARGINS: {
-        top: 40,
-        right: 80,
-        bottom: 80,
+        top: 20,
+        right: 100,
+        bottom: 20,
         left: 80
     }
 };
@@ -52,10 +52,10 @@ const ActionsPieChart: React.SFC<IActionPieChartProps> = (
             motionDamping={15}
             legends={[
                 {
-                    anchor: "bottom",
-                    direction: "row",
-                    translateY: 40,
-                    itemWidth: 80,
+                    anchor: "right",
+                    direction: "column",
+                    translateX: 110,
+                    itemWidth: 100,
                     itemHeight: 14,
                     symbolSize: 14,
                     symbolShape: "circle"
