@@ -17,6 +17,16 @@ export interface IGetState {
     (): IRootStoreState;
 }
 
+// Pie Chart Data
+export interface IPieChartSlice {
+    id: string;
+    label: string;
+    value: any;
+    color?: string;
+}
+
+export type TPieChartSlices = IPieChartSlice[];
+
 // Apps
 export type IAppsRawList = string[];
 
@@ -32,7 +42,7 @@ export interface ILogItem {
     client: any;
     createdAt: number;
     id: string;
-    data: any;
+    data: string | any[];
     type: string;
 }
 
