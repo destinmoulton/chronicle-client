@@ -102,7 +102,7 @@ export const generateLogTypesPieData = (
     });
 
     // Build the final data structure
-    let chartableData: any = [];
+    let chartableData: Types.TPieChartSlices = [];
     appLogTypes.map(type => {
         chartableData.push({
             id: type,
@@ -112,5 +112,37 @@ export const generateLogTypesPieData = (
         });
     });
 
+    return chartableData;
+};
+
+export const generateActionsPieData = (appLogs: Types.TAppLogs) => {
+    interface IActionTotals {
+        [key: string]: number;
+    }
+
+    const actionTotals: IActionTotals = {};
+
+    appLogs.map((item: Types.ILogItem) => {
+        if (item.type === "action") {
+            // The action name is stored in the data (either string or first element in array)
+            const actionName =
+                typeof item.data === "string" ? item.data : item.data[0];
+
+            if (typeof actionTotals[actionName] === undefined) {
+                actionTotals[actionName] = 0;
+            } else {
+                actionTotals[actionName] = actionTotals[actionName] + 1;
+            }
+        }
+    });
+
+    let chartableData: Types.TPieChartSlices = [];
+    Object.keys(actionTotals).forEach(actionName => {
+        chartableData.push({
+            id: actionName,
+            label: actionName,
+            value: actionTotals[actionName]
+        });
+    });
     return chartableData;
 };
