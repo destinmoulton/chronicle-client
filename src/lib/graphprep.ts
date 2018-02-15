@@ -115,6 +115,12 @@ export const generateLogTypesPieData = (
     return chartableData;
 };
 
+/**
+ * Generate the data array for the
+ * actions pie chart.
+ *
+ * @param appLogs
+ */
 export const generateActionsPieData = (appLogs: Types.TAppLogs) => {
     interface IActionTotals {
         [key: string]: number;
@@ -126,9 +132,10 @@ export const generateActionsPieData = (appLogs: Types.TAppLogs) => {
         if (item.type === "action") {
             // The action name is stored in the data (either string or first element in array)
             const actionName =
-                typeof item.data === "string" ? item.data : item.data[0];
-
-            if (typeof actionTotals[actionName] === undefined) {
+                typeof item.data === "string"
+                    ? item.data
+                    : item.data[0].toString();
+            if (typeof actionTotals[actionName] === "undefined") {
                 actionTotals[actionName] = 0;
             } else {
                 actionTotals[actionName] = actionTotals[actionName] + 1;
