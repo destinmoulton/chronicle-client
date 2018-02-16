@@ -37,6 +37,7 @@ const LogTypesDailyGraph: React.SFC<ILogTypesDailyGraphProps> = (
     return (
         <div>
             <h4>
+                Daily Log for&nbsp;
                 {dateRangeStart.format("MMM DD, YYYY")}&nbsp;to&nbsp;
                 {dateRangeEnd.format("MMM DD, YYYY")}
             </h4>
