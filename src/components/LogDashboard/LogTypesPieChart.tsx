@@ -13,6 +13,15 @@ const CHART_DIM = {
         right: 100,
         bottom: 20,
         left: 80
+    },
+    LEGEND: {
+        anchor: "bottom-right",
+        direction: "column",
+        translateX: 110,
+        itemWidth: 100,
+        itemHeight: 14,
+        symbolSize: 14,
+        symbolShape: "circle"
     }
 };
 
@@ -48,20 +57,8 @@ const LogTypesPieChart = (props: ILogTypesDailyGraphProps) => {
             radialLabelsLinkColor="inherit"
             slicesLabelsSkipAngle={10}
             slicesLabelsTextColor="#333333"
-            animate={true}
-            motionStiffness={90}
-            motionDamping={15}
-            legends={[
-                {
-                    anchor: "right",
-                    direction: "column",
-                    translateX: 110,
-                    itemWidth: 100,
-                    itemHeight: 14,
-                    symbolSize: 14,
-                    symbolShape: "circle"
-                }
-            ]}
+            animate={false}
+            legends={[CHART_DIM.LEGEND]}
         />
     );
 };

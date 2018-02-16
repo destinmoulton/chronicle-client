@@ -47,9 +47,7 @@ const ActionsPieChart: React.SFC<IActionPieChartProps> = (
             radialLabelsLinkColor="inherit"
             slicesLabelsSkipAngle={10}
             slicesLabelsTextColor="#333333"
-            animate={true}
-            motionStiffness={90}
-            motionDamping={15}
+            animate={false}
             legends={[
                 {
                     anchor: "right",
