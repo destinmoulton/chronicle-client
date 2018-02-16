@@ -3,6 +3,10 @@ html {
     height: 100%;
 }
 
+.clear-both {
+    clear: both;
+}
+
 div.chc-app-list-box {
     margin-left: auto;
     margin-right: auto;
@@ -20,7 +24,7 @@ ul.chc-app-list {
     list-style-type: none;
 }
 
-ul.chc-app-list > li {
+ul.chc-app-list>li {
     border: 1px solid darkslategray;
     padding: 4px;
     background-color: white;
@@ -29,6 +33,19 @@ ul.chc-app-list > li {
 
 div.chc-dashboard-container {
     background-color: white;
+    width: 100%;
+}
+
+div.chc-dashboard-linechart-container {
+    float: left;
+    width: 100%;
+    height: 600px;
+}
+
+div.chc-dashboard-pie-container {
+    float: left;
+    width: 400px;
+    height: 400px;
 }
 
 div.chc-loading-animation {
@@ -141,7 +158,7 @@ div.chc-topbar-app-name {
 
 div.chc-topbar-container {
     width: 100%;
-    height: 4vh;
+    height: 31px;
     border-bottom: 1px solid black;
 }
 

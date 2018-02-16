@@ -34,18 +34,19 @@ class LogDashboard extends React.Component<ILogDashboard> {
 
         if (appLogTypes.size > 0) {
             content = [
-                <Row key="pie">
-                    <Col key="logtypepie" span={12}>
-                        <LogTypesPieChart
-                            appLogs={appLogs}
-                            appLogTypes={appLogTypes}
-                        />
-                    </Col>
-                    <Col key="actionspie" span={12}>
-                        <ActionsPieChart appLogs={appLogs} />
-                    </Col>
-                </Row>,
-                <Row key="chart">
+                <div key="logtypespie" className="chc-dashboard-pie-container">
+                    <LogTypesPieChart
+                        appLogs={appLogs}
+                        appLogTypes={appLogTypes}
+                    />
+                </div>,
+                <div key="actionspie" className="chc-dashboard-pie-container">
+                    <ActionsPieChart appLogs={appLogs} />
+                </div>,
+                <div
+                    key="logtypeschart"
+                    className="chc-dashboard-linechart-container"
+                >
                     <LogTypesDailyGraph
                         key="chart"
                         appLogs={appLogs}
@@ -53,7 +54,8 @@ class LogDashboard extends React.Component<ILogDashboard> {
                         dateRangeStart={dateRangeStart}
                         dateRangeEnd={dateRangeEnd}
                     />
-                </Row>
+                </div>,
+                <div key="clear" className="clear-both" />
             ];
         }
         return (
