@@ -4,17 +4,7 @@ const Pie = require("@nivo/pie").Pie;
 import * as Types from "../../common/types";
 
 import { generateActionsPieData } from "../../lib/graphprep";
-
-const CHART_DIM = {
-    WIDTH: 400,
-    HEIGHT: 400,
-    MARGINS: {
-        top: 20,
-        right: 100,
-        bottom: 20,
-        left: 80
-    }
-};
+import { PIE } from "../../common/nivo.constants";
 
 interface IActionPieChartProps {
     appLogs: Types.TAppLogs;
@@ -28,37 +18,31 @@ const ActionsPieChart: React.SFC<IActionPieChartProps> = (
     return (
         <Pie
             data={data}
-            width={CHART_DIM.WIDTH}
-            height={CHART_DIM.HEIGHT}
-            margin={{ ...CHART_DIM.MARGINS }}
-            innerRadius={0.5}
-            padAngle={0.7}
-            cornerRadius={3}
-            colors="d320c"
-            colorBy="id"
-            borderColor="inherit:darker(0.6)"
-            radialLabelsSkipAngle={10}
-            radialLabelsTextXOffset={6}
-            radialLabelsTextColor="#333333"
-            radialLabelsLinkOffset={0}
-            radialLabelsLinkDiagonalLength={16}
-            radialLabelsLinkHorizontalLength={24}
-            radialLabelsLinkStrokeWidth={1}
-            radialLabelsLinkColor="inherit"
-            slicesLabelsSkipAngle={10}
-            slicesLabelsTextColor="#333333"
+            width={PIE.WIDTH}
+            height={PIE.HEIGHT}
+            margin={{ ...PIE.MARGINS }}
+            innerRadius={PIE.INNER_RADIUS}
+            padAngle={PIE.PAD_ANGLE}
+            cornerRadius={PIE.CORNER_RADIUS}
+            colors={PIE.COLORS}
+            colorBy={PIE.COLOR_BY}
+            borderColor={PIE.BORDER_COLOR}
+            radialLabelsSkipAngle={PIE.RADIAL_LABELS.SkipAngle}
+            radialLabelsTextXOffset={PIE.RADIAL_LABELS.TextXOffset}
+            radialLabelsTextColor={PIE.RADIAL_LABELS.TextColor}
+            radialLabelsLinkOffset={PIE.RADIAL_LABELS.LinkOffset}
+            radialLabelsLinkDiagonalLength={
+                PIE.RADIAL_LABELS.LinkDiagonalLength
+            }
+            radialLabelsLinkHorizontalLength={
+                PIE.RADIAL_LABELS.LinkHorizontalLength
+            }
+            radialLabelsLinkStrokeWidth={PIE.RADIAL_LABELS.LinkStrokeWidth}
+            radialLabelsLinkColor={PIE.RADIAL_LABELS.LinkColor}
+            slicesLabelsSkipAngle={PIE.SLICES_LABELS.SkipAngle}
+            slicesLabelsTextColor={PIE.SLICES_LABELS.TextColor}
             animate={false}
-            legends={[
-                {
-                    anchor: "right",
-                    direction: "column",
-                    translateX: 110,
-                    itemWidth: 100,
-                    itemHeight: 14,
-                    symbolSize: 14,
-                    symbolShape: "circle"
-                }
-            ]}
+            legends={[PIE.LEGEND]}
         />
     );
 };
