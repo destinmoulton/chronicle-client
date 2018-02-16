@@ -105,7 +105,7 @@ export const generateLogTypesPieData = (
     let chartableData: Types.TPieChartSlices = [];
     appLogTypes.map(type => {
         chartableData.push({
-            id: type,
+            id: LOG_TYPES[type].name,
             label: LOG_TYPES[type].name,
             value: typeTotals[type],
             color: LOG_TYPES[type].color
