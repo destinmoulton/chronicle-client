@@ -42,7 +42,6 @@ const ActionsPieChart: React.SFC<IActionPieChartProps> = (
             slicesLabelsSkipAngle={PIE.SLICES_LABELS.SkipAngle}
             slicesLabelsTextColor={PIE.SLICES_LABELS.TextColor}
             animate={false}
-            legends={[PIE.LEGEND]}
         />
     );
 };
