@@ -60,19 +60,22 @@ export const buildChartableDataArray = (
     for (let i = 0; i < types.length; i++) {
         const data: any[] = [];
         const currentLogType = types[i];
-        dateSeries.map((date, index) => {
-            data.push({
-                x: date,
-                y: dateKeyedTypes[date][currentLogType]
-            });
-        });
 
-        // Initialize the count for each type to 0
-        chartableData.push({
-            id: types[i],
-            color: LOG_TYPES[currentLogType].color,
-            data
-        });
+        if (currentLogType in LOG_TYPES) {
+            dateSeries.map((date, index) => {
+                data.push({
+                    x: date,
+                    y: dateKeyedTypes[date][currentLogType]
+                });
+            });
+
+            // Initialize the count for each type to 0
+            chartableData.push({
+                id: types[i],
+                color: LOG_TYPES[currentLogType].color,
+                data
+            });
+        }
     }
 
     return chartableData;
@@ -104,12 +107,14 @@ export const generateLogTypesPieData = (
     // Build the final data structure
     let chartableData: Types.TPieChartSlices = [];
     appLogTypes.map(type => {
-        chartableData.push({
-            id: LOG_TYPES[type].name,
-            label: LOG_TYPES[type].name,
-            value: typeTotals[type],
-            color: LOG_TYPES[type].color
-        });
+        if (type in LOG_TYPES) {
+            chartableData.push({
+                id: LOG_TYPES[type].name,
+                label: LOG_TYPES[type].name,
+                value: typeTotals[type],
+                color: LOG_TYPES[type].color
+            });
+        }
     });
 
     return chartableData;
