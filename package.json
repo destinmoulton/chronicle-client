@@ -35,7 +35,8 @@
         "react-router-redux": "^5.0.0-alpha.9",
         "redux": "^3.7.2",
         "redux-thunk": "^2.2.0",
-        "serve": "^6.5.3"
+        "serve": "^6.5.3",
+        "webpack-cli": "^2.0.12"
     },
     "devDependencies": {
         "awesome-typescript-loader": "^4.0.1",
