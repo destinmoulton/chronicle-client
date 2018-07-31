@@ -10,6 +10,7 @@ import TopBar from "./TopBar/TopBar";
 interface IMapStateToProps {
     appLogs: Types.TAppLogs;
     appLogTypes: Types.TAppLogTypes;
+    appHasData: boolean;
     logsAreLoading: boolean;
     logsHaveData: boolean;
     selectedApp: string;
@@ -26,6 +27,7 @@ class LogBrowser extends React.Component<ILogBrowserProps, ILogBrowserState> {
         const {
             appLogs,
             appLogTypes,
+            appHasData,
             logsAreLoading,
             logsHaveData
         } = this.props;
@@ -36,6 +38,7 @@ class LogBrowser extends React.Component<ILogBrowserProps, ILogBrowserState> {
             contents = (
                 <LogList
                     key="loglist"
+                    appHasData={appHasData}
                     appLogTypes={appLogTypes}
                     appLogs={appLogs}
                 />
@@ -56,6 +59,7 @@ const mapStateToProps = (state: Types.IRootStoreState): IMapStateToProps => {
     return {
         appLogs: logs.appLogs,
         appLogTypes: logs.appLogTypes,
+        appHasData: logs.hasData,
         logsAreLoading: logs.isLoading,
         logsHaveData: logs.hasData,
         selectedApp: query.selectedApp
