@@ -1,4 +1,4 @@
-import { routerReducer, routerMiddleware } from "react-router-redux";
+import { connectRouter, routerMiddleware } from "connected-react-router";
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import createHistory from "history/createBrowserHistory";
@@ -10,12 +10,13 @@ import queryReducer from "./reducers/query.reducer";
 const history = createHistory();
 
 const store = createStore(
-    combineReducers({
-        apps: appsReducer,
-        logs: logsReducer,
-        query: queryReducer,
-        routerReducer
-    }),
+    connectRouter(history)(
+        combineReducers({
+            apps: appsReducer,
+            logs: logsReducer,
+            query: queryReducer
+        })
+    ),
     applyMiddleware(routerMiddleware(history), thunk)
 );
 
