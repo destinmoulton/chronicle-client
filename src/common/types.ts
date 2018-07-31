@@ -106,7 +106,7 @@ export interface IRootStoreState {
     logs: IReducerLogsState;
     query: IReducerQueryState;
     sort: IReducerSortState;
-    routerReducer: IRouterReducerState;
+    router: IRouterReducerState;
 }
 
 /** Date Series */
