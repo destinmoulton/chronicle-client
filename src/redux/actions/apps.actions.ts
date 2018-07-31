@@ -34,6 +34,9 @@ const apiGetApps = () => {
             .then((apps: any) => {
                 dispatch(setAppCallComplete());
                 dispatch(prepareData(apps.apps));
+            })
+            .catch(err => {
+                console.error(err);
             });
     };
 };
