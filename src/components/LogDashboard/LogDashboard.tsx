@@ -8,6 +8,7 @@ import ActionsPieChart from "./ActionsPieChart";
 import Loading from "../shared/Loading";
 import LogTypesDailyGraph from "./LogTypesDailyGraph";
 import LogTypesPieChart from "./LogTypesPieChart";
+import NoData from "../shared/NoData";
 import TopBar from "../TopBar/TopBar";
 
 interface IMapStateToProps {
@@ -33,12 +34,7 @@ class LogDashboard extends React.Component<ILogDashboard> {
         let content = [<Loading key="loading" />];
 
         if (hasLogData && appLogTypes.size === 0) {
-            content = [
-                <div key="nodata" id="chc-dashboard-nodata">
-                    No logs were found for the specified date range.
-                    <br />Change the dates above.
-                </div>
-            ];
+            content = [<NoData key="nodata" />];
         } else if (appLogTypes.size > 0) {
             content = [
                 <div key="logtypespie" className="chc-dashboard-pie-container">
