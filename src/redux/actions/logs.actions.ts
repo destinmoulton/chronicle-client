@@ -43,7 +43,6 @@ const getServerLogs = () => {
                 return res.json();
             })
             .then(parsed => {
-                console.log(parsed);
                 if (
                     parsed.data !== undefined &&
                     parsed.data.Items !== undefined
