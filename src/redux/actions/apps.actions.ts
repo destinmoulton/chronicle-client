@@ -21,9 +21,10 @@ const setAppCallBegin = (): Types.IAppAction => {
 const apiGetApps = () => {
     return (dispatch: Types.IDispatch) => {
         const url = API_URL + "/apps";
-        const params = {
+        const params: RequestInit = {
             method: "GET",
-            headers: JSON_HEADERS
+            headers: JSON_HEADERS,
+            mode: "cors"
         };
 
         fetch(url, params)
