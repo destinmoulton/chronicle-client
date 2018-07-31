@@ -43,6 +43,7 @@ const getServerLogs = () => {
                 return res.json();
             })
             .then(parsed => {
+                console.log(parsed);
                 if (
                     parsed.data !== undefined &&
                     parsed.data.Items !== undefined
@@ -82,8 +83,7 @@ const prepareAppLogs = (logItems: any) => {
 
         //Merge with current data
         //const appLogs = getState().logs.appLogs;
-        const newAppLogs = mappedItems; //appLogs.merge(mappedItems);
-        dispatch(writeAppLogs(newAppLogs));
+        dispatch(setAppLogs(mappedItems));
         dispatch(setAppLogTypes(appLogTypes));
     };
 };
@@ -123,9 +123,9 @@ export const clearAppLogs = () => {
     };
 };
 
-const writeAppLogs = (data: Types.TAppLogs) => {
+const setAppLogs = (data: Types.TAppLogs) => {
     return {
-        type: ActionTypes.LOGS_WRITE_DATA,
+        type: ActionTypes.LOGS_SET_DATA,
         data
     };
 };

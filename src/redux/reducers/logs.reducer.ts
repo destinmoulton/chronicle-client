@@ -34,7 +34,7 @@ export default (state = INITIAL_STATE, action: Types.ILogAction) => {
                 isLoading: false
             };
         }
-        case ActionTypes.LOGS_WRITE_DATA: {
+        case ActionTypes.LOGS_SET_DATA: {
             return {
                 ...state,
                 hasData: true,
