@@ -106,13 +106,14 @@ class LogList extends React.Component<ILogListProps, ILogListState> {
         } else if (appLogTypes.size > 0) {
             content = [
                 <QueryBar
+                    key="querybar"
                     appLogTypes={appLogTypes}
                     onSelectLogTypes={this._handleSelectLogTypes}
                     selectedAppLogTypes={_selectedAppLogTypes}
                     onSelectSortOrder={this._handleSelectSortOrder}
                     selectedSortOrder={_selectedSortOrder}
                 />,
-                <div className="chc-log-list-box">{list}</div>
+                <div key="loglist" className="chc-log-list-box">{list}</div>
             ];
         }
         return content;
