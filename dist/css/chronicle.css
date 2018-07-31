@@ -36,6 +36,13 @@ div.chc-dashboard-container {
     width: 100%;
 }
 
+div#chc-dashboard-nodata {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.4em;
+    padding: 10px;
+}
+
 div.chc-dashboard-linechart-container {
     float: left;
     width: 100%;
