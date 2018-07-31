@@ -2,8 +2,6 @@ import * as React from "react";
 import { Moment } from "moment";
 import { connect } from "react-redux";
 
-import { Col, Row } from "antd";
-
 import * as Types from "../../common/types";
 
 import ActionsPieChart from "./ActionsPieChart";
@@ -15,6 +13,7 @@ import TopBar from "../TopBar/TopBar";
 interface IMapStateToProps {
     appLogs: Types.TAppLogs;
     appLogTypes: Types.TAppLogTypes;
+    hasLogData: boolean;
     dateRangeStart: Moment;
     dateRangeEnd: Moment;
 }
@@ -26,13 +25,21 @@ class LogDashboard extends React.Component<ILogDashboard> {
         const {
             appLogs,
             appLogTypes,
+            hasLogData,
             dateRangeStart,
             dateRangeEnd
         } = this.props;
 
         let content = [<Loading key="loading" />];
 
-        if (appLogTypes.size > 0) {
+        if (hasLogData && appLogTypes.size === 0) {
+            content = [
+                <div key="nodata" id="chc-dashboard-nodata">
+                    No logs were found for the specified date range.
+                    <br />Change the dates above.
+                </div>
+            ];
+        } else if (appLogTypes.size > 0) {
             content = [
                 <div key="logtypespie" className="chc-dashboard-pie-container">
                     <LogTypesPieChart
@@ -72,6 +79,7 @@ const mapStateToProps = (state: Types.IRootStoreState): IMapStateToProps => {
     return {
         appLogs: logs.appLogs,
         appLogTypes: logs.appLogTypes,
+        hasLogData: logs.hasData,
         dateRangeStart: query.dateRangeStart,
         dateRangeEnd: query.dateRangeEnd
     };

@@ -28,7 +28,7 @@ const getServerLogs = () => {
         if (!selectedApp) {
             return false;
         }
-        const fetchParams = {
+        const fetchParams: RequestInit = {
             method: "POST",
             headers: JSON_HEADERS,
             body: chronicleAPIQueryBuilder({
@@ -36,7 +36,8 @@ const getServerLogs = () => {
                 //type: "log",
                 dateRangeEnd,
                 dateRangeStart
-            })
+            }),
+            mode: "cors"
         };
         fetch(API_URL + "/query", fetchParams)
             .then(res => {
@@ -82,8 +83,7 @@ const prepareAppLogs = (logItems: any) => {
 
         //Merge with current data
         //const appLogs = getState().logs.appLogs;
-        const newAppLogs = mappedItems; //appLogs.merge(mappedItems);
-        dispatch(writeAppLogs(newAppLogs));
+        dispatch(setAppLogs(mappedItems));
         dispatch(setAppLogTypes(appLogTypes));
     };
 };
@@ -123,9 +123,9 @@ export const clearAppLogs = () => {
     };
 };
 
-const writeAppLogs = (data: Types.TAppLogs) => {
+const setAppLogs = (data: Types.TAppLogs) => {
     return {
-        type: ActionTypes.LOGS_WRITE_DATA,
+        type: ActionTypes.LOGS_SET_DATA,
         data
     };
 };
