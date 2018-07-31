@@ -28,7 +28,7 @@ const getServerLogs = () => {
         if (!selectedApp) {
             return false;
         }
-        const fetchParams = {
+        const fetchParams: RequestInit = {
             method: "POST",
             headers: JSON_HEADERS,
             body: chronicleAPIQueryBuilder({
@@ -36,7 +36,8 @@ const getServerLogs = () => {
                 //type: "log",
                 dateRangeEnd,
                 dateRangeStart
-            })
+            }),
+            mode: "cors"
         };
         fetch(API_URL + "/query", fetchParams)
             .then(res => {
