@@ -3,13 +3,16 @@ import { connect } from "react-redux";
 
 import * as Types from "../../common/types";
 
+import Loading from "../shared/Loading";
 import LogItem from "./LogItem";
+import NoData from "../shared/NoData";
 import SORTOPTIONS from "../../common/sortoptions.constants";
 import { comparatorDispatch } from "../../lib/comparators";
 
 import QueryBar from "./QueryBar/QueryBar";
 
 interface ILogListProps {
+    appHasData: boolean;
     appLogs: Types.TAppLogs;
     appLogTypes: Types.TAppLogTypes;
 }
@@ -73,7 +76,7 @@ class LogList extends React.Component<ILogListProps, ILogListState> {
     }
 
     render() {
-        const { appLogTypes } = this.props;
+        const { appHasData, appLogTypes } = this.props;
         const {
             _activeLogItem,
             _selectedAppLogTypes,
@@ -95,18 +98,24 @@ class LogList extends React.Component<ILogListProps, ILogListState> {
                 </div>
             );
         });
-        return (
-            <div>
+
+        let content = [<Loading key="loading" />];
+
+        if (appHasData && appLogTypes.size === 0) {
+            content = [<NoData key="nodata" />];
+        } else if (appLogTypes.size > 0) {
+            content = [
                 <QueryBar
                     appLogTypes={appLogTypes}
                     onSelectLogTypes={this._handleSelectLogTypes}
                     selectedAppLogTypes={_selectedAppLogTypes}
                     onSelectSortOrder={this._handleSelectSortOrder}
                     selectedSortOrder={_selectedSortOrder}
-                />
+                />,
                 <div className="chc-log-list-box">{list}</div>
-            </div>
-        );
+            ];
+        }
+        return content;
     }
 }
 
