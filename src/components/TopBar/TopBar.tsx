@@ -77,12 +77,12 @@ class TopBar extends React.Component<ITopBarProps> {
 }
 
 const mapStateToProps = (state: Types.IRootStoreState): IMapStateToProps => {
-    const { logs, query, routerReducer } = state;
+    const { logs, query, router } = state;
     return {
         logsAreLoading: logs.isLoading,
         logsHaveData: logs.hasData,
         selectedApp: query.selectedApp,
-        pathname: routerReducer.location.pathname
+        pathname: router.location.pathname
     };
 };
 
@@ -92,4 +92,7 @@ const mapDispatchToProps = (dispatch: Types.IDispatch): IMapDispatchToProps => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TopBar);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(TopBar);
