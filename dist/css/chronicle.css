@@ -24,7 +24,7 @@ ul.chc-app-list {
     list-style-type: none;
 }
 
-ul.chc-app-list>li {
+ul.chc-app-list > li {
     border: 1px solid darkslategray;
     padding: 4px;
     background-color: white;
@@ -63,7 +63,10 @@ div.chc-browser-select-logtypes {
     overflow: auto;
 }
 
-.chc-browser-select-logtypes .ant-select-sm .ant-select-selection--multiple .ant-select-selection__clear {
+.chc-browser-select-logtypes
+    .ant-select-sm
+    .ant-select-selection--multiple
+    .ant-select-selection__clear {
     right: 20px;
     top: 15px;
 }
@@ -107,10 +110,18 @@ div.chc-loading-animation {
 }
 
 div.chc-log-item-tab-contents {
-    margin: 5px;
+    margin: 0px 5px 5px 5px;
     padding: 5px;
     border: 2px solid gray;
     background-color: #fff;
+}
+
+span.chc-log-item-tab-user-key {
+    color: maroon;
+}
+
+div.chc-log-item-tab-trace-line {
+    color: #3f5b26;
 }
 
 div.chc-log-list-box {
