@@ -29,17 +29,20 @@ class SelectLogTypes extends React.Component<ISelectLogTypesProps> {
             );
         });
         return (
-            <span>
+            <div className="chc-browser-select-logtypes">
                 <Select
                     allowClear={true}
                     mode="multiple"
                     value={selectedAppLogTypes}
                     onChange={onSelectLogTypes}
-                    style={{ width: "500px" }}
+                    style={{
+                        width: "500px"
+                    }}
+                    size="small"
                 >
                     {options}
                 </Select>
-            </span>
+            </div>
         );
     }
 }

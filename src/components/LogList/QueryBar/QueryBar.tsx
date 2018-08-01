@@ -23,7 +23,7 @@ class QueryBar extends React.Component<IQueryBarProps> {
             selectedSortOrder
         } = this.props;
         return (
-            <div className="chc-query-bar">
+            <div className="chc-browser-query-bar">
                 <SortBy
                     selectedSortOrder={selectedSortOrder}
                     onSelectSortOrder={onSelectSortOrder}

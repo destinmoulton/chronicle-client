@@ -22,8 +22,8 @@ const SortBy: React.SFC<ISortByProps> = (props: ISortByProps) => {
         );
     });
     return (
-        <span>
-            <span>Sort:</span>
+        <div className="chc-browser-select-sortorder">
+            <span>Sort:&nbsp;</span>
             <Select
                 defaultValue={selectedSortOrder}
                 size="small"
@@ -31,7 +31,7 @@ const SortBy: React.SFC<ISortByProps> = (props: ISortByProps) => {
             >
                 {options}
             </Select>
-        </span>
+        </div>
     );
 };
 

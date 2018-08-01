@@ -31,9 +31,50 @@ ul.chc-app-list > li {
     cursor: pointer;
 }
 
+div.chc-browser-query-bar {
+    height: 36px;
+    padding-top: 3px;
+    width: 100%;
+    background-color: white;
+}
+
+div.chc-browser-refresh {
+    top: 4px;
+    left: 5px;
+    position: relative;
+    float: left;
+}
+
+div.chc-browser-select-sortorder {
+    top: 4px;
+    position: relative;
+    float: left;
+}
+
+div.chc-browser-select-logtypes {
+    padding-left: 5px;
+    position: relative;
+    float: left;
+}
+
+.chc-browser-select-logtypes .ant-select-selection--multiple {
+    white-space: nowrap;
+    height: 30px;
+    overflow: auto;
+}
+
+.chc-browser-select-logtypes
+    .ant-select-sm
+    .ant-select-selection--multiple
+    .ant-select-selection__clear {
+    right: 20px;
+    top: 15px;
+}
+
 div.chc-dashboard-container {
     background-color: white;
     width: 100%;
+    height: 100%;
 }
 
 div#chc-dashboard-nodata {
@@ -57,9 +98,15 @@ div.chc-dashboard-pie-container {
 
 div.chc-loading-animation {
     text-align: center;
-    width: 100%;
+    width: 40px;
+    height: 40px;
     margin-top: 2vh;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid gray;
+    border-radius: 2px;
     font-size: 1.6em;
+    background-color: white;
 }
 
 div.chc-log-item-explorer-main-box {
@@ -144,13 +191,6 @@ div.chc-nav-title {
     font-weight: bold;
     width: 200px;
     float: left;
-}
-
-div.chc-query-bar {
-    height: 4vh;
-    line-height: 4vh;
-    width: 100%;
-    background-color: white;
 }
 
 div.chc-topbar-app-name {

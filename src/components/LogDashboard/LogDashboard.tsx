@@ -31,40 +31,50 @@ class LogDashboard extends React.Component<ILogDashboard> {
             dateRangeEnd
         } = this.props;
 
-        let content = [<Loading key="loading" />];
+        let content = <Loading key="loading" />;
 
         if (hasLogData && appLogTypes.size === 0) {
-            content = [<NoData key="nodata" />];
+            content = <NoData key="nodata" />;
         } else if (appLogTypes.size > 0) {
-            content = [
-                <div key="logtypespie" className="chc-dashboard-pie-container">
-                    <LogTypesPieChart
-                        appLogs={appLogs}
-                        appLogTypes={appLogTypes}
-                    />
-                </div>,
-                <div key="actionspie" className="chc-dashboard-pie-container">
-                    <ActionsPieChart appLogs={appLogs} />
-                </div>,
-                <div
-                    key="logtypeschart"
-                    className="chc-dashboard-linechart-container"
-                >
-                    <LogTypesDailyGraph
-                        key="chart"
-                        appLogs={appLogs}
-                        appLogTypes={appLogTypes}
-                        dateRangeStart={dateRangeStart}
-                        dateRangeEnd={dateRangeEnd}
-                    />
-                </div>,
-                <div key="clear" className="clear-both" />
-            ];
+            content = (
+                <div className="chc-dashboard-container">
+                    <div
+                        key="logtypespie"
+                        className="chc-dashboard-pie-container"
+                    >
+                        <h3>Console Logs</h3>
+                        <LogTypesPieChart
+                            appLogs={appLogs}
+                            appLogTypes={appLogTypes}
+                        />
+                    </div>
+                    <div
+                        key="actionspie"
+                        className="chc-dashboard-pie-container"
+                    >
+                        <h3>Actions Logged</h3>
+                        <ActionsPieChart appLogs={appLogs} />
+                    </div>
+                    <div
+                        key="logtypeschart"
+                        className="chc-dashboard-linechart-container"
+                    >
+                        <LogTypesDailyGraph
+                            key="chart"
+                            appLogs={appLogs}
+                            appLogTypes={appLogTypes}
+                            dateRangeStart={dateRangeStart}
+                            dateRangeEnd={dateRangeEnd}
+                        />
+                    </div>
+                    <div key="clear" className="clear-both" />
+                </div>
+            );
         }
         return (
             <div>
                 <TopBar />
-                <div className="chc-dashboard-container">{content}</div>
+                {content}
             </div>
         );
     }
