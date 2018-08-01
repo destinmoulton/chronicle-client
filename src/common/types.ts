@@ -44,6 +44,7 @@ export interface ILogItem {
     id: string;
     data: string | any[];
     type: string;
+    trace: string[];
 }
 
 export type TAppLogs = OrderedMap<string, ILogItem>;
