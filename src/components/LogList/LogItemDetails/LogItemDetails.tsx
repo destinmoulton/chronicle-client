@@ -6,7 +6,7 @@ const { chromeLight, ObjectInspector } = ReactInspector;
 
 import { Icon } from "antd";
 
-import * as Types from "../../common/types";
+import * as Types from "../../../common/types";
 
 interface ILogItemExplorerProps {
     item: Types.ILogItem;

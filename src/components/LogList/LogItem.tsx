@@ -9,7 +9,7 @@ import {
     LOG_TYPES
 } from "../../common/logtypes.constants";
 
-import LogItemDetails from "./LogItemDetails";
+import LogItemDetails from "./LogItemDetails/LogItemDetails";
 
 interface ILogItemProps {
     activeLogItemId: string;
