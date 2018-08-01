@@ -9,7 +9,7 @@ import {
     LOG_TYPES
 } from "../../common/logtypes.constants";
 
-import LogItemDetails from "./LogItemDetails/LogItemDetails";
+import LogItemTabs from "./LogItemTabs/LogItemTabs";
 
 interface ILogItemProps {
     activeLogItemId: string;
@@ -17,25 +17,25 @@ interface ILogItemProps {
 }
 
 interface ILogItemState {
-    isExploring: boolean;
+    isLogItemOpen: boolean;
 }
 class LogItem extends React.Component<ILogItemProps, ILogItemState> {
     constructor(props: ILogItemProps) {
         super(props);
 
         this.state = {
-            isExploring: false
+            isLogItemOpen: false
         };
 
         this._toggleExploring = this._toggleExploring.bind(this);
     }
 
     _toggleExploring() {
-        this.setState({ isExploring: !this.state.isExploring });
+        this.setState({ isLogItemOpen: !this.state.isLogItemOpen });
     }
 
     render() {
-        const { isExploring } = this.state;
+        const { isLogItemOpen } = this.state;
         const { activeLogItemId, item } = this.props;
         const { createdAt, type } = item;
 
@@ -46,9 +46,9 @@ class LogItem extends React.Component<ILogItemProps, ILogItemState> {
         const activeClass =
             activeLogItemId === item.id ? "chc-log-list-item-active" : "";
 
-        const exploringCaret = isExploring ? "caret-down" : "caret-right";
-        const details = isExploring ? <LogItemDetails item={item} /> : null;
-        if (isExploring) {
+        const exploringCaret = isLogItemOpen ? "caret-down" : "caret-right";
+        const details = isLogItemOpen ? <LogItemTabs item={item} /> : null;
+        if (isLogItemOpen) {
             console.log(item);
         }
 
