@@ -27,12 +27,14 @@ class RefreshButton extends React.Component<IRefreshButtonProps> {
 
     render() {
         return (
-            <Button
-                shape="circle"
-                icon="reload"
-                size="small"
-                onClick={this._handlePressReload}
-            />
+            <div className="chc-browser-refresh">
+                <Button
+                    shape="circle"
+                    icon="reload"
+                    size="small"
+                    onClick={this._handlePressReload}
+                />
+            </div>
         );
     }
 }
@@ -47,4 +49,7 @@ const mapDispatchToProps = (dispatch: Types.IDispatch): IMapDispatchToProps => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(RefreshButton);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(RefreshButton);
