@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import * as Types from "../../../common/types";
-import Generic from "./Generic";
+import Inspector from "./Inspector";
 interface IProps {
     item: Types.ILogItem;
 }
@@ -19,11 +19,11 @@ const DataTab = (props: IProps) => {
             if (typeof el === "string") {
                 return el;
             } else {
-                return <Generic item={el} />;
+                return <Inspector item={el} />;
             }
         });
     } else {
-        details = [<Generic item={data} />];
+        details = [<Inspector item={data} />];
     }
     return <div className="chc-log-item-tab-contents">{details}</div>;
 };
