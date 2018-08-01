@@ -9,6 +9,10 @@ import { getDateBeginPoint, getDateEndPoint } from "../../lib/dateRangePoints";
 import { loadLogs } from "../actions/logs.actions";
 
 export const setQueryDateStart = (startMoment: Moment) => {
+    localStorage.setItem(
+        "dateRange.start.ISOString",
+        startMoment.toISOString()
+    );
     return (dispatch: IDispatch) => {
         dispatch(overwriteQueryDateStart(startMoment));
         dispatch(loadLogs());
@@ -23,6 +27,7 @@ const overwriteQueryDateStart = (startMoment: Moment) => {
 };
 
 export const setQueryDateEnd = (endMoment: Moment) => {
+    localStorage.setItem("dateRange.end.ISOString", endMoment.toISOString());
     return (dispatch: IDispatch) => {
         dispatch(overwriteQueryDateEnd(endMoment));
         dispatch(loadLogs());

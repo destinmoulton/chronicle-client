@@ -5,11 +5,24 @@ import * as Types from "../../common/types";
 import { getDateBeginPoint, getDateEndPoint } from "../../lib/dateRangePoints";
 import { DATE_FORMAT, NUMBER_MONTHS_PAST } from "../../common/date.constants";
 
+let INITIAL_BEGIN_MOMENT = moment().subtract(NUMBER_MONTHS_PAST, "months");
+
+if (localStorage.getItem("dateRange.start.ISOString")) {
+    INITIAL_BEGIN_MOMENT = moment(
+        localStorage.getItem("dateRange.start.ISOString")
+    );
+}
+
+let INITIAL_END_MOMENT = moment();
+if (localStorage.getItem("dateRange.end.ISOString")) {
+    INITIAL_END_MOMENT = moment(
+        localStorage.getItem("dateRange.end.ISOString")
+    );
+}
+
 const INITIAL_STATE: Types.IReducerQueryState = {
-    dateRangeStart: getDateBeginPoint(
-        moment().subtract(NUMBER_MONTHS_PAST, "months") // Some number months ago
-    ),
-    dateRangeEnd: getDateEndPoint(moment()), // Today
+    dateRangeStart: getDateBeginPoint(INITIAL_BEGIN_MOMENT),
+    dateRangeEnd: getDateEndPoint(INITIAL_END_MOMENT),
     selectedApp: ""
 };
 
