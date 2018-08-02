@@ -33,6 +33,7 @@ class LogItemTabs extends React.Component<IProps> {
                     defaultActiveKey={activeTab}
                     onChange={this._handleActivateTab}
                     type="card"
+                    animated={false}
                 >
                     <TabPane tab="Data" key="data">
                         <DataTab item={item} />
