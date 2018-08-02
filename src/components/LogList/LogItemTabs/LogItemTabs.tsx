@@ -6,7 +6,7 @@ import * as Types from "../../../common/types";
 
 import DataTab from "./DataTab";
 import TraceTab from "./TraceTab";
-import FullTab from "./FullTab";
+import RawTab from "./RawTab";
 import UserTab from "./UserTab";
 
 interface IProps {
@@ -28,10 +28,11 @@ class LogItemTabs extends React.Component<IProps> {
         const { item } = this.props;
         const { activeTab } = this.state;
         return (
-            <div>
+            <div className="chc-log-item-tabs-container">
                 <Tabs
                     defaultActiveKey={activeTab}
                     onChange={this._handleActivateTab}
+                    type="card"
                 >
                     <TabPane tab="Data" key="data">
                         <DataTab item={item} />
@@ -42,8 +43,8 @@ class LogItemTabs extends React.Component<IProps> {
                     <TabPane tab="Trace" key="trace">
                         <TraceTab item={item} />
                     </TabPane>
-                    <TabPane tab="Full" key="full">
-                        <FullTab item={item} />
+                    <TabPane tab="Raw" key="raw">
+                        <RawTab item={item} />
                     </TabPane>
                 </Tabs>
             </div>
