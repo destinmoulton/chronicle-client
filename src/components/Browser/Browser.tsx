@@ -11,20 +11,20 @@ import { comparatorDispatch } from "../../lib/comparators";
 
 import QueryBar from "./QueryBar/QueryBar";
 
-interface ILogListProps {
+interface IBrowserProps {
     appHasData: boolean;
     appLogs: Types.TAppLogs;
     appLogTypes: Types.TAppLogTypes;
 }
 
-interface ILogListState {
+interface IBrowserState {
     _activeLogItem: undefined | Types.ILogItem;
     _selectedAppLogTypes: string[];
     _selectedSortOrder: string;
 }
 
-class LogList extends React.Component<ILogListProps, ILogListState> {
-    constructor(props: ILogListProps) {
+class Browser extends React.Component<IBrowserProps, IBrowserState> {
+    constructor(props: IBrowserProps) {
         super(props);
 
         this.state = {
@@ -37,10 +37,12 @@ class LogList extends React.Component<ILogListProps, ILogListState> {
         this._handleSelectSortOrder = this._handleSelectSortOrder.bind(this);
     }
 
-    componentWillReceiveProps(nextProps: ILogListProps) {
-        this.setState({
-            _selectedAppLogTypes: nextProps.appLogTypes.toArray() // Set all log types to active
-        });
+    componentDidUpdate(prevProps: IBrowserProps) {
+        if (!prevProps.appLogTypes.equals(this.props.appLogTypes)) {
+            this.setState({
+                _selectedAppLogTypes: this.props.appLogTypes.toArray() // Set all log types to active
+            });
+        }
     }
 
     _filterAndSort(): Types.ILogItem[] {
@@ -113,11 +115,13 @@ class LogList extends React.Component<ILogListProps, ILogListState> {
                     onSelectSortOrder={this._handleSelectSortOrder}
                     selectedSortOrder={_selectedSortOrder}
                 />,
-                <div key="loglist" className="chc-log-list-box">{list}</div>
+                <div key="Browser" className="chc-log-list-box">
+                    {list}
+                </div>
             ];
         }
         return content;
     }
 }
 
-export default LogList;
+export default Browser;
