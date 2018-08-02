@@ -15,11 +15,11 @@ const DataTab = (props: IProps) => {
     if (typeof data === "string") {
         details = [data];
     } else if (Array.isArray(data)) {
-        details = data.map(el => {
+        details = data.map((el, indx) => {
             if (typeof el === "string") {
-                return el;
+                return <span key={indx}>{el}</span>;
             } else {
-                return <Inspector item={el} />;
+                return <Inspector key={indx} item={el} />;
             }
         });
     } else {
