@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as moment from "moment";
-import { Icon } from "antd";
+import { Button, Icon } from "antd";
 import * as Types from "../../common/types";
 
 import {
@@ -33,6 +33,10 @@ class LogItem extends React.Component<ILogItemProps, ILogItemState> {
     _toggleExploring() {
         this.setState({ isLogItemOpen: !this.state.isLogItemOpen });
     }
+
+    _handleDevToolsLog = () => {
+        console.log(this.props.item.data);
+    };
 
     render() {
         const { isLogItemOpen } = this.state;
@@ -70,7 +74,15 @@ class LogItem extends React.Component<ILogItemProps, ILogItemState> {
                     <div className="chc-log-list-item-title-summary">
                         {summary}
                     </div>
-
+                    <div className="chc-log-list-item-devtoolsconsole-button">
+                        <a
+                            onClick={this._handleDevToolsLog}
+                            href="javascript:void(0);"
+                            title="Show in Browser Dev Tools Console"
+                        >
+                            <Icon type="right-square-o" />
+                        </a>
+                    </div>
                     <div className="chc-log-list-item-time">{time}</div>
                 </div>
                 {details}
