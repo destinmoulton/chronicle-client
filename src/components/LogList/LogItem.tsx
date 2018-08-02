@@ -52,9 +52,6 @@ class LogItem extends React.Component<ILogItemProps, ILogItemState> {
 
         const exploringCaret = isLogItemOpen ? "caret-down" : "caret-right";
         const details = isLogItemOpen ? <LogItemTabs item={item} /> : null;
-        if (isLogItemOpen) {
-            console.log(item);
-        }
 
         const summary = JSON.stringify(item.data, null, 2); //.substr(0, 60);
         return (
