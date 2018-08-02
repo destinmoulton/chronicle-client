@@ -5,11 +5,11 @@ const { ObjectInspector } = ReactInspector;
 import { THEME_OBJECT_INSPECTOR } from "../../../common/theme.constants";
 import * as Types from "../../../common/types";
 
-interface IFullTabProps {
+interface IRawTabProps {
     item: Types.ILogItem;
 }
 
-const FullTab: React.SFC<IFullTabProps> = (props: IFullTabProps) => {
+const RawTab: React.SFC<IRawTabProps> = (props: IRawTabProps) => {
     const { item } = props;
     return (
         <div className="chc-log-item-tab-contents">
@@ -23,4 +23,4 @@ const FullTab: React.SFC<IFullTabProps> = (props: IFullTabProps) => {
     );
 };
 
-export default FullTab;
+export default RawTab;

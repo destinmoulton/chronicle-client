@@ -107,10 +107,52 @@ div.chc-loading-animation {
 }
 
 div.chc-log-item-tab-contents {
-    margin: 5px;
-    padding: 5px;
+    margin: 0px 5px 5px 5px;
+    padding: 10px;
     border: 2px solid gray;
     background-color: #fff;
+    z-index: 0;
+}
+
+span.chc-log-item-tab-user-key {
+    color: maroon;
+}
+
+div.chc-log-item-tab-trace-line {
+    color: #3f5b26;
+}
+
+.chc-log-item-tabs-container .ant-tabs-bar {
+    margin: 0px 0px 0px 5px;
+    height: 30px;
+}
+
+.chc-log-item-tabs-container .ant-tabs.ant-tabs-card>.ant-tabs-bar .ant-tabs-nav-container {
+    overflow: visible;
+    height: 30px;
+}
+
+.chc-log-item-tabs-container .ant-tabs-nav-scroll {
+    overflow: visible;
+    height: 32px;
+}
+
+.chc-log-item-tabs-container .ant-tabs.ant-tabs-card>.ant-tabs-bar .ant-tabs-tab {
+    border-left: 2px solid gray;
+    border-right: 2px solid gray;
+    border-top: 2px solid gray;
+    border-radius: 0px;
+    background-color: #ddd;
+    height: 30px;
+    line-height: 30px;
+}
+
+.chc-log-item-tabs-container .ant-tabs.ant-tabs-card>.ant-tabs-bar .ant-tabs-tab-active {
+    /* margin-bottom: -5px; */
+    background-color: white;
+    height: 32px;
+    z-index: 10;
+    color: black;
 }
 
 div.chc-log-list-box {
