@@ -201,6 +201,12 @@ div.chc-log-list-item-title-summary {
     overflow: hidden;
 }
 
+div.chc-log-list-item-devtoolsconsole-button {
+    float: left;
+    width: 5%;
+    height: 30px;
+}
+
 div.chc-log-list-item-time {
     float: right;
 }
