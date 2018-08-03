@@ -104,8 +104,6 @@ class Browser extends React.Component<IBrowserProps, IBrowserState> {
         const scrollDiff = relHeight - scrollTop;
 
         if (scrollDiff < boxHeight) {
-            console.log("Adding data");
-
             const { sortedLogItems, visibleLogItems } = this.state;
             if (this._lastVisibleItemIndex < sortedLogItems.length) {
                 const newEndIndex =
