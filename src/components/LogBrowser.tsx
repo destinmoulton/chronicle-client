@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import * as Types from "../common/types";
 
 import Loading from "./shared/Loading";
-import LogList from "./LogList/LogList";
+import Browser from "./Browser/Browser";
 import TopBar from "./TopBar/TopBar";
 
 interface IMapStateToProps {
@@ -36,8 +36,8 @@ class LogBrowser extends React.Component<ILogBrowserProps, ILogBrowserState> {
 
         if (!logsAreLoading && logsHaveData) {
             contents = (
-                <LogList
-                    key="loglist"
+                <Browser
+                    key="browser"
                     appHasData={appHasData}
                     appLogTypes={appLogTypes}
                     appLogs={appLogs}
