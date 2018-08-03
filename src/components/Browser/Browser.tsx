@@ -108,17 +108,17 @@ class Browser extends React.Component<IBrowserProps, IBrowserState> {
 
             const { sortedLogItems, visibleLogItems } = this.state;
             if (this._lastVisibleItemIndex < sortedLogItems.length) {
+                const newEndIndex =
+                    this._lastVisibleItemIndex + this._numItemsToAdd;
                 const additionalItems = sortedLogItems.slice(
                     this._lastVisibleItemIndex,
-                    this._numItemsToAdd
+                    newEndIndex
                 );
-
+                this._lastVisibleItemIndex = newEndIndex;
                 const fullSet = [...visibleLogItems, ...additionalItems];
                 this.setState({
                     visibleLogItems: fullSet
                 });
-                this._lastVisibleItemIndex =
-                    this._lastVisibleItemIndex + this._numItemsToAdd;
             }
         }
     };
@@ -129,7 +129,7 @@ class Browser extends React.Component<IBrowserProps, IBrowserState> {
             this._refListBox = el;
             elem.addEventListener(
                 "scroll",
-                debounce(this._handleScrollEvent, 500)
+                debounce(this._handleScrollEvent, 200)
             );
         }
     };
@@ -147,18 +147,10 @@ class Browser extends React.Component<IBrowserProps, IBrowserState> {
             .toArray();
     }
 
-    render() {
-        const { appHasData, appLogTypes } = this.props;
-        const {
-            activeLogItem,
-            selectedAppLogTypes,
-            selectedSortOrder,
-            visibleLogItems
-        } = this.state;
-
+    _buildList() {
+        const { activeLogItem, sortedLogItems, visibleLogItems } = this.state;
         const activeLogItemId =
             activeLogItem !== undefined ? activeLogItem.id : "";
-
         let list: any[] = [];
         if (visibleLogItems) {
             visibleLogItems.map((item, key) => {
@@ -175,13 +167,30 @@ class Browser extends React.Component<IBrowserProps, IBrowserState> {
                 );
             });
         }
-        list.push(<Loading />);
+        if (
+            sortedLogItems &&
+            this._lastVisibleItemIndex < sortedLogItems.length
+        ) {
+            list.push(<Loading key="loading" />);
+        }
+        return list;
+    }
+
+    render() {
+        const { appHasData, appLogTypes } = this.props;
+        const {
+            selectedAppLogTypes,
+            selectedSortOrder,
+            visibleLogItems
+        } = this.state;
+
+        const list = this._buildList();
 
         let content = [<Loading key="loading" />];
 
-        if (appHasData && appLogTypes.size === 0) {
+        if (appHasData && visibleLogItems && visibleLogItems.length === 0) {
             content = [<NoData key="nodata" />];
-        } else if (appLogTypes.size > 0) {
+        } else if (visibleLogItems && visibleLogItems.length > 0) {
             content = [
                 <QueryBar
                     key="querybar"
