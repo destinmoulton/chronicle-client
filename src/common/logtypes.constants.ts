@@ -13,15 +13,15 @@ interface ILogTypes {
 }
 
 export const LOG_TYPE_EMPTY: ILogType = {
-    icon: "",
-    color: "",
-    name: ""
+    icon: "solution",
+    color: "#9b71b7",
+    name: "custom"
 };
 
 export const LOG_TYPES: ILogTypes = {
     action: {
         icon: "share-alt",
-        color:"black",
+        color: "black",
         name: "action()"
     },
     assert: {
