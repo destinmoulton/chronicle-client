@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { debounce } from "lodash";
+import * as _ from "lodash";
 
 import * as Types from "../../common/types";
 
@@ -128,7 +128,7 @@ class Browser extends React.Component<IBrowserProps, IBrowserState> {
                 this._refListBox = el;
                 elem.addEventListener(
                     "scroll",
-                    debounce(this._handleScrollEvent, 100)
+                    _.debounce(this._handleScrollEvent, 100)
                 );
             }
         }
