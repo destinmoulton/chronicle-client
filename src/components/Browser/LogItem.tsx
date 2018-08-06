@@ -45,7 +45,9 @@ class LogItem extends React.Component<ILogItemProps, ILogItemState> {
 
         const time = moment(createdAt).format("MMM D, Y h:mm a");
 
-        const logTypeObj: ILogType = LOG_TYPES[type] || LOG_TYPE_EMPTY;
+        let logTypeObj: ILogType = LOG_TYPES[type] || LOG_TYPE_EMPTY;
+        // custom log type
+        logTypeObj.name = `${type}()`;
 
         const activeClass =
             activeLogItemId === item.id ? "chc-log-list-item-active" : "";
