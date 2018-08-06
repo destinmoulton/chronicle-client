@@ -42,6 +42,7 @@
     "devDependencies": {
         "source-map-loader": "^0.2.3",
         "typescript": "^3.0.1",
-        "webpack": "^4.16.3"
+        "webpack": "^4.16.3",
+        "webpack-bundle-analyzer": "^2.13.1"
     }
 }

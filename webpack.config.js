@@ -1,5 +1,8 @@
 var path = require("path");
 var webpack = require("webpack");
+// Uncomment to enable the BundleAnalyzer
+// const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+//    .BundleAnalyzerPlugin;
 module.exports = {
     entry: "./src/index.tsx",
     output: {
@@ -10,6 +13,7 @@ module.exports = {
     // Enable sourcemaps for debugging webpack's output.
     devtool: "source-map",
 
+    //plugins: [new BundleAnalyzerPlugin()],
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
         extensions: [".ts", ".tsx", ".js", ".json"]
@@ -30,8 +34,8 @@ module.exports = {
     // This is important because it allows us to avoid bundling all of our
     // dependencies, which allows browsers to cache those libraries between builds.
     externals: {
-        antd: "antd",
         lodash: "_",
+        antd: "antd",
         react: "React",
         immutable: "Immutable",
         moment: "moment",

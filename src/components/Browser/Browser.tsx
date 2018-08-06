@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { debounce } from "lodash";
+import * as _ from "lodash";
 
 import * as Types from "../../common/types";
 
@@ -29,7 +29,7 @@ interface IBrowserState {
 
 class Browser extends React.Component<IBrowserProps, IBrowserState> {
     // Ref for the list of items
-    _refListBox = {};
+    _refListBox: any = null;
 
     _numItemsToAdd = 50;
     _lastVisibleItemIndex = 0;
@@ -122,13 +122,15 @@ class Browser extends React.Component<IBrowserProps, IBrowserState> {
     };
 
     _initRefListBox = (el: HTMLDivElement) => {
-        const elem = ReactDOM.findDOMNode(el);
-        if (elem) {
-            this._refListBox = el;
-            elem.addEventListener(
-                "scroll",
-                debounce(this._handleScrollEvent, 200)
-            );
+        if (this._refListBox === null) {
+            const elem = ReactDOM.findDOMNode(el);
+            if (elem) {
+                this._refListBox = el;
+                elem.addEventListener(
+                    "scroll",
+                    _.debounce(this._handleScrollEvent, 100)
+                );
+            }
         }
     };
 

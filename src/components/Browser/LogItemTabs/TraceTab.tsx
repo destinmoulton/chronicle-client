@@ -11,13 +11,17 @@ const TraceTab = (props: IProps) => {
 
     let traceOut = [];
 
-    traceOut = item.trace.map((line, indx) => {
-        return (
-            <div key={indx} className="chc-log-item-tab-trace-line">
-                &gt;&nbsp;{line}
-            </div>
-        );
-    });
+    if (item.trace === undefined) {
+        traceOut = [<em key="none">No trace found.</em>];
+    } else {
+        traceOut = item.trace.map((line, indx) => {
+            return (
+                <div key={indx} className="chc-log-item-tab-trace-line">
+                    &gt;&nbsp;{line}
+                </div>
+            );
+        });
+    }
     return <div className="chc-log-item-tab-contents">{traceOut}</div>;
 };
 
