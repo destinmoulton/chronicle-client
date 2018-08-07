@@ -51,42 +51,60 @@ class Browser extends React.Component<IBrowserProps, IBrowserState> {
     }
 
     componentDidMount() {
-        this._initializeState();
+        this._initializeState(
+            this.props.appLogTypes.toArray(),
+            SORTOPTIONS[0].value
+        );
     }
+
     componentDidUpdate(prevProps: IBrowserProps) {
         if (!prevProps.appLogTypes.equals(this.props.appLogTypes)) {
-            this._initializeState();
+            this._initializeState(
+                this.props.appLogTypes.toArray(),
+                this.state.selectedSortOrder
+            );
         }
     }
 
-    _initializeState() {
+    _initializeState(appLogTypes: string[], sortOrder: string) {
         this._lastVisibleItemIndex = 0;
-        const sortedLogItems = this._filterAndSort(this.props.appLogs);
+
+        const sortedLogItems = this._filterAndSort(
+            this.props.appLogs,
+            appLogTypes,
+            sortOrder
+        );
         const initialItems = sortedLogItems.slice(
             this._lastVisibleItemIndex,
             this._numItemsToAdd
         );
 
         this.setState({
-            selectedAppLogTypes: this.props.appLogTypes.toArray(),
+            selectedAppLogTypes: appLogTypes,
+            selectedSortOrder: sortOrder,
             sortedLogItems,
             visibleLogItems: initialItems
         });
 
         this._lastVisibleItemIndex =
             this._lastVisibleItemIndex + this._numItemsToAdd;
+
+        // Scroll to the top
+        const listBox = document.querySelector("div.chc-log-list-box");
+        if (listBox) {
+            listBox.scrollTo(0, 0);
+        }
     }
 
-    _handleSelectLogTypes(types: string[]) {
-        this.setState({
-            selectedAppLogTypes: types
-        });
+    _handleSelectLogTypes(newLogTypesSelection: string[]) {
+        this._initializeState(
+            newLogTypesSelection,
+            this.state.selectedSortOrder
+        );
     }
 
-    _handleSelectSortOrder(order: string) {
-        this.setState({
-            selectedSortOrder: order
-        });
+    _handleSelectSortOrder(newOrder: string) {
+        this._initializeState(this.state.selectedAppLogTypes, newOrder);
     }
 
     _handleClickLogItem(logItem: Types.ILogItem) {
@@ -121,7 +139,7 @@ class Browser extends React.Component<IBrowserProps, IBrowserState> {
         }
     };
 
-    _initRefListBox = (el: HTMLDivElement) => {
+    _initRefListBox = (el: any) => {
         if (this._refListBox === null) {
             const elem = ReactDOM.findDOMNode(el);
             if (elem) {
@@ -134,9 +152,11 @@ class Browser extends React.Component<IBrowserProps, IBrowserState> {
         }
     };
 
-    _filterAndSort(logItems: Types.TAppLogs): Types.ILogItem[] {
-        const { selectedAppLogTypes, selectedSortOrder } = this.state;
-
+    _filterAndSort(
+        logItems: Types.TAppLogs,
+        selectedAppLogTypes: string[],
+        selectedSortOrder: string
+    ): Types.ILogItem[] {
         const [sortField, sortOrder] = selectedSortOrder.split(":");
         const comparator = comparatorDispatch(sortOrder);
         return logItems
@@ -177,7 +197,7 @@ class Browser extends React.Component<IBrowserProps, IBrowserState> {
     }
 
     render() {
-        const { appHasData, appLogTypes } = this.props;
+        const { appHasData, appLogs, appLogTypes } = this.props;
         const {
             selectedAppLogTypes,
             selectedSortOrder,
@@ -188,9 +208,9 @@ class Browser extends React.Component<IBrowserProps, IBrowserState> {
 
         let content = [<Loading key="loading" />];
 
-        if (appHasData && visibleLogItems && visibleLogItems.length === 0) {
+        if (appHasData && appLogs && appLogs.size === 0) {
             content = [<NoData key="nodata" />];
-        } else if (visibleLogItems && visibleLogItems.length > 0) {
+        } else if (visibleLogItems) {
             content = [
                 <QueryBar
                     key="querybar"
