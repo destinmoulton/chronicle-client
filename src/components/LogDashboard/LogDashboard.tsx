@@ -14,6 +14,7 @@ import TopBar from "../TopBar/TopBar";
 interface IMapStateToProps {
     appLogs: Types.TAppLogs;
     appLogTypes: Types.TAppLogTypes;
+    appName: string;
     hasLogData: boolean;
     dateRangeStart: Moment;
     dateRangeEnd: Moment;
@@ -26,6 +27,7 @@ class LogDashboard extends React.Component<ILogDashboard> {
         const {
             appLogs,
             appLogTypes,
+            appName,
             hasLogData,
             dateRangeStart,
             dateRangeEnd
@@ -38,6 +40,11 @@ class LogDashboard extends React.Component<ILogDashboard> {
         } else if (appLogTypes.size > 0) {
             content = (
                 <div className="chc-dashboard-container">
+                    <div className="chc-dashboard-dates-container">
+                        {appName}&nbsp;-&nbsp;
+                        {dateRangeStart.format("MMMM DD, YYYY")}&nbsp;to&nbsp;
+                        {dateRangeEnd.format("MMMM DD, YYYY")}
+                    </div>
                     <div
                         key="logtypespie"
                         className="chc-dashboard-pie-container"
@@ -59,6 +66,13 @@ class LogDashboard extends React.Component<ILogDashboard> {
                         key="logtypeschart"
                         className="chc-dashboard-linechart-container"
                     >
+                        <h3>
+                            Daily Log for&nbsp;
+                            {dateRangeStart.format(
+                                "MMMM DD, YYYY"
+                            )}&nbsp;to&nbsp;
+                            {dateRangeEnd.format("MMMM DD, YYYY")}
+                        </h3>
                         <LogTypesDailyGraph
                             key="chart"
                             appLogs={appLogs}
@@ -85,6 +99,7 @@ const mapStateToProps = (state: Types.IRootStoreState): IMapStateToProps => {
     return {
         appLogs: logs.appLogs,
         appLogTypes: logs.appLogTypes,
+        appName: query.selectedApp,
         hasLogData: logs.hasData,
         dateRangeStart: query.dateRangeStart,
         dateRangeEnd: query.dateRangeEnd

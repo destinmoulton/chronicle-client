@@ -24,7 +24,7 @@ ul.chc-app-list {
     list-style-type: none;
 }
 
-ul.chc-app-list>li {
+ul.chc-app-list > li {
     border: 1px solid darkslategray;
     padding: 4px;
     background-color: white;
@@ -63,7 +63,10 @@ div.chc-browser-select-logtypes {
     overflow: auto;
 }
 
-.chc-browser-select-logtypes .ant-select-sm .ant-select-selection--multiple .ant-select-selection__clear {
+.chc-browser-select-logtypes
+    .ant-select-sm
+    .ant-select-selection--multiple
+    .ant-select-selection__clear {
     right: 20px;
     top: 15px;
 }
@@ -83,14 +86,33 @@ div#chc-dashboard-nodata {
     width: 100%;
 }
 
+div.chc-dashboard-dates-container {
+    float: left;
+    width: 890px;
+    margin: 5px;
+    border: 1px solid gray;
+    padding: 5px;
+    text-align: center;
+    font-size: 1.2em;
+}
+
 div.chc-dashboard-linechart-container {
     float: left;
-    width: 100%;
+    width: 890px;
+    margin: 5px;
+    border: 1px solid gray;
+    padding: 5px;
+    text-align: center;
 }
 
 div.chc-dashboard-pie-container {
     float: left;
-    width: 400px;
+    width: 440px;
+    margin: 5px;
+    border: 1px solid gray;
+    padding: 5px;
+    overflow: hidden;
+    text-align: center;
 }
 
 div.chc-loading-animation {
@@ -127,7 +149,10 @@ div.chc-log-item-tab-trace-line {
     height: 30px;
 }
 
-.chc-log-item-tabs-container .ant-tabs.ant-tabs-card>.ant-tabs-bar .ant-tabs-nav-container {
+.chc-log-item-tabs-container
+    .ant-tabs.ant-tabs-card
+    > .ant-tabs-bar
+    .ant-tabs-nav-container {
     overflow: visible;
     height: 30px;
 }
@@ -137,7 +162,10 @@ div.chc-log-item-tab-trace-line {
     height: 32px;
 }
 
-.chc-log-item-tabs-container .ant-tabs.ant-tabs-card>.ant-tabs-bar .ant-tabs-tab {
+.chc-log-item-tabs-container
+    .ant-tabs.ant-tabs-card
+    > .ant-tabs-bar
+    .ant-tabs-tab {
     border-left: 2px solid gray;
     border-right: 2px solid gray;
     border-top: 2px solid gray;
@@ -147,7 +175,10 @@ div.chc-log-item-tab-trace-line {
     line-height: 30px;
 }
 
-.chc-log-item-tabs-container .ant-tabs.ant-tabs-card>.ant-tabs-bar .ant-tabs-tab-active {
+.chc-log-item-tabs-container
+    .ant-tabs.ant-tabs-card
+    > .ant-tabs-bar
+    .ant-tabs-tab-active {
     /* margin-bottom: -5px; */
     background-color: white;
     height: 32px;
