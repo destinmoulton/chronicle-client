@@ -65,7 +65,7 @@ class TopBar extends React.Component<ITopBarProps> {
                     key={tab.route}
                     className={"chc-topbar-tab " + activeClass}
                 >
-                    <Link to={tab.route}>{tab.name}</Link>
+                    <Link to={tab.route[0]}>{tab.name}</Link>
                 </div>
             );
         });
@@ -73,8 +73,8 @@ class TopBar extends React.Component<ITopBarProps> {
             <Header className="chc-nav-bar">
                 <div className="chc-nav-title">Chronicle</div>
                 {tabs}
-                <div className="chc-topbar-app-name">{selectedApp}</div>
                 <DateRange />
+                <div className="chc-topbar-app-name">{selectedApp}</div>
             </Header>
         );
     }
