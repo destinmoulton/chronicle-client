@@ -43,7 +43,7 @@ class DateRange extends React.Component<IDateRangeProps> {
         const { rangeDateEnd, rangeDateStart } = this.props;
         return (
             <div className="chc-topbar-daterange-box">
-                <span>Dates:</span>
+                <span>Query Dates:&nbsp;</span>
                 <DatePicker
                     onChange={this._handleSelectStartDate}
                     placeholder="Start Date"
@@ -84,4 +84,7 @@ const mapDispatchToProps = (dispatch: Types.IDispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DateRange);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(DateRange);
