@@ -7,7 +7,7 @@
     "author": "Destin Moulton",
     "license": "MIT",
     "scripts": {
-        "compile": "webpack --config webpack.config.js -d --watch",
+        "build": "webpack --config webpack.config.js -d --watch",
         "start:server": "serve --single ./dist"
     },
     "dependencies": {
