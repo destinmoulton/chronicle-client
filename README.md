@@ -1,6 +1,6 @@
 ### Chronicle Client
 
-Chronicle Client is a simple web server and frontend for the Chronicle API.
+Chronicle Client is a simple web server and frontend for viewing data logged to the [Chronicle API](https://github.com/destinmoulton/chronicle-api).
 
 Chronicle Client is a React/redux app built using TypeScript.
 
