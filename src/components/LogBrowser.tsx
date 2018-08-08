@@ -5,7 +5,6 @@ import * as Types from "../common/types";
 
 import Loading from "./shared/Loading";
 import Browser from "./Browser/Browser";
-import TopBar from "./TopBar/TopBar";
 
 interface IMapStateToProps {
     appLogs: Types.TAppLogs;
@@ -45,12 +44,7 @@ class LogBrowser extends React.Component<ILogBrowserProps, ILogBrowserState> {
             );
         }
 
-        return (
-            <div>
-                <TopBar key="topbar" />
-                {contents}
-            </div>
-        );
+        return <div>{contents}</div>;
     }
 }
 
