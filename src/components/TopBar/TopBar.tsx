@@ -11,20 +11,20 @@ import * as LogsActions from "../../redux/actions/logs.actions";
 import * as Types from "../../common/types";
 
 interface ITab {
-    route: string;
+    route: string[];
     name: string;
 }
 const TABS: ITab[] = [
     {
-        route: "/apps",
+        route: ["/", "/apps"],
         name: "Apps"
     },
     {
-        route: "/dashboard",
+        route: ["/dashboard"],
         name: "Dashboard"
     },
     {
-        route: "/browser",
+        route: ["/browser"],
         name: "Browser"
     }
 ];
@@ -57,8 +57,9 @@ class TopBar extends React.Component<ITopBarProps> {
     render() {
         const { selectedApp, pathname } = this.props;
         const tabs = TABS.map((tab: any) => {
-            const activeClass =
-                tab.route === pathname ? "chc-topbar-tab-active" : "";
+            const activeClass = tab.route.includes(pathname)
+                ? "chc-topbar-tab-active"
+                : "";
             return (
                 <div
                     key={tab.route}
