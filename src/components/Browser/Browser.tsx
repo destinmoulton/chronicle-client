@@ -39,7 +39,6 @@ class Browser extends React.Component<IBrowserProps, IBrowserState> {
 
         this.state = {
             activeLogItem: undefined,
-
             selectedAppLogTypes: props.appLogTypes.toArray(), // Set all log types to active
             selectedSortOrder: SORTOPTIONS[0].value,
             sortedLogItems: null,

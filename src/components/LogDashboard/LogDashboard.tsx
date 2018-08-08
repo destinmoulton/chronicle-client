@@ -9,7 +9,6 @@ import Loading from "../shared/Loading";
 import LogTypesDailyGraph from "./LogTypesDailyGraph";
 import LogTypesPieChart from "./LogTypesPieChart";
 import NoData from "../shared/NoData";
-import TopBar from "../TopBar/TopBar";
 
 interface IMapStateToProps {
     appLogs: Types.TAppLogs;
@@ -41,8 +40,10 @@ class LogDashboard extends React.Component<ILogDashboard> {
             content = (
                 <div className="chc-dashboard-container">
                     <div className="chc-dashboard-dates-container">
-                        {appName}&nbsp;-&nbsp;
-                        {dateRangeStart.format("MMMM DD, YYYY")}&nbsp;to&nbsp;
+                        {appName}
+                        &nbsp;-&nbsp;
+                        {dateRangeStart.format("MMMM DD, YYYY")}
+                        &nbsp;to&nbsp;
                         {dateRangeEnd.format("MMMM DD, YYYY")}
                     </div>
                     <div
@@ -68,9 +69,8 @@ class LogDashboard extends React.Component<ILogDashboard> {
                     >
                         <h3>
                             Daily Log for&nbsp;
-                            {dateRangeStart.format(
-                                "MMMM DD, YYYY"
-                            )}&nbsp;to&nbsp;
+                            {dateRangeStart.format("MMMM DD, YYYY")}
+                            &nbsp;to&nbsp;
                             {dateRangeEnd.format("MMMM DD, YYYY")}
                         </h3>
                         <LogTypesDailyGraph
@@ -85,12 +85,7 @@ class LogDashboard extends React.Component<ILogDashboard> {
                 </div>
             );
         }
-        return (
-            <div>
-                <TopBar />
-                {content}
-            </div>
-        );
+        return <div>{content}</div>;
     }
 }
 
