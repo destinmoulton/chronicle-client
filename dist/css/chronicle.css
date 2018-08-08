@@ -33,7 +33,7 @@ ul.chc-app-list > li {
 
 div.chc-browser-list-box {
     overflow: auto;
-    height: 86vh;
+    height: calc(100% - 63px);
     position: fixed;
     width: 100%;
     left: 0;
@@ -59,6 +59,7 @@ div.chc-browser-select-sortorder {
     top: 4px;
     position: relative;
     float: left;
+    margin-left: 10px;
 }
 
 div.chc-browser-select-logtypes {
@@ -123,6 +124,11 @@ div.chc-dashboard-pie-container {
     padding: 5px;
     overflow: hidden;
     text-align: center;
+}
+
+div.chc-layout-content {
+    background-color: white;
+    height: 100%;
 }
 
 div.chc-loading-animation {
@@ -253,29 +259,32 @@ div.chc-nav-api-url {
 
 div.chc-nav-bar {
     background-color: #204582;
-    height: 4vh;
-    line-height: 4vh;
+    height: 31px;
+    line-height: 31px;
     padding-left: 25px;
     width: 100%;
-    /* border-bottom: 2px solid white; */
 }
 
 div.chc-nav-title {
     color: white;
     font-size: 1.2em;
     font-weight: bold;
-    width: 200px;
+    width: 100px;
     float: left;
 }
 
 div.chc-topbar-app-name {
-    float: left;
-    border-radius: 4px;
+    float: right;
+    height: 27px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
     background-color: white;
     padding: 1px 6px 1px 6px;
-    margin: 3px 0px 0px 6px;
+    margin: 0px 0px 0px 6px;
     font-weight: bold;
-    border: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
 }
 
 div.chc-topbar-container {
@@ -286,11 +295,13 @@ div.chc-topbar-container {
 
 div.chc-topbar-daterange-box {
     float: left;
-    border-radius: 4px;
-    background-color: white;
-    padding: 3px;
-    margin-left: 6px;
-    height: 94%;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background-color: #efefef;
+    padding: 0px 6px 0px 6px;
+    margin: 0px 0px 0px 6px;
+    height: 27px;
+    line-height: 27px;
 }
 
 div.chc-topbar-tab {
@@ -300,9 +311,11 @@ div.chc-topbar-tab {
     border-right: 1px solid black;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
-    padding: 2px 6px 3px 6px;
+    padding: 0px 6px 3px 6px;
     margin: 3px 0px -3px 3px;
     height: 27px;
+    line-height: 27px;
+    background-color: #efefef;
 }
 
 div.chc-topbar-tab-active {

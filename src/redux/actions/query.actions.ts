@@ -42,6 +42,13 @@ const overwriteQueryDateEnd = (endMoment: Moment) => {
 };
 
 export const setSelectedApp = (selectedApp: string) => {
+    return (dispatch: IDispatch) => {
+        dispatch(querySetSelectedApp(selectedApp));
+        dispatch(loadLogs());
+    };
+};
+
+const querySetSelectedApp = (selectedApp: string) => {
     return {
         type: ActionTypes.QUERY_SET_SELECTED_APP,
         selectedApp

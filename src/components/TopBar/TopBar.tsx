@@ -1,6 +1,8 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { Layout } from "antd";
+const { Header } = Layout;
 
 import { history } from "../../redux/store";
 
@@ -9,20 +11,20 @@ import * as LogsActions from "../../redux/actions/logs.actions";
 import * as Types from "../../common/types";
 
 interface ITab {
-    route: string;
+    route: string[];
     name: string;
 }
 const TABS: ITab[] = [
     {
-        route: "/apps",
+        route: ["/", "/apps"],
         name: "Apps"
     },
     {
-        route: "/dashboard",
+        route: ["/dashboard"],
         name: "Dashboard"
     },
     {
-        route: "/browser",
+        route: ["/browser"],
         name: "Browser"
     }
 ];
@@ -55,23 +57,25 @@ class TopBar extends React.Component<ITopBarProps> {
     render() {
         const { selectedApp, pathname } = this.props;
         const tabs = TABS.map((tab: any) => {
-            const activeClass =
-                tab.route === pathname ? "chc-topbar-tab-active" : "";
+            const activeClass = tab.route.includes(pathname)
+                ? "chc-topbar-tab-active"
+                : "";
             return (
                 <div
                     key={tab.route}
                     className={"chc-topbar-tab " + activeClass}
                 >
-                    <Link to={tab.route}>{tab.name}</Link>
+                    <Link to={tab.route[0]}>{tab.name}</Link>
                 </div>
             );
         });
         return (
-            <div className="chc-topbar-container">
+            <Header className="chc-nav-bar">
+                <div className="chc-nav-title">Chronicle</div>
                 {tabs}
-                <div className="chc-topbar-app-name">{selectedApp}</div>
                 <DateRange />
-            </div>
+                <div className="chc-topbar-app-name">{selectedApp}</div>
+            </Header>
         );
     }
 }
