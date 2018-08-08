@@ -9,7 +9,7 @@ import TopBar from "./components/TopBar/TopBar";
 import AppSelector from "./components/AppSelector";
 import LogBrowser from "./components/LogBrowser";
 
-import LogDashboard from "./components/LogDashboard/LogDashboard";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 interface IAppProps {}
 const App: React.SFC<IAppProps> = (props: IAppProps) => {
@@ -22,11 +22,7 @@ const App: React.SFC<IAppProps> = (props: IAppProps) => {
                     <Col span={24}>
                         <Route exact path="/" component={AppSelector} />
                         <Route exact path="/apps" component={AppSelector} />
-                        <Route
-                            exact
-                            path="/dashboard"
-                            component={LogDashboard}
-                        />
+                        <Route exact path="/dashboard" component={Dashboard} />
                         <Route exact path="/browser" component={LogBrowser} />
                     </Col>
                 </Row>

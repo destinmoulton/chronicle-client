@@ -19,9 +19,9 @@ interface IMapStateToProps {
     dateRangeEnd: Moment;
 }
 
-interface ILogDashboard extends IMapStateToProps {}
+interface IDashboard extends IMapStateToProps {}
 
-class LogDashboard extends React.Component<ILogDashboard> {
+class Dashboard extends React.Component<IDashboard> {
     render() {
         const {
             appLogs,
@@ -100,4 +100,4 @@ const mapStateToProps = (state: Types.IRootStoreState): IMapStateToProps => {
         dateRangeEnd: query.dateRangeEnd
     };
 };
-export default connect(mapStateToProps)(LogDashboard);
+export default connect(mapStateToProps)(Dashboard);
