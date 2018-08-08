@@ -1,6 +1,8 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { Layout } from "antd";
+const { Header } = Layout;
 
 import { history } from "../../redux/store";
 
@@ -67,11 +69,12 @@ class TopBar extends React.Component<ITopBarProps> {
             );
         });
         return (
-            <div className="chc-topbar-container">
+            <Header className="chc-nav-bar">
+                <div className="chc-nav-title">Chronicle</div>
                 {tabs}
                 <div className="chc-topbar-app-name">{selectedApp}</div>
                 <DateRange />
-            </div>
+            </Header>
         );
     }
 }
