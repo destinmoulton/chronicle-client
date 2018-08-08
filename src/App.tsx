@@ -17,7 +17,7 @@ const App: React.SFC<IAppProps> = (props: IAppProps) => {
         <Layout className="chc-main-container">
             <TopBar />
 
-            <Content>
+            <Content className="chc-layout-content">
                 <Row>
                     <Col span={24}>
                         <Route exact path="/" component={AppSelector} />
