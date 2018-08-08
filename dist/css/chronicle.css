@@ -24,7 +24,7 @@ ul.chc-app-list {
     list-style-type: none;
 }
 
-ul.chc-app-list>li {
+ul.chc-app-list > li {
     border: 1px solid darkslategray;
     padding: 4px;
     background-color: white;
@@ -33,7 +33,7 @@ ul.chc-app-list>li {
 
 div.chc-browser-list-box {
     overflow: auto;
-    height: 86vh;
+    height: calc(100% - 63px);
     position: fixed;
     width: 100%;
     left: 0;
@@ -59,6 +59,7 @@ div.chc-browser-select-sortorder {
     top: 4px;
     position: relative;
     float: left;
+    margin-left: 10px;
 }
 
 div.chc-browser-select-logtypes {
@@ -73,7 +74,10 @@ div.chc-browser-select-logtypes {
     overflow: auto;
 }
 
-.chc-browser-select-logtypes .ant-select-sm .ant-select-selection--multiple .ant-select-selection__clear {
+.chc-browser-select-logtypes
+    .ant-select-sm
+    .ant-select-selection--multiple
+    .ant-select-selection__clear {
     right: 20px;
     top: 15px;
 }
@@ -161,7 +165,10 @@ div.chc-log-item-tab-trace-line {
     height: 30px;
 }
 
-.chc-log-item-tabs-container .ant-tabs.ant-tabs-card>.ant-tabs-bar .ant-tabs-nav-container {
+.chc-log-item-tabs-container
+    .ant-tabs.ant-tabs-card
+    > .ant-tabs-bar
+    .ant-tabs-nav-container {
     overflow: visible;
     height: 30px;
 }
@@ -171,7 +178,10 @@ div.chc-log-item-tab-trace-line {
     height: 32px;
 }
 
-.chc-log-item-tabs-container .ant-tabs.ant-tabs-card>.ant-tabs-bar .ant-tabs-tab {
+.chc-log-item-tabs-container
+    .ant-tabs.ant-tabs-card
+    > .ant-tabs-bar
+    .ant-tabs-tab {
     border-left: 2px solid gray;
     border-right: 2px solid gray;
     border-top: 2px solid gray;
@@ -181,7 +191,10 @@ div.chc-log-item-tab-trace-line {
     line-height: 30px;
 }
 
-.chc-log-item-tabs-container .ant-tabs.ant-tabs-card>.ant-tabs-bar .ant-tabs-tab-active {
+.chc-log-item-tabs-container
+    .ant-tabs.ant-tabs-card
+    > .ant-tabs-bar
+    .ant-tabs-tab-active {
     /* margin-bottom: -5px; */
     background-color: white;
     height: 32px;
