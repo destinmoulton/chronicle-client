@@ -90,7 +90,7 @@ class Browser extends React.Component<IBrowserProps, IBrowserState> {
             this._lastVisibleItemIndex + this._numItemsToAdd;
 
         // Scroll to the top
-        const listBox = document.querySelector("div.chc-log-list-box");
+        const listBox = document.querySelector("div.chc-browser-list-box");
         if (listBox) {
             listBox.scrollTo(0, 0);
         }
@@ -222,7 +222,7 @@ class Browser extends React.Component<IBrowserProps, IBrowserState> {
                 />,
                 <div
                     key="Browser"
-                    className="chc-log-list-box"
+                    className="chc-browser-list-box"
                     ref={el => this._initRefListBox(el)}
                 >
                     {list}
