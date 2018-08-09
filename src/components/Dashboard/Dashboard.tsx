@@ -39,49 +39,55 @@ class Dashboard extends React.Component<IDashboard> {
         } else if (appLogTypes.size > 0) {
             content = (
                 <div className="chc-dashboard-container">
-                    <div className="chc-dashboard-dates-container">
-                        {appName}
-                        &nbsp;-&nbsp;
-                        {dateRangeStart.format("MMMM DD, YYYY")}
-                        &nbsp;to&nbsp;
-                        {dateRangeEnd.format("MMMM DD, YYYY")}
-                    </div>
-                    <div
-                        key="logtypespie"
-                        className="chc-dashboard-pie-container"
-                    >
-                        <h3>Console Logs</h3>
-                        <LogTypesPieChart
-                            appLogs={appLogs}
-                            appLogTypes={appLogTypes}
-                        />
-                    </div>
-                    <div
-                        key="actionspie"
-                        className="chc-dashboard-pie-container"
-                    >
-                        <h3>Actions Logged</h3>
-                        <ActionsPieChart appLogs={appLogs} />
-                    </div>
-                    <div
-                        key="logtypeschart"
-                        className="chc-dashboard-linechart-container"
-                    >
-                        <h3>
-                            Daily Log for&nbsp;
+                    <div className="chc-dashboard-row">
+                        <div className="chc-dashboard-dates-container">
+                            {appName}
+                            &nbsp;-&nbsp;
                             {dateRangeStart.format("MMMM DD, YYYY")}
                             &nbsp;to&nbsp;
                             {dateRangeEnd.format("MMMM DD, YYYY")}
-                        </h3>
-                        <LogTypesDailyGraph
-                            key="chart"
-                            appLogs={appLogs}
-                            appLogTypes={appLogTypes}
-                            dateRangeStart={dateRangeStart}
-                            dateRangeEnd={dateRangeEnd}
-                        />
+                        </div>
                     </div>
-                    <div key="clear" className="clear-both" />
+                    <div className="chc-dashboard-row">
+                        <div
+                            key="logtypespie"
+                            className="chc-dashboard-pie-container"
+                        >
+                            <h3>Console Logs</h3>
+                            <LogTypesPieChart
+                                appLogs={appLogs}
+                                appLogTypes={appLogTypes}
+                            />
+                        </div>
+
+                        <div
+                            key="actionspie"
+                            className="chc-dashboard-pie-container"
+                        >
+                            <h3>Actions Logged</h3>
+                            <ActionsPieChart appLogs={appLogs} />
+                        </div>
+                    </div>
+                    <div className="chc-dashboard-row">
+                        <div
+                            key="logtypeschart"
+                            className="chc-dashboard-linechart-container"
+                        >
+                            <h3>
+                                Daily Log for&nbsp;
+                                {dateRangeStart.format("MMMM DD, YYYY")}
+                                &nbsp;to&nbsp;
+                                {dateRangeEnd.format("MMMM DD, YYYY")}
+                            </h3>
+                            <LogTypesDailyGraph
+                                key="chart"
+                                appLogs={appLogs}
+                                appLogTypes={appLogTypes}
+                                dateRangeStart={dateRangeStart}
+                                dateRangeEnd={dateRangeEnd}
+                            />
+                        </div>
+                    </div>
                 </div>
             );
         }
