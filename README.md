@@ -31,4 +31,4 @@ $ npm run build
 
 ### License
 
-Chronicle Client is released under the MIT license.
+MIT
